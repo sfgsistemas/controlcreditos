@@ -1,0 +1,918 @@
+<?php
+if(isset($_POST['aceptar'])){
+
+/*$nomsol=$_REQUEST['nomsol'];
+$segnomsol=$_REQUEST['segnomsol'];
+$apepasol=$_REQUEST['apepasol'];
+$apemasol=$_REQUEST['apemasol'];
+$rfc1=strtoupper($_REQUEST['rfc1']);
+$rfc2=strtoupper($_REQUEST['rfc2']);
+$rfc3=strtoupper($_REQUEST['rfc3']);
+$rfc4=strtoupper($_REQUEST['rfc4']);
+$rfc5=strtoupper($_REQUEST['rfc5']);
+$rfc6=strtoupper($_REQUEST['rfc6']);
+$rfc7=strtoupper($_REQUEST['rfc7']);
+$rfc8=strtoupper($_REQUEST['rfc8']);
+$rfc9=strtoupper($_REQUEST['rfc9']);
+$rfc10=strtoupper($_REQUEST['rfc10']);
+$rfc11=strtoupper($_REQUEST['rfc11']);
+$rfc12=strtoupper($_REQUEST['rfc12']);
+$rfc13=strtoupper($_REQUEST['rfc13']);
+
+$telsol1=$_REQUEST['telsol1'];
+$telsol2=$_REQUEST['telsol2'];
+$telsol3=$_REQUEST['telsol3'];
+$telsol4=$_REQUEST['telsol4'];
+$telsol5=$_REQUEST['telsol5'];
+$telsol6=$_REQUEST['telsol6'];
+$telsol7=$_REQUEST['telsol7'];
+$telsol8=$_REQUEST['telsol8'];
+$telsol9=$_REQUEST['telsol9'];
+$telsol10=$_REQUEST['telsol10'];
+
+$movsol12=$_REQUEST['movsol12'];
+$movsol22=$_REQUEST['movsol22'];
+$movsol32=$_REQUEST['movsol32'];
+$movsol42=$_REQUEST['movsol42'];
+$movsol52=$_REQUEST['movsol52'];
+$movsol62=$_REQUEST['movsol62'];
+$movsol72=$_REQUEST['movsol72'];
+$movsol82=$_REQUEST['movsol82'];
+$movsol92=$_REQUEST['movsol92'];
+$movsol102=$_REQUEST['movsol102'];
+
+$movsol1=$_REQUEST['movsol1'];
+$movsol2=$_REQUEST['movsol2'];
+$movsol3=$_REQUEST['movsol3'];
+$movsol4=$_REQUEST['movsol4'];
+$movsol5=$_REQUEST['movsol5'];
+$movsol6=$_REQUEST['movsol6'];
+$movsol7=$_REQUEST['movsol7'];
+$movsol8=$_REQUEST['movsol8'];
+$movsol9=$_REQUEST['movsol9'];
+$movsol10=$_REQUEST['movsol10'];
+
+$dirsol=$_REQUEST['dirsol'];
+
+$mailsol=$_REQUEST['mailsol'];
+
+$colsol=$_REQUEST['colsol'];
+
+$cdsol=$_REQUEST['cdsol'];
+
+$lugnacsol=$_REQUEST['lugnacsol'];
+
+$edosol=$_REQUEST['edosol'];
+
+$cpsol=$_REQUEST['cpsol'];
+
+$curpsol=$_REQUEST['curpsol'];
+
+$sexsol=$_REQUEST['sexsol'];
+
+$fechnacsol1=$_REQUEST['fechnacsol1'];
+
+$fechnacsol2=$_REQUEST['fechnacsol2'];
+
+$fechnacsol3=$_REQUEST['fechnacsol3'];
+
+$edsol=$_REQUEST['edsol'];
+
+$nacsol=$_REQUEST['nacsol'];
+
+$depensol=$_REQUEST['depensol'];
+
+$acdomsol=$_REQUEST['acdomsol'];
+
+$vivsol=$_REQUEST['vivsol'];
+
+
+
+$inmusol=$_REQUEST['inmusol'];
+
+
+$arraisol=$_REQUEST['arraisol'];
+
+
+
+$anosol2=$_REQUEST['anosol2'];
+
+$benesol=$_REQUEST['benesol'];
+
+$civilsol=$_REQUEST['civilsol'];
+
+$autosol=$_REQUEST['autosol'];
+
+$marcasol=$_REQUEST['marcasol'];
+
+
+
+$depasol=$_REQUEST['depasol'];
+
+
+
+$compasol=$_REQUEST['compasol'];
+
+$compatelsol1=$_REQUEST['compatelsol1'];
+$compatelsol2=$_REQUEST['compatelsol2'];
+$compatelsol3=$_REQUEST['compatelsol3'];
+$compatelsol4=$_REQUEST['compatelsol4'];
+$compatelsol5=$_REQUEST['compatelsol5'];
+$compatelsol6=$_REQUEST['compatelsol6'];
+$compatelsol7=$_REQUEST['compatelsol7'];
+$compatelsol8=$_REQUEST['compatelsol8'];
+$compatelsol9=$_REQUEST['compatelsol9'];
+$compatelsol10=$_REQUEST['compatelsol10'];
+
+$compatelsolext=$_REQUEST['compatelsolext'];
+
+$nomref1=$_REQUEST['nomref1'];
+
+$parenref1=$_REQUEST['parenref1'];
+
+$telref11=$_REQUEST['telref11'];
+$telref12=$_REQUEST['telref12'];
+$telref13=$_REQUEST['telref13'];
+$telref14=$_REQUEST['telref14'];
+$telref15=$_REQUEST['telref15'];
+$telref16=$_REQUEST['telref16'];
+$telref17=$_REQUEST['telref17'];
+$telref18=$_REQUEST['telref18'];
+$telref19=$_REQUEST['telref19'];
+$telref110=$_REQUEST['telref110'];
+
+$nomref2=$_REQUEST['nomref2'];
+
+$parenref2=$_REQUEST['parenref2'];
+
+$telref21=$_REQUEST['telref21'];
+$telref22=$_REQUEST['telref22'];
+$telref23=$_REQUEST['telref23'];
+$telref24=$_REQUEST['telref24'];
+$telref25=$_REQUEST['telref25'];
+$telref26=$_REQUEST['telref26'];
+$telref27=$_REQUEST['telref27'];
+$telref28=$_REQUEST['telref28'];
+$telref29=$_REQUEST['telref29'];
+$telref210=$_REQUEST['telref210'];
+
+$refbanc=$_REQUEST['refbanc'];
+
+$tarjrefbanc=$_REQUEST['tarjrefbanc'];
+
+$cargdir=$_REQUEST['cargdir'];
+
+$nocuentcd=$_REQUEST['nocuentcd'];
+
+$conyunom=$_REQUEST['conyunom'];
+
+$compaconyu=$_REQUEST['compaconyu'];
+
+$puestconyu=$_REQUEST['puestconyu'];
+
+$datobnom1=$_REQUEST['datobnom1'];
+
+$datobappat1=$_REQUEST['datobappat1'];
+
+$datobapmat1=$_REQUEST['datobapmat1'];
+
+$datobdir1=$_REQUEST['datobdir1'];
+
+$datobcol1=$_REQUEST['datobcol1'];
+
+$datobcd1=$_REQUEST['datobcd1'];
+
+$datoblugnac1=$_REQUEST['datoblugnac1'];
+
+$datobprop1=$_REQUEST['datobprop1'];
+
+$datobedo1=$_REQUEST['datobedo1'];
+
+$datobcp1=$_REQUEST['datobcp1'];
+
+$datobmail1=$_REQUEST['datobmail1'];
+
+$datobsex1=$_REQUEST['datobsex1'];
+
+$datobfechnac1d=$_REQUEST['datobfechnac1d'];
+
+$datobfechnac1m=$_REQUEST['datobfechnac1m'];
+
+$datobfechnac1a=$_REQUEST['datobfechnac1a'];
+
+$datobed1=$_REQUEST['datobed1'];
+
+$datobcurp1=strtoupper($_REQUEST['datobcurp1']);
+
+$datobrfc11=strtoupper($_REQUEST['datobrfc11']);
+$datobrfc12=strtoupper($_REQUEST['datobrfc12']);
+$datobrfc13=strtoupper($_REQUEST['datobrfc13']);
+$datobrfc14=strtoupper($_REQUEST['datobrfc14']);
+$datobrfc15=strtoupper($_REQUEST['datobrfc15']);
+$datobrfc16=strtoupper($_REQUEST['datobrfc16']);
+$datobrfc17=strtoupper($_REQUEST['datobrfc17']);
+$datobrfc18=strtoupper($_REQUEST['datobrfc18']);
+$datobrfc19=strtoupper($_REQUEST['datobrfc19']);
+$datobrfc110=strtoupper($_REQUEST['datobrfc110']);
+$datobrfc111=strtoupper($_REQUEST['datobrfc111']);
+$datobrfc112=strtoupper($_REQUEST['datobrfc112']);
+$datobrfc113=strtoupper($_REQUEST['datobrfc113']);
+
+
+$datobtel11=$_REQUEST['datobtel11'];
+$datobtel12=$_REQUEST['datobtel12'];
+$datobtel13=$_REQUEST['datobtel13'];
+$datobtel14=$_REQUEST['datobtel14'];
+$datobtel15=$_REQUEST['datobtel15'];
+$datobtel16=$_REQUEST['datobtel16'];
+$datobtel17=$_REQUEST['datobtel17'];
+$datobtel18=$_REQUEST['datobtel18'];
+$datobtel19=$_REQUEST['datobtel19'];
+$datobtel110=$_REQUEST['datobtel110'];
+
+////
+$datobnom2=$_REQUEST['datobnom2'];
+
+$datobappat2=$_REQUEST['datobappat2'];
+
+$datobapmat2=$_REQUEST['datobapmat2'];
+
+$datobdir2=$_REQUEST['datobdir2'];
+
+$datobcol2=$_REQUEST['datobcol2'];
+
+$datobcd2=$_REQUEST['datobcd2'];
+
+$datoblugnac2=$_REQUEST['datoblugnac2'];
+
+$datobprop2=$_REQUEST['datobprop2'];
+
+$datobedo2=$_REQUEST['datobedo2'];
+
+$datobcp2=$_REQUEST['datobcp2'];
+
+$datobmail2=$_REQUEST['datobmail2'];
+
+$datobsex2=$_REQUEST['datobsex2'];
+
+$datobfechnac2d=$_REQUEST['datobfechnac2d'];
+
+$datobfechnac2m=$_REQUEST['datobfechnac2m'];
+
+$datobfechnac2a=$_REQUEST['datobfechnac2a'];
+
+$datobed2=$_REQUEST['datobed2'];
+
+$datobcurp2=strtoupper($_REQUEST['datobcurp2']);
+
+$datobrfc21=strtoupper($_REQUEST['datobrfc21']);
+$datobrfc22=strtoupper($_REQUEST['datobrfc22']);
+$datobrfc23=strtoupper($_REQUEST['datobrfc23']);
+$datobrfc24=strtoupper($_REQUEST['datobrfc24']);
+$datobrfc25=strtoupper($_REQUEST['datobrfc25']);
+$datobrfc26=strtoupper($_REQUEST['datobrfc26']);
+$datobrfc27=strtoupper($_REQUEST['datobrfc27']);
+$datobrfc28=strtoupper($_REQUEST['datobrfc28']);
+$datobrfc29=strtoupper($_REQUEST['datobrfc29']);
+$datobrfc210=strtoupper($_REQUEST['datobrfc210']);
+$datobrfc211=strtoupper($_REQUEST['datobrfc211']);
+$datobrfc212=strtoupper($_REQUEST['datobrfc212']);
+$datobrfc213=strtoupper($_REQUEST['datobrfc213']);
+
+
+$datobtel21=$_REQUEST['datobtel21'];
+$datobtel22=$_REQUEST['datobtel22'];
+$datobtel23=$_REQUEST['datobtel23'];
+$datobtel24=$_REQUEST['datobtel24'];
+$datobtel25=$_REQUEST['datobtel25'];
+$datobtel26=$_REQUEST['datobtel26'];
+$datobtel27=$_REQUEST['datobtel27'];
+$datobtel28=$_REQUEST['datobtel28'];
+$datobtel29=$_REQUEST['datobtel29'];
+$datobtel210=$_REQUEST['datobtel210'];
+
+
+
+$clavcon=$_REQUEST['clavcon'];
+
+$nomcons=$_REQUEST['nomcons'];
+
+$fecha=$_REQUEST['fecha'];
+
+$nomvend=$_REQUEST['nomvend'];
+
+$gerentegral=$_REQUEST['gerentegral'];
+
+$tipocredito=$_REQUEST['tipocredito'];
+
+
+$impmenpag=$_REQUEST['impmenpag'];
+
+$giroprof=$_REQUEST['giroprof'];
+
+
+$desdesol1=$_REQUEST['desdesol1'];
+$desdesol2=$_REQUEST['desdesol2'];
+$desdesol3=$_REQUEST['desdesol3'];
+
+$noempleados=$_REQUEST['noempleados'];
+
+
+$giroactreal=$_REQUEST['giroactreal'];
+
+$domneg=$_REQUEST['domneg'];
+
+$refbanc=$_REQUEST['refbanc'];
+
+$numcuebanc=$_REQUEST['numcuebanc'];
+
+$sucbanc1=$_REQUEST['sucbanc1'];
+
+$refbanc2=$_REQUEST['refbanc2'];
+
+$sucbanc2=$_REQUEST['sucbanc2'];
+
+
+$aperbanc1d=$_REQUEST['aperbanc1d'];
+$aperbanc1m=$_REQUEST['aperbanc1m'];
+$aperbanc1a=$_REQUEST['aperbanc1a'];
+
+$aperbanc1d2=$_REQUEST['aperbanc1d2'];
+$aperbanc1m2=$_REQUEST['aperbanc1m2'];
+$aperbanc1a2=$_REQUEST['aperbanc1a2'];
+
+
+$refcomemp1=$_REQUEST['refcomemp1'];
+$antirefcom1=$_REQUEST['antirefcom1'];
+$telrefcom11=$_REQUEST['telrefcom11'];
+$telrefcom12=$_REQUEST['telrefcom12'];
+$telrefcom13=$_REQUEST['telrefcom13'];
+$telrefcom14=$_REQUEST['telrefcom14'];
+$telrefcom15=$_REQUEST['telrefcom15'];
+$telrefcom16=$_REQUEST['telrefcom16'];
+$telrefcom17=$_REQUEST['telrefcom17'];
+$telrefcom18=$_REQUEST['telrefcom18'];
+$telrefcom19=$_REQUEST['telrefcom19'];
+$telrefcom110=$_REQUEST['telrefcom110'];
+
+
+
+
+$refcomemp2=$_REQUEST['refcomemp2'];
+$antirefcom2=$_REQUEST['antirefcom2'];
+
+$telrefcom21=$_REQUEST['telrefcom21'];
+$telrefcom22=$_REQUEST['telrefcom22'];
+$telrefcom23=$_REQUEST['telrefcom23'];
+$telrefcom24=$_REQUEST['telrefcom24'];
+$telrefcom25=$_REQUEST['telrefcom25'];
+$telrefcom26=$_REQUEST['telrefcom26'];
+$telrefcom27=$_REQUEST['telrefcom27'];
+$telrefcom28=$_REQUEST['telrefcom28'];
+$telrefcom29=$_REQUEST['telrefcom29'];
+$telrefcom210=$_REQUEST['telrefcom210'];
+
+$conyuape1=$_REQUEST['conyuape1'];
+$conyuape2=$_REQUEST['conyuape2'];
+
+
+
+$nomrazsoc=$_REQUEST['nomrazsoc'];
+
+
+$telpermor1=$_REQUEST['telpermor1'];
+$telpermor2=$_REQUEST['telpermor2'];
+$telpermor3=$_REQUEST['telpermor3'];
+$telpermor4=$_REQUEST['telpermor4'];
+$telpermor5=$_REQUEST['telpermor5'];
+$telpermor6=$_REQUEST['telpermor6'];
+$telpermor7=$_REQUEST['telpermor7'];
+$telpermor8=$_REQUEST['telpermor8'];
+$telpermor9=$_REQUEST['telpermor9'];
+$telpermor10=$_REQUEST['telpermor10'];
+
+
+$permorrfc1=$_REQUEST['permorrfc1'];
+$permorrfc2=$_REQUEST['permorrfc2'];
+$permorrfc3=$_REQUEST['permorrfc3'];
+$permorrfc4=$_REQUEST['permorrfc4'];
+$permorrfc5=$_REQUEST['permorrfc5'];
+$permorrfc6=$_REQUEST['permorrfc6'];
+$permorrfc7=$_REQUEST['permorrfc7'];
+$permorrfc8=$_REQUEST['permorrfc8'];
+$permorrfc9=$_REQUEST['permorrfc9'];
+$permorrfc10=$_REQUEST['permorrfc10'];
+$permorrfc11=$_REQUEST['permorrfc11'];
+$permorrfc12=$_REQUEST['permorrfc12'];
+$permorrfc13=$_REQUEST['permorrfc13'];
+
+$dirpermor=$_REQUEST['dirpermor'];
+$colpermor=$_REQUEST['colpermor'];
+$cdpermor=$_REQUEST['cdpermor'];
+$lugnacpermor=$_REQUEST['lugnacpermor'];
+$edopermor=$_REQUEST['edopermor'];
+$cppremor=$_REQUEST['cppremor'];
+
+$antemp=$_REQUEST['antemp'];
+
+$apodsusc=$_REQUEST['apodsusc'];
+
+
+$actprinc=$_REQUEST['actprinc'];
+$cantperson=$_REQUEST['cantperson'];
+
+
+$inicoper1=$_REQUEST['inicoper1'];
+$inicoper2=$_REQUEST['inicoper2'];
+$inicoper3=$_REQUEST['inicoper3'];
+
+*/
+
+/**
+ * PHPExcel
+ *
+ * Copyright (C) 2006 - 2014 PHPExcel
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * @category   PHPExcel
+ * @package    PHPExcel
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
+ * @version    ##VERSION##, ##DATE##
+ */
+
+/** Error reporting */
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+date_default_timezone_set('Europe/London');
+
+if (PHP_SAPI == 'cli')
+	die('This example should only be run from a Web Browser');
+
+/** Include PHPExcel */
+require_once dirname(__FILE__) . '../Classes/PHPExcel.php';
+require_once dirname(__FILE__) . '../Classes/PHPExcel/IOFactory.php';
+
+// Create new PHPExcel object
+$objPHPExcel = new PHPExcel();
+$objReader = PHPExcel_IOFactory::createReader('Excel5');
+$objPHPExcel = $objReader->load("./Solicitud_PMoral_VWL_2016 sept.xls");
+
+
+
+
+	$cliente=$_REQUEST['cliente'];
+	$objPHPExcel->getActiveSheet()->setCellValue('k6', $cliente);
+	
+	$tipocredito=$_REQUEST['tipocredito'];
+	if($tipocredito=="1"){
+	$objPHPExcel->getActiveSheet()->setCellValue('ad6', "X");
+	}
+	if($tipocredito=="2"){
+	$objPHPExcel->getActiveSheet()->setCellValue('al6', "X");
+	}
+	if($tipocredito=="3"){
+	$objPHPExcel->getActiveSheet()->setCellValue('aw6', "X");
+	}
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b9', $_REQUEST['nomrazsoc2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b13', $_REQUEST['dirsol']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z13', $_REQUEST['mailsol2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b17', $_REQUEST['colsol']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('s17', $_REQUEST['cdsol']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('ag17', $_REQUEST['edosol']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('ar17', $_REQUEST['cpsol']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z9', $_REQUEST['rfcsol1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aa9', $_REQUEST['rfcsol2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ab9', $_REQUEST['rfcsol3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ac9', $_REQUEST['rfcsol4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ad9', $_REQUEST['rfcsol5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ae9', $_REQUEST['rfcsol6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('af9', $_REQUEST['rfcsol7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ag9', $_REQUEST['rfcsol8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ah9', $_REQUEST['rfcsol9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ai9', $_REQUEST['rfcsol10']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aj9', $_REQUEST['rfcsol11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ak9', $_REQUEST['rfcsol12']);
+	$objPHPExcel->getActiveSheet()->setCellValue('al9', $_REQUEST['rfcsol13']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an9', $_REQUEST['telsol1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao9', $_REQUEST['telsol2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap9', $_REQUEST['telsol3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq9', $_REQUEST['telsol4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar9', $_REQUEST['telsol5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as9', $_REQUEST['telsol6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at9', $_REQUEST['telsol7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au9', $_REQUEST['telsol8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av9', $_REQUEST['telsol9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw9', $_REQUEST['telsol10']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an13', $_REQUEST['faxsol1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao13', $_REQUEST['faxsol2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap13', $_REQUEST['faxsol3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq13', $_REQUEST['faxsol4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar13', $_REQUEST['faxsol5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as13', $_REQUEST['faxsol6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at13', $_REQUEST['faxsol7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au13', $_REQUEST['faxsol8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av13', $_REQUEST['faxsol9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw13', $_REQUEST['faxsol10']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b23', $_REQUEST['nomconemp']);
+	$objPHPExcel->getActiveSheet()->setCellValue('n23', $_REQUEST['segnomconemp']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ab23', $_REQUEST['apepaconemp']);
+	$objPHPExcel->getActiveSheet()->setCellValue('an23', $_REQUEST['apemaconemp']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b27', $_REQUEST['telconemp1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('c27', $_REQUEST['telconemp2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('d27', $_REQUEST['telconemp3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('e27', $_REQUEST['telconemp4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('f27', $_REQUEST['telconemp5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('g27', $_REQUEST['telconemp6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('h27', $_REQUEST['telconemp7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('i27', $_REQUEST['telconemp8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('k27', $_REQUEST['telconemp9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('m27', $_REQUEST['telconemp10']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('o27', $_REQUEST['mailconemp']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z27', $_REQUEST['rfcconemp1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aa27', $_REQUEST['rfcconemp2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ab27', $_REQUEST['rfcconemp3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ac27', $_REQUEST['rfcconemp4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ad27', $_REQUEST['rfcconemp5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ae27', $_REQUEST['rfcconemp6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('af27', $_REQUEST['rfcconemp7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ag27', $_REQUEST['rfcconemp8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ah27', $_REQUEST['rfcconemp9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ai27', $_REQUEST['rfcconemp10']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aj27', $_REQUEST['rfcconemp11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ak27', $_REQUEST['rfcconemp12']);
+	$objPHPExcel->getActiveSheet()->setCellValue('al27', $_REQUEST['rfcconemp13']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an27', $_REQUEST['faxconemp1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao27', $_REQUEST['faxconemp2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap27', $_REQUEST['faxconemp3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq27', $_REQUEST['faxconemp4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar27', $_REQUEST['faxconemp5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as27', $_REQUEST['faxconemp6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at27', $_REQUEST['faxconemp7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au27', $_REQUEST['faxconemp8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av27', $_REQUEST['faxconemp9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw27', $_REQUEST['faxconemp10']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b31', $_REQUEST['puesconemp']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b36', $_REQUEST['actprinc']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('aa36', $_REQUEST['inicoper1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ad36', $_REQUEST['inicoper2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ai36', $_REQUEST['inicoper3']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an36', $_REQUEST['cantperson']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b41', $_REQUEST['antemp']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('m41', $_REQUEST['apodsusc']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b45', $_REQUEST['refbanc']);
+	$objPHPExcel->getActiveSheet()->setCellValue('w45', $_REQUEST['numcuebanc']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('m45', $_REQUEST['sucbanc1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an45', $_REQUEST['aperbanc1d']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq45', $_REQUEST['aperbanc1m']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au45', $_REQUEST['aperbanc1a']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b49', $_REQUEST['refbanc2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('m49', $_REQUEST['sucbanc2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('w49', $_REQUEST['tarjrefbanc']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an49', $_REQUEST['aperbanc1d2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq49', $_REQUEST['aperbanc1m2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au49', $_REQUEST['aperbanc1a2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b54', $_REQUEST['cargdir']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('q54', $_REQUEST['nocuentcd']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b58', $_REQUEST['refcomemp1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('ai58', $_REQUEST['antirefcom1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an58', $_REQUEST['telrefcom11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao58', $_REQUEST['telrefcom12']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap58', $_REQUEST['telrefcom13']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq58', $_REQUEST['telrefcom14']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar58', $_REQUEST['telrefcom15']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as58', $_REQUEST['telrefcom16']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at58', $_REQUEST['telrefcom17']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au58', $_REQUEST['telrefcom18']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av58', $_REQUEST['telrefcom19']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw58', $_REQUEST['telrefcom110']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b62', $_REQUEST['refcomemp2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ai62', $_REQUEST['antirefcom2']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an62', $_REQUEST['telrefcom21']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao62', $_REQUEST['telrefcom22']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap62', $_REQUEST['telrefcom23']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq62', $_REQUEST['telrefcom24']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar62', $_REQUEST['telrefcom25']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as62', $_REQUEST['telrefcom26']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at62', $_REQUEST['telrefcom27']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au62', $_REQUEST['telrefcom28']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av62', $_REQUEST['telrefcom29']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw62', $_REQUEST['telrefcom210']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b66', $_REQUEST['nomrazsoc']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z66', $_REQUEST['permorrfc1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aa66', $_REQUEST['permorrfc2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ab66', $_REQUEST['permorrfc3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ac66', $_REQUEST['permorrfc4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ad66', $_REQUEST['permorrfc5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ae66', $_REQUEST['permorrfc6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('af66', $_REQUEST['permorrfc7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ag66', $_REQUEST['permorrfc8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ah66', $_REQUEST['permorrfc9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ai66', $_REQUEST['permorrfc10']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aj66', $_REQUEST['permorrfc11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ak66', $_REQUEST['permorrfc12']);
+	$objPHPExcel->getActiveSheet()->setCellValue('al66', $_REQUEST['permorrfc13']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an66', $_REQUEST['telpermor1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao66', $_REQUEST['telpermor2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap66', $_REQUEST['telpermor3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq66', $_REQUEST['telpermor4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar66', $_REQUEST['telpermor5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as66', $_REQUEST['telpermor6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at66', $_REQUEST['telpermor7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au66', $_REQUEST['telpermor8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av66', $_REQUEST['telpermor9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw66', $_REQUEST['telpermor10']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b70', $_REQUEST['dirpermor']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an70', $_REQUEST['faxpermor1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao70', $_REQUEST['faxpermor2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap70', $_REQUEST['faxpermor3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq70', $_REQUEST['faxpermor4']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar70', $_REQUEST['faxpermor5']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as70', $_REQUEST['faxpermor6']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at70', $_REQUEST['faxpermor7']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au70', $_REQUEST['faxpermor8']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av70', $_REQUEST['faxpermor9']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw70', $_REQUEST['faxpermor10']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b74', $_REQUEST['colpermor']);
+	$objPHPExcel->getActiveSheet()->setCellValue('s74', $_REQUEST['cdpermor']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ag74', $_REQUEST['edopermor']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar74', $_REQUEST['cppremor']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b79', $_REQUEST['antemp2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('m79', $_REQUEST['apodsusc2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('b83', $_REQUEST['actprinc2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('an83', $_REQUEST['cantperson2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z83', $_REQUEST['inicoper12']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ad83', $_REQUEST['inicoper22']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ai83', $_REQUEST['inicoper32']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('e88', $_REQUEST['accionista1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('e90', $_REQUEST['accionista2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('e92', $_REQUEST['accionista3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('e94', $_REQUEST['accionista4']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z88', $_REQUEST['rfcaccion1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('z90', $_REQUEST['rfcaccion2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('z92', $_REQUEST['rfcaccion3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('z94', $_REQUEST['rfcaccion4']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('ak88', $_REQUEST['%1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ak90', $_REQUEST['%2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ak92', $_REQUEST['%3']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ak94', $_REQUEST['%4']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('e97', $_REQUEST['accpermor1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('e99', $_REQUEST['accpermor2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z97', $_REQUEST['rfcaccpermor1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('z99', $_REQUEST['rfcaccpermor2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('ak97', $_REQUEST['%permoracc1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ak99', $_REQUEST['%permoracc2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b104', $_REQUEST['datobnom1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('k104', $_REQUEST['datobappat1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('q104', $_REQUEST['datobapmat1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b108', $_REQUEST['datobdir1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('b112', $_REQUEST['datobcol1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('z112', $_REQUEST['datobcd1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('af112', $_REQUEST['datoblugnac1']);
+	if($_REQUEST['datobprop1']=="1"){
+	$objPHPExcel->getActiveSheet()->setCellValue('ap112', "X");
+	}
+	if($_REQUEST['datobprop1']=="2"){
+	$objPHPExcel->getActiveSheet()->setCellValue('as112', "X");
+	}
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b117', $_REQUEST['datobedo1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('k117', $_REQUEST['datobcp1']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ac117', $_REQUEST['datobmail1']);
+	if($_REQUEST['datobsex1']=="M"){
+	$objPHPExcel->getActiveSheet()->setCellValue('v117', "X");
+	}
+	if($_REQUEST['datobsex1']=="F"){
+	$objPHPExcel->getActiveSheet()->setCellValue('z117', "X");
+	}
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('am117', $_REQUEST['datobfechnac1d']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao117', $_REQUEST['datobfechnac1m']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq117', $_REQUEST['datobfechnac1a']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au117', $_REQUEST['datobed1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z108', $_REQUEST['datobcurp1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z104', $_REQUEST['datobrfc11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aa104', $_REQUEST['datobrfc12']);$objPHPExcel->getActiveSheet()->setCellValue('ab104', $_REQUEST['datobrfc13']);$objPHPExcel->getActiveSheet()->setCellValue('ac104', $_REQUEST['datobrfc14']);$objPHPExcel->getActiveSheet()->setCellValue('ad104', $_REQUEST['datobrfc15']);$objPHPExcel->getActiveSheet()->setCellValue('ae104', $_REQUEST['datobrfc16']);$objPHPExcel->getActiveSheet()->setCellValue('af104', $_REQUEST['datobrfc17']);$objPHPExcel->getActiveSheet()->setCellValue('ag104', $_REQUEST['datobrfc18']);$objPHPExcel->getActiveSheet()->setCellValue('ah104', $_REQUEST['datobrfc19']);$objPHPExcel->getActiveSheet()->setCellValue('ai104', $_REQUEST['datobrfc110']);$objPHPExcel->getActiveSheet()->setCellValue('aj104', $_REQUEST['datobrfc111']);$objPHPExcel->getActiveSheet()->setCellValue('ak104', $_REQUEST['datobrfc112']);$objPHPExcel->getActiveSheet()->setCellValue('al104', $_REQUEST['datobrfc113']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an104', $_REQUEST['datobtel11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao104', $_REQUEST['datobtel12']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap104', $_REQUEST['datobtel13']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq104', $_REQUEST['datobtel14']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar104', $_REQUEST['datobtel15']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as104', $_REQUEST['datobtel16']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at104', $_REQUEST['datobtel17']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au104', $_REQUEST['datobtel18']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av104', $_REQUEST['datobtel19']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw104', $_REQUEST['datobtel110']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an108', $_REQUEST['datobtel112']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao108', $_REQUEST['datobtel122']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap108', $_REQUEST['datobtel132']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq108', $_REQUEST['datobtel142']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar108', $_REQUEST['datobtel152']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as108', $_REQUEST['datobtel162']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at108', $_REQUEST['datobtel172']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au108', $_REQUEST['datobtel182']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av108', $_REQUEST['datobtel192']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw108', $_REQUEST['datobtel1102']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b121', $_REQUEST['obsol1']);
+	
+	
+	if($_REQUEST['datobsex11']=="M"){
+	$objPHPExcel->getActiveSheet()->setCellValue('ad121', "X");
+	}
+	if($_REQUEST['datobsex11']=="F"){
+	$objPHPExcel->getActiveSheet()->setCellValue('aj121', "X");
+	}
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an121', $_REQUEST['datobfechnac1d2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq121', $_REQUEST['datobfechnac1m2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at121', $_REQUEST['datobfechnac1a2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('b125', $_REQUEST['datobnom22']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z125', $_REQUEST['datobappat22']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an125', $_REQUEST['datobapmat22']);
+	//////////////////////////////////
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b104', $_REQUEST['datobnom2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('k104', $_REQUEST['datobappat2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('q104', $_REQUEST['datobapmat2']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b108', $_REQUEST['datobdir2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('b112', $_REQUEST['datobcol2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('z112', $_REQUEST['datobcd2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('af112', $_REQUEST['datoblugnac2']);
+	if($_REQUEST['datobprop2']=="1"){
+	$objPHPExcel->getActiveSheet()->setCellValue('ap112', "X");
+	}
+	if($_REQUEST['datobprop2']=="2"){
+	$objPHPExcel->getActiveSheet()->setCellValue('as112', "X");
+	}
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b117', $_REQUEST['datobedo2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('k117', $_REQUEST['datobcp2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ac117', $_REQUEST['datobmail2']);
+	if($_REQUEST['datobsex2']=="M"){
+	$objPHPExcel->getActiveSheet()->setCellValue('v117', "X");
+	}
+	if($_REQUEST['datobsex2']=="F"){
+	$objPHPExcel->getActiveSheet()->setCellValue('z117', "X");
+	}
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('am117', $_REQUEST['datobfechnac1d']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao117', $_REQUEST['datobfechnac1m']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq117', $_REQUEST['datobfechnac1a']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au117', $_REQUEST['datobed1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z108', $_REQUEST['datobcurp1']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z104', $_REQUEST['datobrfc11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aa104', $_REQUEST['datobrfc12']);$objPHPExcel->getActiveSheet()->setCellValue('ab104', $_REQUEST['datobrfc13']);$objPHPExcel->getActiveSheet()->setCellValue('ac104', $_REQUEST['datobrfc14']);$objPHPExcel->getActiveSheet()->setCellValue('ad104', $_REQUEST['datobrfc15']);$objPHPExcel->getActiveSheet()->setCellValue('ae104', $_REQUEST['datobrfc16']);$objPHPExcel->getActiveSheet()->setCellValue('af104', $_REQUEST['datobrfc17']);$objPHPExcel->getActiveSheet()->setCellValue('ag104', $_REQUEST['datobrfc18']);$objPHPExcel->getActiveSheet()->setCellValue('ah104', $_REQUEST['datobrfc19']);$objPHPExcel->getActiveSheet()->setCellValue('ai104', $_REQUEST['datobrfc110']);$objPHPExcel->getActiveSheet()->setCellValue('aj104', $_REQUEST['datobrfc111']);$objPHPExcel->getActiveSheet()->setCellValue('ak104', $_REQUEST['datobrfc112']);$objPHPExcel->getActiveSheet()->setCellValue('al104', $_REQUEST['datobrfc113']);
+	
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an104', $_REQUEST['datobtel11']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao104', $_REQUEST['datobtel12']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap104', $_REQUEST['datobtel13']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq104', $_REQUEST['datobtel14']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar104', $_REQUEST['datobtel15']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as104', $_REQUEST['datobtel16']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at104', $_REQUEST['datobtel17']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au104', $_REQUEST['datobtel18']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av104', $_REQUEST['datobtel19']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw104', $_REQUEST['datobtel110']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an108', $_REQUEST['datobtel112']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ao108', $_REQUEST['datobtel122']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ap108', $_REQUEST['datobtel132']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq108', $_REQUEST['datobtel142']);
+	$objPHPExcel->getActiveSheet()->setCellValue('ar108', $_REQUEST['datobtel152']);
+	$objPHPExcel->getActiveSheet()->setCellValue('as108', $_REQUEST['datobtel162']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at108', $_REQUEST['datobtel172']);
+	$objPHPExcel->getActiveSheet()->setCellValue('au108', $_REQUEST['datobtel182']);
+	$objPHPExcel->getActiveSheet()->setCellValue('av108', $_REQUEST['datobtel192']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aw108', $_REQUEST['datobtel1102']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('b121', $_REQUEST['obsol1']);
+	
+	
+	if($_REQUEST['datobsex11']=="M"){
+	$objPHPExcel->getActiveSheet()->setCellValue('ad121', "X");
+	}
+	if($_REQUEST['datobsex11']=="F"){
+	$objPHPExcel->getActiveSheet()->setCellValue('aj121', "X");
+	}
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an121', $_REQUEST['datobfechnac1d2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('aq121', $_REQUEST['datobfechnac1m2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('at121', $_REQUEST['datobfechnac1a2']);
+	$objPHPExcel->getActiveSheet()->setCellValue('b125', $_REQUEST['datobnom22']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('z125', $_REQUEST['datobappat22']);
+	
+	$objPHPExcel->getActiveSheet()->setCellValue('an125', $_REQUEST['datobapmat22']);
+	
+	
+	
+	
+	
+	
+// Redirect output to a client’s web browser (Excel5)
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment;filename="Solicitud PM.xls"');
+header('Cache-Control: max-age=0');
+// If you're serving to IE 9, then the following may be needed
+header('Cache-Control: max-age=1');
+
+// If you're serving to IE over SSL, then the following may be needed
+header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+header ('Pragma: public'); // HTTP/1.0
+
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter->save('php://output');
+exit;
+}
+if(isset($_POST['cancelar'])){
+include("carpetaraiz.php");
+header('Location: '.$raiz.'indexmenu.php');
+}
+
+?>

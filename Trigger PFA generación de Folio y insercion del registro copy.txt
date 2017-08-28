@@ -1,0 +1,15 @@
+DELIMITER $$
+CREATE TRIGGER pfna_id
+BEFORE INSERT ON pfna
+FOR EACH ROW
+BEGIN
+    if (SELECT COUNT(*) FROM pfna)=0   THEN
+        SET NEW.Folio_Cliente= 'PFNA-001';
+    else
+        SET NEW.Folio_Cliente= CONCAT('PFNA-', LPAD((select MAX(Id)+1 from pfna), 3, '0'));
+  END IF;
+END$$
+DELIMITER ;
+
+ DROP TRIGGER prueba_id;
+para elmimnar trigger

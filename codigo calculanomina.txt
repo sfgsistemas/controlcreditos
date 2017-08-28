@@ -1,0 +1,104 @@
+function CalculaNomina(){
+
+document.getElementById('comisionnomina').value=(document.getElementById("montonomina").value*0.02).toFixed(2);
+var tasa=document.getElementById("seleccion").value;
+var tiempo=document.getElementById('plazonomina').value;
+
+
+var montofin=document.getElementById("montonomina").value;
+
+var totalafinanciar=document.getElementById("montonomina").value-document.getElementById('comisionnomina').value;
+
+//tasa mensual es intRate
+intRate=(tasa/12)/100;
+months=tiempo;
+//pago=Math.floor((totalafinanciar*intRate)/(1-Math.pow(1+intRate,(-1*months)))*100)/100;
+
+pago=((intRate*Math.pow(1+intRate, months))*montofin)/((Math.pow(1+intRate, months))-1);
+/*
+falta=totalafinanciar; 
+interestotal=0;
+tasa=tasa/100;
+for(a=1;a<=months;a++){
+capital=pago-(falta*(tasa/12));
+interes=falta*(tasa/12);
+falta=falta-capital;
+interestotal+=interes;
+
+}
+ivaintereses=(interestotal*16)/100;
+ivaint=ivaintereses/months;
+var pagtotal=0;
+pagtotal=pago+ivaint;
+*/
+
+
+codigo="";
+codigo="<h2>Tabla de amortizacion<\/h2>"
+codigo+="<table class='table table-hover' width='100%' border='0' id='f'>"; 
+codigo+="<tr class='table-info'>"; 
+codigo+="<th>Balance inicial<\/th>"; 
+//codigo+="<th>Pago programado<\/th>"; 
+codigo+="<th>Capital<\/th>"; 
+codigo+="<th>Interés<\/th>"; 
+codigo+="<th>Balance final<\/th>"; 
+codigo+="<th>Iva de los intereses<\/th>"; 
+codigo+="<th>Pago Total Programado<\/th>"; 
+codigo+="<\/tr>";
+
+
+falta=totalafinanciar;
+var sumbalance=0;
+var sumpaprog=0;
+var sumcap=0;
+var sumint=0;
+var sumbalncefin=0;
+var sumivaint=0;
+var sumpatoprog=0;
+
+
+for(a=1;a<=months;a++){ 
+
+codigo+="<tr  class='table-warning'>"; 
+codigo+="<td>"+falta.toFixed(2);+"<\/td>"; 
+sumbalance+=falta;
+//codigo+="<td>"+pago+"<\/td>";
+//sumpaprog+=pago;
+intereses=(falta*intRate);
+ivaintereses=(falta*intRate*0.16);
+capital=pago-(intereses+ivaintereses);
+codigo+="<td>"+capital.toFixed(2);+"<\/td>";
+sumcap+=capital;
+interes=falta*intRate;
+codigo+="<td>"; 
+codigo+=interes.toFixed(2);; 
+codigo+="<\/td>"; 
+sumint+=interes;
+falta=falta-capital;
+codigo+="<td>"; 
+codigo+=falta.toFixed(2); 
+codigo+="<\/td>"; 
+sumbalncefin+=falta; 
+
+codigo+="<td>"; 
+codigo+=ivaintereses.toFixed(2); 
+codigo+="<\/td>"; 
+sumivaint+=ivaintereses;
+
+codigo+="<td>"; 
+codigo+=pago.toFixed(2); 
+codigo+="<\/td>"; 
+sumpatoprog+=pago; 
+
+codigo+="<\/tr>"; 
+}
+codigo+="<tr><td>"+sumbalance.toFixed(2)+"</td><td>"+sumcap.toFixed(2)+"</td><td>"+sumint.toFixed(2)+"</td><td>"+sumbalncefin.toFixed(2)+"</td><td>"+sumivaint.toFixed(2)+"</td><td>"+sumpatoprog.toFixed(2)+"</td></tr>"; 
+codigo+="<\/table>"; 
+
+CAT=(Math.pow(1+intRate,months)-1)*100;
+alert(CAT);
+//var cat = CAT.get(totalafinanciar, 0, pagtotal, document.getElementById("plazonomina").value, 12);
+
+
+document.getElementById('resultadoNomina').innerHTML = '<br><br><br>Plazo:'+ document.getElementById("plazonomina").value +' Meses<br>Monto solicitado: $' + document.getElementById("montonomina").value + '<br>Comision por Apertura: $' + document.getElementById('comisionnomina').value + '<br>Total a Financiar: $' + totalafinanciar + '<br>CAT: ' +CAT.toFixed(2)+'%<br>' + codigo; 
+}

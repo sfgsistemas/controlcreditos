@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hola Firebase</title>
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  // TODO: Replace with your project's customized code snippet
+  var config = {
+    apiKey: "<kKJNqIpNrIUAwi1dMThUfTAlZTeq3tsMYr4YngZe>",
+    authDomain: "examenespsicometricos-c2d71.firebaseapp.com",
+    databaseURL: "https://examenespsicometricos-c2d71.firebaseio.com/",
+    storageBucket: "",
+    messagingSenderId: "",
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+
+return firebase.database().ref('/candidatos/zoomwas/sexo/').once('value').then(function(snapshot) {
+  var username = snapshot.val().username;
+  alert(username);
+  // ...
+});
+
+  </script>
+</head>
+<body>
+  <h1 id="titular"></h1>
+</body>
+</html>

@@ -1,0 +1,15 @@
+DELIMITER $$
+CREATE TRIGGER pm_id
+BEFORE INSERT ON pm
+FOR EACH ROW
+BEGIN
+    if (SELECT COUNT(*) FROM pm)=0   THEN
+        SET NEW.Folio_Cliente= 'PM-001';
+    else
+        SET NEW.Folio_Cliente= CONCAT('PM-‘, LPAD((select MAX(Id)+1 from pm), 3, '0'));
+  END IF;
+END$$
+DELIMITER ;
+
+ DROP TRIGGER prueba_id;
+para elmimnar trigger

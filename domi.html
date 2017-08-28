@@ -1,0 +1,420 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <title>Financiera| Bienvenido</title>
+    
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    
+    <link rel="stylesheet" href="js/js/css/foundation.css">
+   
+    <link rel="stylesheet" href="js/js/css/app.css">
+    <link rel="stylesheet" href="js/js/css/foundation-icons/foundation-icons.css">
+     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.css">
+
+  <script>
+  $( function() {
+    var availableTags = [
+      "002 BANAMEX Banco Nacional de México, S.A., Institución de Banca Múltiple, Grupo Financiero Banamex",
+      "006 BANCOMEXT Banco Nacional de Comercio Exterior, Sociedad Nacional de Crédito,Institución de Banca de Desarrollo",
+      "009 BANOBRAS Banco Nacional de Obras y Servicios Públicos, Sociedad Nacional de Crédito, Institución de Banca de Desarrollo",
+      "012 BBVA BANCOMER BBVA Bancomer, S.A., Institución de Banca Múltiple, Grupo Financiero BBVA Bancomer",
+      "014 SANTANDER Banco Santander (México), S.A., Institución de Banca Múltiple, Grupo Financiero Santander",
+      "019 BANJERCITO Banco Nacional del Ejército, Fuerza Aérea y Armada, Sociedad Nacional de Crédito, Institución de Banca de Desarrollo",
+      "021 HSBC HSBC México, S.A., institución De Banca Múltiple, Grupo Financiero HSBC",
+      "030 BAJIO Banco del Bajío, S.A., Institución de Banca Múltiple",
+      "032 IXE IXE Banco, S.A., Institución de Banca Múltiple, IXE Grupo Financiero",
+      "036 INBURSA Banco Inbursa, S.A., Institución de Banca Múltiple, Grupo Financiero Inbursa",
+      "037 INTERACCIONES Banco Interacciones, S.A., Institución de Banca Múltiple",
+      "042 MIFEL Banca Mifel, S.A., Institución de Banca Múltiple, Grupo Financiero Mifel",
+      "044 SCOTIABANK Scotiabank Inverlat, S.A.",
+      "058 BANREGIO Banco Regional de Monterrey, S.A., Institución de Banca Múltiple, Banregio Grupo Financiero",
+      "059 INVEX Banco Invex, S.A., Institución de Banca Múltiple, Invex Grupo Financiero",
+      "060 BANSI Bansi, S.A., Institución de Banca Múltiple",
+      "062 AFIRME Banca Afirme, S.A., Institución de Banca Múltiple",
+      "072 BANORTE Banco Mercantil del Norte, S.A., Institución de Banca Múltiple, Grupo Financiero Banorte",
+      "102 THE ROYAL BANK The Royal Bank of Scotland México, S.A., Institución de Banca Múltiple",
+      "103 AMERICAN EXPRESS American Express Bank (México), S.A., Institución de Banca Múltiple",
+      "106 BAMSA Bank of America México, S.A., Institución de Banca Múltiple, GrupoFinanciero Bank of America",
+      "108 TOKYO Bank of Tokyo-Mitsubishi UFJ (México), S.A.",
+      "110 JP MORGAN Banco J.P. Morgan, S.A., Institución de Banca Múltiple, J.P. Morgan Grupo Financiero",
+      "112 BMONEX Banco Monex, S.A., Institución de Banca Múltiple",
+      "113 VE POR MAS Banco Ve Por Mas, S.A. Institución de Banca Múltiple",
+      "116 ING ING Bank (México), S.A., Institución de Banca Múltiple, ING Grupo Financiero",
+      "124 DEUTSCHE Deutsche Bank México, S.A., Institución de Banca Múltiple",
+      "126 CREDIT SUISSE Banco Credit Suisse (México), S.A. Institución de Banca Múltiple, Grupo Financiero Credit Suisse (México)",
+      "127 AZTECA Banco Azteca, S.A. Institución de Banca Múltiple.",
+      "128 AUTOFIN Banco Autofin México, S.A. Institución de Banca Múltiple",
+      "129 BARCLAYS Barclays Bank México, S.A., Institución de Banca Múltiple, Grupo Financiero Barclays México",
+      "130 COMPARTAMOS Banco Compartamos, S.A., Institución de Banca Múltiple",
+      "131 BANCO FAMSA Banco Ahorro Famsa, S.A., Institución de Banca Múltiple",
+      "132 BMULTIVA Banco Multiva, S.A., Institución de Banca Múltiple, Multivalores Grupo Financiero",
+      "133 ACTINVER Banco Actinver, S.A. Institución de Banca Múltiple, Grupo Financiero Actinver",
+      "134 WAL-MART Banco Wal-Mart de México Adelante, S.A., Institución de Banca Múltiple",
+      "135 NAFIN Nacional Financiera, Sociedad Nacional de Crédito, Institución de Banca de Desarrollo",
+      "136 INTERBANCO Inter Banco, S.A. Institución de Banca Múltiple",
+      "137 BANCOPPEL BanCoppel, S.A., Institución de Banca Múltiple",
+      "138 ABC CAPITAL ABC Capital, S.A., Institución de Banca Múltiple",
+      "139 UBS BANK UBS Bank México, S.A., Institución de Banca Múltiple, UBS Grupo Financiero",
+      "140 CONSUBANCO Consubanco, S.A. Institución de Banca Múltiple",
+      "141 VOLKSWAGEN Volkswagen Bank, S.A., Institución de Banca Múltiple",
+      "143 CIBANCO CIBanco, S.A.",
+      "145 BBASE Banco Base, S.A., Institución de Banca Múltiple",
+      "166 BANSEFI Banco del Ahorro Nacional y Servicios Financieros, Sociedad Nacional de Crédito, Institución de Banca de Desarrollo",
+      "168 HIPOTECARIA FEDERAL Sociedad Hipotecaria Federal, Sociedad Nacional de Crédito, Institución de Banca de Desarrollo",
+      "600 MONEXCB Monex Casa de Bolsa, S.A. de C.V. Monex Grupo Financiero",
+      "601 GBM GBM Grupo Bursátil Mexicano, S.A. de C.V. Casa de Bolsa",
+      "602 MASARI Masari Casa de Bolsa, S.A.",
+      "605 VALUE Value, S.A. de C.V. Casa de Bolsa",
+      "606 ESTRUCTURADORES Estructuradores del Mercado de Valores Casa de Bolsa, S.A. de C.V.",
+      "607 TIBER Casa de Cambio Tiber, S.A. de C.V.",
+      "608 VECTOR Vector Casa de Bolsa, S.A. de C.V.",
+      "610 B&B B y B, Casa de Cambio, S.A. de C.V.",
+      "614 ACCIVAL Acciones y Valores Banamex, S.A. de C.V., Casa de Bolsa",
+      "615 MERRILL LYNCH Merrill Lynch México, S.A. de C.V. Casa de Bolsa",
+      "616 FINAMEX Casa de Bolsa Finamex, S.A. de C.V.",
+      "617 VALMEX Valores Mexicanos Casa de Bolsa, S.A. de C.V.",
+      "618 UNICA Unica Casa de Cambio, S.A. de C.V.",
+      "619 MAPFRE MAPFRE Tepeyac, S.A.",
+      "620 PROFUTURO Profuturo G.N.P., S.A. de C.V., Afore",
+      "621 CB ACTINVER Actinver Casa de Bolsa, S.A. de C.V.",
+      "622 OACTIN OPERADORA ACTINVER, S.A. DE C.V.",
+      "623 SKANDIA Skandia Vida, S.A. de C.V.",
+      "626 CBDEUTSCHE Deutsche Securities, S.A. de C.V. CASA DE BOLSA",
+      "627 ZURICH Zurich Compañía de Seguros, S.A.",
+      "628 ZURICHVI Zurich Vida, Compañía de Seguros, S.A.",
+      "629 SU CASITA Hipotecaria Su Casita, S.A. de C.V. SOFOM ENR",
+      "630 CB INTERCAM Intercam Casa de Bolsa, S.A. de C.V.",
+      "631 CI BOLSA CI Casa de Bolsa, S.A. de C.V.",
+      "632 BULLTICK CB Bulltick Casa de Bolsa, S.A., de C.V.",
+      "633 STERLING Sterling Casa de Cambio, S.A. de C.V.",
+      "634 FINCOMUN Fincomún, Servicios Financieros Comunitarios, S.A. de C.V.",
+      "636 HDI SEGUROS HDI Seguros, S.A. de C.V.",
+      "637 ORDER Order Express Casa de Cambio, S.A. de C.V",
+      "638 AKALA Akala, S.A. de C.V., Sociedad Financiera Popular",
+      "640 CB JPMORGAN J.P. Morgan Casa de Bolsa, S.A. de C.V. J.P. Morgan Grupo Financiero",
+      "642 REFORMA Operadora de Recursos Reforma, S.A. de C.V., S.F.P.",
+      "646 STP Sistema de Transferencias y Pagos STP, S.A. de C.V.SOFOM ENR",
+      "647 TELECOMM Telecomunicaciones de México",
+      "648 EVERCORE Evercore Casa de Bolsa, S.A. de C.V.",
+      "649 SKANDIA Skandia Operadora de Fondos, S.A. de C.V.",
+      "651 SEGMTY Seguros Monterrey New York Life, S.A de C.V",
+      "652 ASEA Solución Asea, S.A. de C.V., Sociedad Financiera Popular",
+      "653 KUSPIT Kuspit Casa de Bolsa, S.A. de C.V.",
+      "655 SOFIEXPRESS J.P. SOFIEXPRESS, S.A. de C.V., S.F.P.",
+      "656 UNAGRA UNAGRA, S.A. de C.V., S.F.P.",
+      "659 OPCIONES EMPRESARIALES DEL NOROESTE OPCIONES EMPRESARIALES DEL NORESTE, S.A. DE C.V., S.F.P.",
+      "901 CLS Cls Bank International",
+      "902 INDEVAL SD. Indeval, S.A. de C.V.",
+      "670 LIBERTAD Libertad Servicios Financieros, S.A. De C.V."
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+
+function buscar(){ 
+    
+var c=0;
+$( "#sortable2 li" ).each(function( index ) {
+   
+$( "#sortable1 li" ).appendTo( "#prueba" );
+
+$('#sortable2').find('input').each(function(){ 
+    this.style.display='block';
+this.pattern="number";
+     });
+
+
+document.getElementById("descargar").style.display='block';
+ document.getElementById("registro").style.display='none';
+  document.getElementById("prueba").style.display='none';
+  document.getElementById("ho").style.display='none';
+});
+
+}
+
+
+$(document).ready(function(event) {
+    
+   var data = new FormData();
+   data.append('function', "carga");
+   
+   
+   
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        
+      obj= JSON.parse(xmlhttp.responseText);
+$.each(obj, function(i,cliente){
+    
+      $("#sortable1").append('<li class="ui-state-default" id="'+this.Referencia+'"><strong>'+ this.Referencia +'  </strong>' + this.Titular_servicio   +' <input onkeyup="nometoches(this)" type="text" name="imp" id="imp'+this.Referencia+'" style="display:none;" ></li> ');
+   
+
+        });
+      }
+  }
+xmlhttp.open("POST","domic.php",true);
+xmlhttp.send(data);
+
+
+$("#guardar").click(function(event) {
+  var validacion=false;
+    $('#formi').foundation('validateForm');
+$('#formi').find('input').each(function(){ 
+    if($( "#"+this.id).hasClass( "is-invalid-input" )){
+        console.log(this.id);
+        validacion=true;
+    }
+
+     });
+
+if(validacion){
+         console.log("Hay errores");
+         alert("¡¡Verifica Que Todos Los Datos Sean Correctos!!");
+         return validacion;
+    }
+
+   var data = new FormData(document.getElementById('formi'));
+   data.append('function', "guardar");
+   
+   
+   
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        
+        document.getElementById('tags').value="";
+        document.getElementById('Referencia').value="";
+        document.getElementById('RefNumerica').value="";
+        document.getElementById('titular').value="";
+        document.getElementById('clabe').value="";
+        document.getElementById('titularCuenta').value="";
+        location.reload();
+      }
+  }
+xmlhttp.open("POST","domic.php",true);
+xmlhttp.send(data);
+});
+});
+
+
+function txt(){
+
+    var validacion=false;
+    $('#formi2').foundation('validateForm');
+
+$('#formi2').find('input').each(function(){ 
+ // alert(this.value);
+
+  if(!this.value.match(/^[^0-][+]?\d*(?:[\.\,]\d+)?$/) || (this.value) <= 0 || (this.value)== null ){
+ 
+    $( "#"+this.id).addClass( "is-invalid-input" );
+    if($( "#"+this.id).hasClass( "is-invalid-input" )){
+        console.log(this.id);
+        validacion=true;
+    }
+
+  }else{
+
+    $( "#"+this.id).removeClass( "is-invalid-input" );
+  }
+     });
+
+if(validacion){
+         console.log("Hay errores");
+         alert("¡¡Verifica Que Todos Los Datos Sean Correctos!!");
+         return validacion;
+    }
+  var txtc="";
+  var cont=0;
+        var sum=0;
+      
+
+  $('#sortable2').find('li').each(function(){ 
+    var li = this.id;
+ cont++;
+ 
+$.each(obj, function(i,cliente){
+
+    if(li==this.Referencia){
+        var conc=sum;
+        sum = parseInt(document.getElementById("imp"+this.Referencia).value)+conc;
+       
+
+      txtc+= cont + "\t"+this.Referencia+"\t"+document.getElementById("imp"+this.Referencia).value+"\t"+(document.getElementById("imp"+this.Referencia).value*(.16)).toFixed(2) +"\t"+this.RefNumerica+"\t"+this.Titular_servicio+"\t"+this.Banco+"\t40\t"+this.CLABE+"\t"+this.Titular_cuenta+"\r\n";
+
+    }
+
+    
+
+
+        });
+
+     });
+ var mensaje= confirm("¿El monto corresponde?  "+sum);
+if (mensaje) {
+
+
+}
+  else{return false;}
+var f = new Date();
+
+var texto = document.getElementById("descargar");
+texto.download = (f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear())+".txt";
+texto.href = "data:text/plain;charset=utf-8," 
+                     + encodeURIComponent(txtc);
+                     location.reload();
+}
+
+function mos(){
+document.getElementById('regi').style.display='block';
+document.getElementById('registro').style.display='none';
+document.getElementById('prueba').style.display='none';
+document.getElementById('ho').style.display='none';
+document.getElementById('d2').style.display='none';
+
+
+}
+
+function nometoches(input){
+  if(parseFloat(input.value) && input.value.substr(-1)!="."){
+    input.value=parseFloat(input.value);
+  }
+  
+  if(input.value.match(/^[^0-][+]?\d*(?:[\.\,]\d+)?$/)){
+    $( "#"+input.id).removeClass( "is-invalid-input" );
+  }else{
+    
+    $( "#"+input.id).addClass( "is-invalid-input" );
+  }
+}
+
+
+  </script>
+</head>
+<body>
+
+<style>
+  #sortable1, #sortable2 {
+    border: 1px solid #daa520;
+    width: 500px;
+    min-height: 50px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+  }
+  #sortable1 li, #sortable2 li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 485px;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#sortable1, #sortable2" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  } );
+  </script>
+  <div class="row">
+<form id="formi2" name="formi2" data-abide novalidate>
+<div class="medium-6 columns" id="ho">
+  <h4>Titulares</h4>
+<ul id="sortable1" class="connectedSortable">
+
+</ul>
+</div>
+ <div class="medium-6 columns" id="d2">
+ <h4>Titulares a cobro</h4>
+<ul id="sortable2" class="connectedSortable" >
+
+</ul>
+
+</div>
+</form>
+<div class="medium-3 columns">
+<input type="button" class="button" name="prueba" id="prueba" value="Agregar importe" onclick="buscar()">
+
+</div>
+<div class="medium-2 columns">
+<a class="button" id="descargar" onclick="txt()" style="display: none;">Crear archivo</a></div>
+<div class="medium-3 columns">
+<input type="button" class="button" name="registro" id="registro" value="Nuevo Registro" onclick="mos()"></div>
+</div>
+
+ <form id="formi" data-abide novalidate>
+   
+<div class="row" id="regi" style="display: none;">
+        <div class="medium-3 columns">
+        <label for="tags">Banco </label>
+         <input required type="text" id="tags" name="tags" >
+        </div>
+        <div class="medium-3 columns">
+        <label for="Referencia">Referencia </label>
+        <input required type="text" id="Referencia" name="Referencia" pattern="alpha_numeric">
+        </div>
+        <div class="medium-3 columns">
+        <label for="RefNumerica">Referencia Numerica </label>
+        <input required type="text" id="RefNumerica" name="RefNumerica"  pattern="integer" maxlength="7">
+        </div>
+        <div class="medium-3 columns">
+        <label for="titular">Titular del Servicio <input required type="text" id="titular" name="titular" pattern="alpha_numeric2"></label>
+        </div>
+    
+        <div class="medium-3 columns">
+        <label for="clabe">CLABE/TDD <input required type="text" id="clabe" name="clabe" pattern="clabe" maxlength="18"></label>
+        </div>
+        <div class="medium-3 columns">
+        <label for="titularCuenta">Titular de la Cuenta <input required type="text" id="titularCuenta" name="titularCuenta" pattern="alpha_numeric2"></label>
+        </div>
+      <div class="medium-3 columns">
+        <input  class="success button" type="button" name="guardar" id="guardar" value="Guardar"></div>
+        <div class="medium-2 columns">
+          <input class="alert button" type="button" name="cancelar" id="cancelar" value="Cancelar" onclick="location.reload()">
+
+        </div>
+</div>
+ </form>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+
+     <script src="js/jquery-ui/jquery-ui.js"></script>
+    <script src="js/vendor/app.js"></script>
+
+  
+    <script src="js/jquery-ui/jquery-ui.js"></script>
+    <script src="js/vendor/app.js"></script>
+</body>
+</html>

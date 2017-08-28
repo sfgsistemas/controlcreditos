@@ -1,0 +1,15 @@
+DELIMITER $$
+CREATE TRIGGER pfa_id
+BEFORE INSERT ON pfa
+FOR EACH ROW
+BEGIN
+    if (SELECT COUNT(*) FROM pfa)=0   THEN
+        SET NEW.Folio_Cliente= 'PFA-001';
+    else
+        SET NEW.Folio_Cliente= CONCAT('PFA-', LPAD((select MAX(Id)+1 from pfa), 3, '0'));
+  END IF;
+END$$
+DELIMITER ;
+
+ DROP TRIGGER prueba_id;
+para elmimnar trigger
