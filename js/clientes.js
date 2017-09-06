@@ -1,3 +1,4 @@
+
 $( "#textfield60" ).change(function() {
     estcivbene();
 });
@@ -178,6 +179,8 @@ xmlhttp.onreadystatechange=function()
 
 
         document.getElementById("nomref1").value=obj.RefPerNom1PF;
+        document.getElementById("nomref1b").value=obj.RefPerApPat1PF;
+        document.getElementById("nomref1c").value=obj.RefPerApMat1PF;
         document.getElementById("parenref1").value=obj.RefPerParentesco1PF;
         document.getElementById("telref11").value=obj.RefPerTelefono1PF;
         document.getElementById("refperdir").value=obj.RefPerDirPF;
@@ -211,6 +214,8 @@ xmlhttp.onreadystatechange=function()
 
 
         document.getElementById("nomref2").value=obj.RefPerNom2PF;
+        document.getElementById("nomref2b").value=obj.RefPerApPat2PF;
+        document.getElementById("nomref2c").value=obj.RefPerApMat2PF;
         document.getElementById("parenref2").value=obj.RefPerParentesco2PF;
         document.getElementById("telref12").value=obj.RefPerTelefono2PF;
         document.getElementById("refperdir2").value=obj.RefPerDirPF;
@@ -449,23 +454,36 @@ xmlhttp.onreadystatechange=function()
         document.getElementById("mailconemp").value=obj.ContEmpEmail;
         document.getElementById("puesconemp").value=obj.ContEmpPuesto;
         document.getElementById("accionista1").value=obj.Acc1Nombre;
+        document.getElementById("accionista1b").value=obj.Acc1ApPat;
+        document.getElementById("accionista1c").value=obj.Acc1ApMat;
         document.getElementById("rfcaccion1").value=obj.Acc1RFC;
 
         document.getElementById("porcent1").value=obj.Acc1Porcentaje;
         document.getElementById("accionista2").value=obj.Acc2Nombre;
+        document.getElementById("accionista2b").value=obj.Acc2ApPat;
+        document.getElementById("accionista2c").value=obj.Acc2ApMat;
+    
         document.getElementById("rfcaccion2").value=obj.Acc2RFC;
         document.getElementById("porcent2").value=obj.Acc2Porcentaje;
         document.getElementById("accionista3").value=obj.Acc3Nombre;
+        document.getElementById("accionista3b").value=obj.Acc3ApPat;
+        document.getElementById("accionista3c").value=obj.Acc3ApMat;
         document.getElementById("rfcaccion3").value=obj.Acc3RFC;
         document.getElementById("porcent3").value=obj.Acc3Porcentaje;
 
         document.getElementById("accionista4").value=obj.Acc4Nombre;
+        document.getElementById("accionista4b").value=obj.Acc4ApPat;
+        document.getElementById("accionista4c").value=obj.Acc4ApMat;
         document.getElementById("rfcaccion4").value=obj.Acc4RFC;
         document.getElementById("porcent4").value=obj.Acc4Porcentaje;
         document.getElementById("accpermor1").value=obj.Acc5Nombre;
+        document.getElementById("accpermor1b").value=obj.Acc5ApPat;
+        document.getElementById("accpermor1c").value=obj.Acc5ApMat;
         document.getElementById("rfcaccpermor1").value=obj.Acc5RFC;
         document.getElementById("permoracc1").value=obj.Acc5Porcentaje;
         document.getElementById("accpermor2").value=obj.Acc6Nombre;
+        document.getElementById("accpermor2b").value=obj.Acc6ApPat;
+        document.getElementById("accpermor2c").value=obj.Acc6ApMat;
         document.getElementById("rfcaccpermor2").value=obj.Acc6RFC;
         document.getElementById("permoracc2").value=obj.Acc6Porcentaje;
 
@@ -1037,6 +1055,8 @@ xmlhttp.onreadystatechange=function()
         document.getElementById("cdneg").value=obj.CiudadNegPF;
 
         document.getElementById("nomref1").value=obj.RefPerNom1PF;
+        document.getElementById("nomref1b").value=obj.RefPerApPat1PF;
+        document.getElementById("nomref1c").value=obj.RefPerApMat1PF;
         document.getElementById("parenref1").value=obj.RefPerParentesco1PF;
         document.getElementById("telref11").value=obj.RefPerTelefono1PF;
         document.getElementById("refperdir").value=obj.RefPerDirPF;
@@ -1070,6 +1090,8 @@ xmlhttp.onreadystatechange=function()
 
 
         document.getElementById("nomref2").value=obj.RefPerNom2PF;
+        document.getElementById("nomref2b").value=obj.RefPerApPat2PF;
+        document.getElementById("nomref2c").value=obj.RefPerApMat2PF;
         document.getElementById("parenref2").value=obj.RefPerParentesco2PF;
         document.getElementById("telref12").value=obj.RefPerTelefono2PF;
         document.getElementById("refperdir2").value=obj.RefPerDirPF;
@@ -1304,23 +1326,35 @@ xmlhttp.onreadystatechange=function()
         document.getElementById("mailconemp").value=obj.ContEmpEmail;
         document.getElementById("puesconemp").value=obj.ContEmpPuesto;
         document.getElementById("accionista1").value=obj.Acc1Nombre;
+        document.getElementById("accionista1b").value=obj.Acc1ApPat;
+        document.getElementById("accionista1c").value=obj.Acc1ApMat;
         document.getElementById("rfcaccion1").value=obj.Acc1RFC;
 
         document.getElementById("porcent1").value=obj.Acc1Porcentaje;
         document.getElementById("accionista2").value=obj.Acc2Nombre;
+        document.getElementById("accionista2b").value=obj.Acc2ApPat;
+        document.getElementById("accionista2c").value=obj.Acc2ApMat;
         document.getElementById("rfcaccion2").value=obj.Acc2RFC;
         document.getElementById("porcent2").value=obj.Acc2Porcentaje;
         document.getElementById("accionista3").value=obj.Acc3Nombre;
+        document.getElementById("accionista3b").value=obj.Acc3ApPat;
+        document.getElementById("accionista3c").value=obj.Acc3ApMat;
         document.getElementById("rfcaccion3").value=obj.Acc3RFC;
         document.getElementById("porcent3").value=obj.Acc3Porcentaje;
 
         document.getElementById("accionista4").value=obj.Acc4Nombre;
+        document.getElementById("accionista4b").value=obj.Acc4ApPat;
+        document.getElementById("accionista4c").value=obj.Acc4ApMat;
         document.getElementById("rfcaccion4").value=obj.Acc4RFC;
         document.getElementById("porcent4").value=obj.Acc4Porcentaje;
         document.getElementById("accpermor1").value=obj.Acc5Nombre;
+        document.getElementById("accpermor1b").value=obj.Acc5ApPat;
+        document.getElementById("accpermor1c").value=obj.Acc5ApMat;
         document.getElementById("rfcaccpermor1").value=obj.Acc5RFC;
         document.getElementById("permoracc1").value=obj.Acc5Porcentaje;
         document.getElementById("accpermor2").value=obj.Acc6Nombre;
+        document.getElementById("accpermor2b").value=obj.Acc6ApPat;
+        document.getElementById("accpermor2c").value=obj.Acc6ApMat;
         document.getElementById("rfcaccpermor2").value=obj.Acc6RFC;
         document.getElementById("permoracc2").value=obj.Acc6Porcentaje;
         document.getElementById("fecharegistro").value=obj.FechaRegistro;

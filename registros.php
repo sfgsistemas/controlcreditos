@@ -508,8 +508,16 @@
               <div class="row">
                 <p align="left">
 
-                  <div class="medium-3 columns"><label>Nombre
-                    <input name="nomref1" type="text" id="nomref1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['NomRefPer']; } ?>" size="54px" placeholder="Nombre" pattern="alpha"></label>
+                  <div class="medium-3 columns"><label>Nombre(s)
+                    <input name="nomref1" type="text" id="nomref1"  size="54px" placeholder="Nombre" pattern="alpha"></label>
+                  </div>
+
+                  <div class="medium-3 columns"><label>Apellido Paterno
+                    <input name="nomref1b" type="text" id="nomref1b"  size="54px" placeholder="Nombre" pattern="alpha"></label>
+                  </div>
+
+                  <div class="medium-3 columns"><label>Apellido Materno
+                    <input name="nomref1c" type="text" id="nomref1c"  size="54px" placeholder="Nombre" pattern="alpha"></label>
                   </div>
 
                   <div class="medium-3 columns"><label>Parentesco o relacion
@@ -543,11 +551,20 @@
                   </div>
                 </p>
               </div>
+              <hr>
               <div class="row">
                 <p align="left">
 
-                  <div class="medium-3 columns"><label>Nombre
+                  <div class="medium-3 columns"><label>Nombre(s)
                     <input name="nomref2" type="text" id="nomref2" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['NomRefPer']; } ?>" size="54px" placeholder="Nombre" pattern="alpha"></label>
+                  </div>
+
+                  <div class="medium-3 columns"><label>Apellido Paterno
+                    <input name="nomref2b" type="text" id="nomref2b" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['NomRefPer']; } ?>" size="54px" placeholder="Nombre" pattern="alpha"></label>
+                  </div>
+
+                  <div class="medium-3 columns"><label>Apellido Materno
+                    <input name="nomref2c" type="text" id="nomref2c" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['NomRefPer']; } ?>" size="54px" placeholder="Nombre" pattern="alpha"></label>
                   </div>
 
                   <div class="medium-3 columns"><label>Parentesco o relacion
@@ -770,10 +787,16 @@
        
               <div class="row">
                 <p align="left">
-                  <div class="medium-4 columns"><label>Nombre
-                    <input name="accionista1" type="text" id="accionista1" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['NomAcc1']; } ?>" placeholder="Nombre"></label>
+                  <div class="medium-2 columns"><label>Nombre(s)
+                    <input name="accionista1" type="text" id="accionista1"  ></label>
                   </div>
-                  <div class="medium-4 columns"><label>RFC
+                  <div class="medium-2 columns"><label>Apellido Paterno
+                    <input name="accionista1b" type="text" id="accionista1b"  ></label>
+                  </div>
+                  <div class="medium-2 columns"><label>Nombre Materno
+                    <input name="accionista1c" type="text" id="accionista1c"  ></label>
+                  </div>
+                  <div class="medium-3 columns"><label>RFC
                     <input name="rfcaccion1" type="text" id="rfcaccion1" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['RFCAcc1']; } ?>"  pattern="rfc" onkeypress="mayusculas(this)"></label>
                   </div>
 
@@ -788,11 +811,19 @@
                   </div>
                 </p>
                 <p align="left">
-                  <div class="medium-4 columns">
-                  <label>Nombre
-                    <input name="accionista2" type="text" id="accionista2" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['NomAcc2']; } ?>" placeholder="Nombre"></label>
+                  <div class="medium-2 columns">
+                  <label>Nombre(s)
+                    <input name="accionista2" type="text" id="accionista2"  ></label>
                   </div>
-                  <div class="medium-4 columns"><label>RFC
+                  <div class="medium-2 columns">
+                  <label>Apellido Paterno
+                    <input name="accionista2b" type="text" id="accionista2b"  ></label>
+                  </div>
+                  <div class="medium-2 columns">
+                  <label>Apellido Materno
+                    <input name="accionista2c" type="text" id="accionista2c"  ></label>
+                  </div>
+                  <div class="medium-3 columns"><label>RFC
                     <input name="rfcaccion2" type="text" id="rfcaccion2" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['RFCAcc1']; } ?>"  pattern="rfc" onkeypress="mayusculas(this)"></label>
                   </div>
                   <div class="medium-2 columns"><label>Porcentaje de las acciones
@@ -809,10 +840,16 @@
                   </div>
                 </p>
                 <p align="left">
-                  <div class="medium-4 columns"><label>Nombre
-                    <input name="accionista3" type="text" id="accionista3" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['NomAcc3']; } ?>" placeholder="Nombre"></label>
+                  <div class="medium-2 columns"><label>Nombre(s)
+                    <input name="accionista3" type="text" id="accionista3"></label>
                   </div>
-                  <div class="medium-4 columns"><label>RFC
+                  <div class="medium-2 columns"><label>Apellido Paterno
+                    <input name="accionista3b" type="text" id="accionista3b"></label>
+                  </div>
+                  <div class="medium-2 columns"><label>Apellido Materno
+                    <input name="accionista3c" type="text" id="accionista3c"></label>
+                  </div>
+                  <div class="medium-3 columns"><label>RFC
                     <input name="rfcaccion3" type="text" id="rfcaccion3" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['RFCAcc1']; } ?>"  pattern="rfc" onkeypress="mayusculas(this)"></label>
                   </div>
                   <div class="medium-2 columns"><label>Porcentaje de las acciones
@@ -829,10 +866,16 @@
                   </div>
                 </p>
                 <p align="left">
-                  <div class="medium-4 columns"><label>Nombre
-                    <input name="accionista4" type="text" id="accionista4" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['NomAcc4']; } ?>" placeholder="Nombre"></label>
+                  <div class="medium-2 columns"><label>Nombre(s)
+                    <input name="accionista4" type="text" id="accionista4" ></label>
                   </div>
-                  <div class="medium-4 columns"><label>RFC
+                  <div class="medium-2 columns"><label>Apellido Paterno
+                    <input name="accionista4b" type="text" id="accionista4b" ></label>
+                  </div>
+                  <div class="medium-2 columns"><label>Apellido Materno
+                    <input name="accionista4c" type="text" id="accionista4c" ></label>
+                  </div>
+                  <div class="medium-3 columns"><label>RFC
                     <input name="rfcaccion4" type="text" id="rfcaccion4" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['RFCAcc1']; } ?>"  pattern="rfc" onkeypress="mayusculas(this)"></label>
                   </div>
                   <div class="medium-2 columns"><label>Porcentaje de las acciones
@@ -853,10 +896,16 @@
                 <p align="left">* En el caso de que alguno(s) de los accionistas del cliente (persona moral) sea(n) otra(s) persona(s) moral(es), se deberan identificar a los accionistas de ésta(s) última(s) que sean propietarios del 25% o más del capital social:
                 </p>
      
-                <div class="medium-4 columns"><label>Nombre
-                  <input name="accpermor1" type="text" id="accpermor1" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['NomAccPM1']; } ?>" placeholder="Nombre"></label>
+                <div class="medium-2 columns"><label>Nombre(s)
+                  <input name="accpermor1" type="text" id="accpermor1" ></label>
                 </div>
-                <div class="medium-4 columns"><label>RFC
+                <div class="medium-2 columns"><label>Apellido Parterno
+                  <input name="accpermor1b" type="text" id="accpermor1b" ></label>
+                </div>
+                <div class="medium-2 columns"><label>Apellido Materno
+                  <input name="accpermor1c" type="text" id="accpermor1c" ></label>
+                </div>
+                <div class="medium-3 columns"><label>RFC
                   <input name="rfcaccpermor1" type="text" id="rfcaccpermor1" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['RFCAccPM1']; } ?>"  pattern="rfc" onkeypress="mayusculas(this)"></label>
                 </div>
 
@@ -872,11 +921,17 @@
                 </div>
 
 <p align="left">
-                <div class="medium-4 columns"> <label>Nombre
-                  <input name="accpermor2" type="text" id="accpermor2" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['NomAccPM2']; } ?>" placeholder="Nombre"></label>
+                <div class="medium-2 columns"> <label>Nombre(s)
+                  <input name="accpermor2" type="text" id="accpermor2" ></label>
+                </div>
+                <div class="medium-2 columns"> <label>Apellido Paterno
+                  <input name="accpermor2b" type="text" id="accpermor2b" ></label>
+                </div>
+                <div class="medium-2 columns"> <label>Apellido Materno
+                  <input name="accpermor2c" type="text" id="accpermor2c" ></label>
                 </div>
 
-                <div class="medium-4 columns"><label>RFC
+                <div class="medium-3 columns"><label>RFC
                   <input name="rfcaccpermor2" type="text" id="rfcaccpermor2" value="<?php if(isset($row2['Folio_Cliente'])) { echo $row2['RFCAccPM2']; } ?>"  pattern="rfc" onkeypress="mayusculas(this)"></label>
                 </div>
 
@@ -1609,20 +1664,182 @@
                           <label  >
                             <h4 >Cliente: </h4>
                             <h6 id="clienteqeq"></h6>
+                          </label>
                             <input class="button" type="button" id="botonverxmlcliente" name="botonverxmlcliente" value="Ver Datos" data-open="modalxmlcliente">
                             <div class="reveal" id="modalxmlcliente" data-reveal>
-                              <div id="contenidomodalxmlcliente">
-                                
-                              </div>
-
-                              
+                              <div id="contenidomodalxmlcliente"></div>                              
                               <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
                             
-                          </label>
                         </div>
+                        <div class="medium-12 columns" id="divConyugeqeq" style="display: none;" >
+                          <label  >
+                            <h4 >Conyuge: </h4>
+                            <h6 id="Conyugeqeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlConyuge" name="botonverxmlConyuge" value="Ver Datos" data-open="modalxmlConyuge">
+                            <div class="reveal" id="modalxmlConyuge" data-reveal>
+                              <div id="contenidomodalxmlConyuge"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+                        <div class="medium-12 columns" id="divReferenciaPersonalqeq" style="display: none;" >
+                          <label  >
+                            <h4 >Referencia Personal(1): </h4>
+                            <h6 id="ReferenciaPersonalqeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlReferenciaPersonal" name="botonverxmlReferenciaPersonal" value="Ver Datos" data-open="modalxmlReferenciaPersonal">
+                            <div class="reveal" id="modalxmlReferenciaPersonal" data-reveal>
+                              <div id="contenidomodalxmlReferenciaPersonal"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+                        <div class="medium-12 columns" id="divReferenciaPersonal2qeq" style="display: none;" >
+                          <label  >
+                            <h4 >Referencia Personal(2): </h4>
+                            <h6 id="ReferenciaPersonal2qeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlReferenciaPersonal2" name="botonverxmlReferenciaPersonal2" value="Ver Datos" data-open="modalxmlReferenciaPersonal2">
+                            <div class="reveal" id="modalxmlReferenciaPersonal2" data-reveal>
+                              <div id="contenidomodalxmlReferenciaPersonal2"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="medium-12 columns" id="divcontempresaqeq" style="display: none;" >
+                          <label  >
+                            <h4 >Contacto de la empresa: </h4>
+                            <h6 id="contempresaqeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlcontempresa" name="botonverxmlcontempresa" value="Ver Datos" data-open="modalxmlcontempresa">
+                            <div class="reveal" id="modalxmlcontempresa" data-reveal>
+                              <div id="contenidomodalxmlcontempresa"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="medium-12 columns" id="divacc1qeq" style="display: none;" >
+                          <label  >
+                            <h4 >Accionista (1): </h4>
+                            <h6 id="acc1qeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlacc1" name="botonverxmlacc1" value="Ver Datos" data-open="modalxmlacc1">
+                            <div class="reveal" id="modalxmlacc1" data-reveal>
+                              <div id="contenidomodalxmlacc1"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="medium-12 columns" id="divacc2qeq" style="display: none;" >
+                          <label  >
+                            <h4 >Accionista (2): </h4>
+                            <h6 id="acc2qeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlacc2" name="botonverxmlacc2" value="Ver Datos" data-open="modalxmlacc2">
+                            <div class="reveal" id="modalxmlacc2" data-reveal>
+                              <div id="contenidomodalxmlacc2"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="medium-12 columns" id="divacc3qeq" style="display: none;" >
+                          <label  >
+                            <h4 >Accionista (3): </h4>
+                            <h6 id="acc3qeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlacc3" name="botonverxmlacc3" value="Ver Datos" data-open="modalxmlacc3">
+                            <div class="reveal" id="modalxmlacc3" data-reveal>
+                              <div id="contenidomodalxmlacc3"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+
+                         <div class="medium-12 columns" id="divacc4qeq" style="display: none;" >
+                          <label  >
+                            <h4 >Accionista (4): </h4>
+                            <h6 id="acc4qeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlacc4" name="botonverxmlacc4" value="Ver Datos" data-open="modalxmlacc4">
+                            <div class="reveal" id="modalxmlacc4" data-reveal>
+                              <div id="contenidomodalxmlacc4"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="medium-12 columns" id="divBeneficiarioqeq" style="display: none;" >
+                          <label  >
+                            <h4 >Beneficiario: </h4>
+                            <h6 id="Beneficiarioqeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlBeneficiario" name="botonverxmlBeneficiario" value="Ver Datos" data-open="modalxmlBeneficiario">
+                            <div class="reveal" id="modalxmlBeneficiario" data-reveal>
+                              <div id="contenidomodalxmlBeneficiario"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+                        <p>* En el caso de que alguno(s) de los accionistas del cliente (persona moral) sea(n) otra(s) persona(s) moral(es), se deberan identificar a los accionistas de ésta(s) última(s) que sean propietarios del 25% o más del capital social:</p>
+                        <div class="medium-12 columns" id="divacc5qeq" style="display: none;" >
+                          <label  >
+                            <h4 >Accionista (1): </h4>
+                            <h6 id="acc5qeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlacc5" name="botonverxmlacc5" value="Ver Datos" data-open="modalxmlacc5">
+                            <div class="reveal" id="modalxmlacc5" data-reveal>
+                              <div id="contenidomodalxmlacc5"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="medium-12 columns" id="divacc6qeq" style="display: none;" >
+                          <label  >
+                            <h4 >Accionista (2): </h4>
+                            <h6 id="acc6qeq"></h6>
+                          </label>
+                            <input class="button" type="button" id="botonverxmlacc6" name="botonverxmlacc6" value="Ver Datos" data-open="modalxmlacc6">
+                            <div class="reveal" id="modalxmlacc6" data-reveal>
+                              <div id="contenidomodalxmlacc6"></div>                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                        </div>
+
+
+
+
                       </p>
                       
                     </div>

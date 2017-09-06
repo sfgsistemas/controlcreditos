@@ -56,6 +56,75 @@ xmlhttp.onreadystatechange=function()
             document.getElementById('clienteqeq').innerHTML=solicitud.Nombre;
             document.getElementById("botonverxmlcliente").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlcliente")};
            }
+           if(solicitud.Clasificacion=="conyuge"){
+            document.getElementById('divConyugeqeq').style.display='block';
+            document.getElementById('Conyugeqeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlConyuge").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlConyuge")};
+           }
+           if(solicitud.Clasificacion=="RefPer1"){
+            document.getElementById('divReferenciaPersonalqeq').style.display='block';
+            document.getElementById('ReferenciaPersonalqeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlReferenciaPersonal").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlReferenciaPersonal")};
+           }
+           if(solicitud.Clasificacion=="RefPer2"){
+            document.getElementById('divReferenciaPersonal2qeq').style.display='block';
+            document.getElementById('ReferenciaPersonal2qeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlReferenciaPersonal2").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlReferenciaPersonal2")};
+           }
+
+
+           if(solicitud.Clasificacion=="contempresa"){
+            document.getElementById('divcontempresaqeq').style.display='block';
+            document.getElementById('contempresaqeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlcontempresa").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlcontempresa")};
+           }
+
+           if(solicitud.Clasificacion=="Accionista1"){
+            document.getElementById('divacc1qeq').style.display='block';
+            document.getElementById('acc1qeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlacc1").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlacc1")};
+           }
+
+           if(solicitud.Clasificacion=="Accionista2"){
+            document.getElementById('divacc2qeq').style.display='block';
+            document.getElementById('acc2qeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlacc2").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlacc2")};
+           }
+
+           if(solicitud.Clasificacion=="Accionista3"){
+            document.getElementById('divacc3qeq').style.display='block';
+            document.getElementById('acc3qeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlacc3").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlacc3")};
+           }
+
+           if(solicitud.Clasificacion=="Accionista4"){
+            document.getElementById('divacc4qeq').style.display='block';
+            document.getElementById('acc4qeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlacc4").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlacc4")};
+           }
+
+           if(solicitud.Clasificacion=="Accionista5"){
+            document.getElementById('divacc5qeq').style.display='block';
+            document.getElementById('acc5qeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlacc5").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlacc5")};
+           }
+
+           if(solicitud.Clasificacion=="Accionista6"){
+            document.getElementById('divacc6qeq').style.display='block';
+            document.getElementById('acc6qeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlacc6").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlacc6")};
+           }
+
+
+
+
+
+
+           if(solicitud.Clasificacion=="Beneficiario"){
+            document.getElementById('divBeneficiarioqeq').style.display='block';
+            document.getElementById('Beneficiarioqeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlBeneficiario").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlBeneficiario")};
+           }
         });
         
         }else{
@@ -110,16 +179,19 @@ function verdatosxml(url,contenedor){
 $("#generappe").click(function(event) {
 
             if(typeof (obj2)!= 'undefined'){
-    
+                
                var registro=obj2[0];
              }
-             if(typeof (obj4)!= 'undefined'){
 
+             if(typeof (obj4)!= 'undefined'){
+                
                var registro=obj4.Id;
              }
+
+
                             
               //hace la búsqueda
-                                                                                  
+                                                             
               $.ajax({
                     type: "POST",
                     url: "gradoriesgo.php",

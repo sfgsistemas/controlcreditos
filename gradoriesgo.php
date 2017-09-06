@@ -28,6 +28,7 @@ switch ($_REQUEST['function']) {
         include('Requests-1.7.0/library/Requests.php');
         include('Conexion2.php');
 
+        //echo $_REQUEST['id'];
         $result=mysqli_query($cnx,"select * from clientes inner join solicitudes on clientes.id=solicitudes.FolioCliente where solicitudes.GradoRiesgo='".$_REQUEST['id']."'");
 
         
@@ -37,6 +38,7 @@ switch ($_REQUEST['function']) {
         }
         if(!mysqli_num_rows($result)>0){
             echo "Error -- ¡¡No hay registros favor de intentar de nuevo!!";
+            break;
         }
 
         $row=mysqli_fetch_array($result);
@@ -59,18 +61,236 @@ switch ($_REQUEST['function']) {
                      goto renewSA;
                 }
 
+
+                if($row['EstCivilPF']=="Casado Bienes Mancomunados" || $row['EstCivilPF']=="Casado Bienes Separados"){
+
+                    renewSA2:
+
+                    $per2=$row['ConyugeNom'].' '.$row['ConyugeApPat'].' '.$row['ConyugeApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con2="https://qeq.mx/datos/qws/pepsp?nombre=".$row['ConyugeNom']."&paterno=".$row['ConyugeApPat']." &materno=".$row['ConyugeApMat'];
+                    try {
+                    $dir=consulta($con2,$per2,$cooc);
+                    array_push($arra, array($per2.' -conyuge ',$dir,'conyuge',$per2));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA2;
+                    }
+
+
+                }
+
+                if($row['RefPerNom1PF']!="" || $row['RefPerApPat1PF']!=""){
+                    renewSA3:
+
+                    $per3=$row['RefPerNom1PF'].' '.$row['RefPerApPat1PF'].' '.$row['RefPerApMat1PF'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con3="https://qeq.mx/datos/qws/pepsp?nombre=".$row['RefPerNom1PF']."&paterno=".$row['RefPerApPat1PF']." &materno=".$row['RefPerApMat1PF'];
+                    try {
+                    $dir=consulta($con3,$per3,$cooc);
+                    array_push($arra, array($per3.' -RefPer1 ',$dir,'RefPer1',$per3));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA3;
+                    }
+                }
+
+                if($row['RefPerNom2PF']!="" || $row['RefPerApPat2PF']!=""){
+                    renewSA4:
+
+                    $per4=$row['RefPerNom2PF'].' '.$row['RefPerApPat2PF'].' '.$row['RefPerApMat2PF'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con4="https://qeq.mx/datos/qws/pepsp?nombre=".$row['RefPerNom2PF']."&paterno=".$row['RefPerApPat2PF']." &materno=".$row['RefPerApMat2PF'];
+                    try {
+                    $dir=consulta($con4,$per4,$cooc);
+                    array_push($arra, array($per4.' -RefPer2 ',$dir,'RefPer2',$per4));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA4;
+                    }
+                }
+
+                if($row['BeneficiarioNom']!="" || $row['BeneficiarioApPat']!=""){
+                    renewSA5:
+
+                    $per5=$row['BeneficiarioNom'].' '.$row['BeneficiarioApPat'].' '.$row['BeneficiarioApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con5="https://qeq.mx/datos/qws/pepsp?nombre=".$row['BeneficiarioNom']."&paterno=".$row['BeneficiarioApPat']." &materno=".$row['BeneficiarioApMat'];
+                    try {
+                    $dir=consulta($con5,$per5,$cooc);
+                    array_push($arra, array($per5.' -Beneficiario ',$dir,'Beneficiario',$per5));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA5;
+                    }
+                }
+
+
+
+
                 foreach ($arra as $valor){
-        mysqli_query($cnx,"insert into registroxml (Folio_Sol,PersonaRazonsoc,DirXML,Nombre,Clasificacion) values('".$_REQUEST['id']."','".$valor[0]."','".$valor[1]."','".$valor[3]."','".$valor[2]."') ON DUPLICATE KEY UPDATE Folio_Sol = '".$_REQUEST['id']."', PersonaRazonsoc = '".$valor[0]."', DirXML='".$valor[1]."', Nombre='".$valor[3]."',clasificacion='".$valor[2]."' ");
-        
-        
-    }
-    mysqli_query($cnx,"insert into xml (Folio_Sol,FechaConsulta) values('".$_REQUEST['id']."','".date('Y-m-d')."')");
+                        mysqli_query($cnx,"insert into registroxml (Folio_Sol,PersonaRazonsoc,DirXML,Nombre,Clasificacion) values('".$_REQUEST['id']."','".$valor[0]."','".$valor[1]."','".$valor[3]."','".$valor[2]."') ON DUPLICATE KEY UPDATE Folio_Sol = '".$_REQUEST['id']."', PersonaRazonsoc = '".$valor[0]."', DirXML='".$valor[1]."', Nombre='".$valor[3]."',clasificacion='".$valor[2]."' ");
+                        
+                        
+                    }
+                    mysqli_query($cnx,"insert into xml (Folio_Sol,FechaConsulta) values('".$_REQUEST['id']."','".date('Y-m-d')."')");
+
+
+
+
 
 
         //echo leer($dir);
 
-        }else{
+        }else if($row['TipoCliente']=='Persona Moral'){
+            renewSA6:
+                 $cooc=conexion();
 
+                  $arra= array();
+               
+                $per1=$row['ContEmpNombre'].' '.$row['ContEmpSegNombre'].' '.$row['ContEmpApPat'].' '.$row['ContEmpApMat'];
+                //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                $con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['ContEmpNombre'].' '.$row['ContEmpSegNombre']."&paterno=".$row['ContEmpApPat']." &materno=".$row['ContEmpApMat'];
+                try {
+                $dir=consulta($con1,$per1,$cooc);
+                array_push($arra, array($per1.' - '.$row['ContEmpRFC'],$dir,'contempresa',$per1));
+                } catch (Exception $e) {
+                  echo 'Caught exception: ',  $e->getMessage(), "\n";
+                     goto renewSA6;
+                }
+
+                if($row['Acc1Nombre']!="" || $row['Acc1ApPat']!=""){
+                    renewSA8:
+
+                    $per2=$row['Acc1Nombre'].' '.$row['Acc1ApPat'].' '.$row['Acc1ApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con2="https://qeq.mx/datos/qws/pepsp?nombre=".$row['Acc1Nombre']."&paterno=".$row['Acc1ApPat']." &materno=".$row['Acc1ApMat'];
+                    try {
+                    $dir=consulta($con2,$per2,$cooc);
+                    array_push($arra, array($per2.' -Accionista1 ',$dir,'Accionista1',$per2));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA8;
+                    }
+                }
+
+                if($row['Acc2Nombre']!="" || $row['Acc2ApPat']!=""){
+                    renewSA9:
+
+                    $per3=$row['Acc2Nombre'].' '.$row['Acc2ApPat'].' '.$row['Acc2ApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con3="https://qeq.mx/datos/qws/pepsp?nombre=".$row['Acc2Nombre']."&paterno=".$row['Acc2ApPat']." &materno=".$row['Acc2ApMat'];
+                    try {
+                    $dir=consulta($con3,$per3,$cooc);
+                    array_push($arra, array($per3.' -Accionista2 ',$dir,'Accionista2',$per3));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA9;
+                    }
+                }
+
+                if($row['Acc3Nombre']!="" || $row['Acc3ApPat']!=""){
+                    renewSA10:
+
+                    $per4=$row['Acc3Nombre'].' '.$row['Acc3ApPat'].' '.$row['Acc3ApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con4="https://qeq.mx/datos/qws/pepsp?nombre=".$row['Acc3Nombre']."&paterno=".$row['Acc3ApPat']." &materno=".$row['Acc3ApMat'];
+                    try {
+                    $dir=consulta($con4,$per4,$cooc);
+                    array_push($arra, array($per4.' -Accionista3 ',$dir,'Accionista3',$per4));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA10;
+                    }
+                }
+
+                if($row['Acc4Nombre']!="" || $row['Acc4ApPat']!=""){
+                    renewSA11:
+
+                    $per5=$row['Acc4Nombre'].' '.$row['Acc4ApPat'].' '.$row['Acc4ApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con5="https://qeq.mx/datos/qws/pepsp?nombre=".$row['Acc4Nombre']."&paterno=".$row['Acc4ApPat']." &materno=".$row['Acc4ApMat'];
+                    try {
+                    $dir=consulta($con5,$per5,$cooc);
+                    array_push($arra, array($per5.' -Accionista4 ',$dir,'Accionista4',$per5));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA11;
+                    }
+                }
+
+                if($row['Acc5Nombre']!="" || $row['Acc5ApPat']!=""){
+                    renewSA12:
+
+                    $per6=$row['Acc5Nombre'].' '.$row['Acc5ApPat'].' '.$row['Acc5ApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con6="https://qeq.mx/datos/qws/pepsp?nombre=".$row['Acc5Nombre']."&paterno=".$row['Acc5ApPat']." &materno=".$row['Acc5ApMat'];
+                    try {
+                    $dir=consulta($con6,$per6,$cooc);
+                    array_push($arra, array($per6.' -Accionista5 ',$dir,'Accionista5',$per6));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA12;
+                    }
+                }
+
+                if($row['Acc6Nombre']!="" || $row['Acc6ApPat']!=""){
+                    renewSA13:
+
+                    $per7=$row['Acc6Nombre'].' '.$row['Acc6ApPat'].' '.$row['Acc6ApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con7="https://qeq.mx/datos/qws/pepsp?nombre=".$row['Acc6Nombre']."&paterno=".$row['Acc6ApPat']." &materno=".$row['Acc6ApMat'];
+                    try {
+                    $dir=consulta($con7,$per7,$cooc);
+                    array_push($arra, array($per7.' -Accionista6 ',$dir,'Accionista6',$per7));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA13;
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                if($row['BeneficiarioNom']!="" || $row['BeneficiarioApPat']!=""){
+                    renewSA7:
+
+                    $per5=$row['BeneficiarioNom'].' '.$row['BeneficiarioApPat'].' '.$row['BeneficiarioApMat'];
+                    //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                    $con5="https://qeq.mx/datos/qws/pepsp?nombre=".$row['BeneficiarioNom']."&paterno=".$row['BeneficiarioApPat']." &materno=".$row['BeneficiarioApMat'];
+                    try {
+                    $dir=consulta($con5,$per5,$cooc);
+                    array_push($arra, array($per5.' -Beneficiario ',$dir,'Beneficiario',$per5));
+                    } catch (Exception $e) {
+                      echo 'Caught exception: ',  $e->getMessage(), "\n";
+                         goto renewSA7;
+                    }
+                }
+
+
+
+
+
+
+                 foreach ($arra as $valor){
+                        mysqli_query($cnx,"insert into registroxml (Folio_Sol,PersonaRazonsoc,DirXML,Nombre,Clasificacion) values('".$_REQUEST['id']."','".$valor[0]."','".$valor[1]."','".$valor[3]."','".$valor[2]."') ON DUPLICATE KEY UPDATE Folio_Sol = '".$_REQUEST['id']."', PersonaRazonsoc = '".$valor[0]."', DirXML='".$valor[1]."', Nombre='".$valor[3]."',clasificacion='".$valor[2]."' ");
+                        
+                        
+                    }
+                    mysqli_query($cnx,"insert into xml (Folio_Sol,FechaConsulta) values('".$_REQUEST['id']."','".date('Y-m-d')."')");
+
+
+        }else{
+            echo "Error -- ¡¡Registro No Contiene Tipo De Cliente!!";
         }
 
         echo "¡¡Guardado y registrado!!";
