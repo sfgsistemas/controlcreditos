@@ -1580,11 +1580,54 @@
                   <li class="tabs-title is-active"><a href="#panel2g">Perfil Transaccional</a></li>
                   <li class="tabs-title"><a href="#panel3g">Parentesco con PEP</a></li>
                   <li class="tabs-title"><a href="#panel1g" aria-selected="true">Grado de Riesgo</a></li>
+                  <li class="tabs-title"><a href="#panel4g" aria-selected="true">Busqueda QeQ</a></li>
                 </ul>
               
                 
                 <div class="tabs-content" data-tabs-content="example-tabs">
-                  <div class="tabs-panel is-active" id="panel1g">
+                  <div class="tabs-panel" id="panel4g">
+                    <div class="row" id="rowdebusquedaqeq" style="display: none;">
+                      <p align="left">
+                        <div class="medium-3 columns">
+                          <label>Buscar PPE y listas negras
+                          <input class="button" type="button" name="generappe" id="generappe" value="Buscar">
+                          </label>
+                        </div>
+                        
+                      </p>
+                    </div>
+                    <div class="row">
+                      <p align="left">
+                        
+                        <div id="loadingqeq"></div>
+                        
+                      </p>
+                    </div>
+                    <div class="row">
+                      <p align="left">
+                        <div class="medium-12 columns" id="divclienteqeq" style="display: none;" >
+                          <label  >
+                            <h4 >Cliente: </h4>
+                            <h6 id="clienteqeq"></h6>
+                            <input class="button" type="button" id="botonverxmlcliente" name="botonverxmlcliente" value="Ver Datos" data-open="modalxmlcliente">
+                            <div class="reveal" id="modalxmlcliente" data-reveal>
+                              <div id="contenidomodalxmlcliente">
+                                
+                              </div>
+
+                              
+                              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            
+                          </label>
+                        </div>
+                      </p>
+                      
+                    </div>
+                  </div>
+                  <div class="tabs-panel" id="panel1g">
                   
                       <p align="left"><strong>CLASIFICACIÓN POR GRADO DE RIESGO</strong></p>
                       <table width="100%" border="0">
@@ -2051,7 +2094,7 @@
   <li class="tabs-title"><a href="#panel4f">Tab 4</a></li>
 </ul>
 
-                        <form enctype="multipart/form-data" action="" method="POST" id="subirdato">
+                        <form enctype="multipart/form-data" action="" method="POST" id="subirdato" data-abide novalidate>
 <div class="tabs-content" data-tabs-content="collapsing-tabs" >
       <div class="tabs-panel is-active" id="panel1f">
     
@@ -2119,7 +2162,7 @@
                           <td>Se cotejo vs original: </td>
                           <td >
                           <div class="medium-5 columns">
-                          <select  id="cot" name="cot" ><option value=" ">-Seleccione una opcion-</option><option>Si</option><option>No</option></select>
+                          <select  id="cot" name="cot" ><option value="">-Seleccione una opcion-</option><option value="Si">Si</option><option value="No">No</option></select>
                                </div>
                                </td>
                         </tr>
@@ -2162,7 +2205,7 @@
                         Domicilio manifestado coincide con la ID
                         
 
-                                <select id="seldom" name="seldom"><option value=" ">-Seleccione una opcion-</option><option>Si</option><option>No</option></select>
+                                <select id="seldom" name="seldom"><option value="">-Seleccione una opcion-</option><option value="Si">Si</option><option value="No">No</option></select>
                  </div>
                    </div>
 </div>

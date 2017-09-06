@@ -1,11 +1,3 @@
-<?php
-
-
-
-
-?>
-
-
   <style>
 .loader {
   color: #000;
@@ -116,9 +108,19 @@
         -ms-user-select: none;
         user-select: none;
       }
+
+
+#scrolledtablet{
+overflow: auto;
+width: auto;
+height: 200px; /*establece la altura máxima, lo que no entre quedará por debajo y saldra la barra de scroll*/
+}
+
+
+
   </style>
 <!doctype html>
-<html class="no-js" lang="en">
+<html  lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -155,6 +157,152 @@
 
 <div class="tabs-panel" id="panel2">
     <div id="panel2A"></div>
+    <input class="button" type="button" name="agreguser" id="agreguser" data-open="subiruser" value="Agregar Usuario">
+    <input class="button" type="button" name="modifuser" id="modifuser" data-open="modalmodifuser" value="Modificar Usuario">
+    <input class="button" type="button" name="elimuser" id="elimuser" value="Eliminar Usuario" data-open="modaleliminauser">
+
+
+<div class="reveal" id="subiruser" data-reveal>
+  <h4>Agregar Usuario</h4>
+<form id="fomruploaduser" action="" method="POST" data-abide novalidate >
+<div class="row" id="inputssubir">
+<p align="left">
+  
+  <div class="medium-4 columns">
+    <label>
+      Usuario:
+      <input type="text" id="usernick" name="usernick" maxlength="10">
+    </label>
+  </div>
+<div class="medium-4 columns">
+  <label>
+      Password:
+      <input type="password" id="userpass" name="userpass" maxlength="10">
+    </label>
+</div>
+<div class="medium-4 columns">
+  <label>
+      Repetir password:
+      <input type="password" id="userpass2" name="userpass2" maxlength="10">
+    </label>
+</div>
+<div class="medium-6 columns">
+  <label>
+      Nombre:
+      <input type="text" id="usernombre" name="usernombre">
+    </label>
+</div>
+
+
+
+</p>
+</div>
+<div class="medium-2 columns">
+  <label>
+      <input class="button" type="button" id="botonuploatuser" name="botonuploatuser" value="Agregar">
+    </label>
+</div>
+</form>
+
+
+  
+
+
+  <button class="close-button" data-close aria-label="Close reveal" type="button" id="cerrarmodalreguser">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  
+
+</div>
+
+<div class="reveal" id="modaleliminauser" data-reveal>
+  <h4>Elimina Usuario</h4>
+
+<div class="row">
+<p align="left">
+<table id="tablaeliminauser">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>User</td>
+      <td>Nombre</td>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+
+
+
+</p>
+</div>
+
+
+  <button class="close-button" data-close aria-label="Close reveal" type="button" id="cerrarmodaldeluser">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  
+
+</div>
+
+<div class="reveal" id="modalmodifuser" data-reveal>
+  <h4>Modificar Usuario</h4>
+
+<div class="row">
+<p align="left">
+<div id="scrolledtablet">
+<table id="tablamodificauser" >
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>User</td>
+      <td>Nombre</td>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+
+</div>
+
+</p>
+</div>
+<div class="row" id="contenidomodificauser">
+  <label>
+    ID:
+    <input type="text" id="idusermod" name="idusermod" readonly="">
+  </label>
+  <label>
+    Modificar nombre del responsable:
+    <input type="text" id="modnombrerespon" name="modnombrerespon">
+  </label>
+  <label>
+    Modifica Constraseña:
+    <input type="password" id="passmoduser" name="passmoduser">
+  </label>
+  <label>
+    Repite Constraseña:
+    <input type="password" id="passmoduser2" name="passmoduser2">
+  </label>
+</div>
+<div class="row">
+  <input class="button" type="button" id="botonparamodificar" name="botonparamodificar" value="Modificar">
+</div>
+
+
+  <button class="close-button" data-close aria-label="Close reveal" type="button" id="cerrarmodalmodifuser">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  
+
+</div>
+
+
+
+
+
    <div class="reveal" id="exampleModal2" data-reveal>
   <h1>Permisos!</h1>
 <div class="row">
@@ -218,12 +366,12 @@ xmlhttp.onreadystatechange=function()
       {
        
 
-        obj = JSON.parse(xmlhttp.responseText);
-         document.getElementById("per").checked = parseInt(obj.GSolicitudes);
-         document.getElementById("per1").checked = parseInt(obj.BSolicitudes);
-         document.getElementById("per2").checked = parseInt(obj.GCotizacion);
-         document.getElementById("per3").checked = parseInt(obj.BQeQ);
-         document.getElementById("per4").checked = parseInt(obj.SetConf);
+        permisos = JSON.parse(xmlhttp.responseText);
+         document.getElementById("per").checked = parseInt(permisos.GSolicitudes);
+         document.getElementById("per1").checked = parseInt(permisos.BSolicitudes);
+         document.getElementById("per2").checked = parseInt(permisos.GCotizacion);
+         document.getElementById("per3").checked = parseInt(permisos.BQeQ);
+         document.getElementById("per4").checked = parseInt(permisos.SetConf);
         
         
         
@@ -267,9 +415,13 @@ xmlhttp.send(data);
                                 });
 
 $("#tab2").click(function(event) {
- 
+ obtieneusuarios();
 
-   var data = new FormData();
+   
+                                });
+
+function obtieneusuarios(){
+var data = new FormData();
 
 
    data.append('panel', 'panel2');
@@ -296,9 +448,7 @@ xmlhttp.onreadystatechange=function()
 xmlhttp.open("POST","confdata.php",true);
 xmlhttp.send(data);
                 
-                                });
-
-
+}
 
 
 $("#updatecreditos").click(function(event) {
@@ -365,12 +515,605 @@ xmlhttp.send(data);
                                 });
 
 
+$("#botonuploatuser").click(function(event) {
+    if(document.getElementById('usernick').value!='' || document.getElementById('userpass').value!=''|| document.getElementById('userpass2').value!='' || document.getElementById('usernombre').value!='' ){
+      document.getElementById('usernick').required=true;
+      document.getElementById('userpass').required=true;
+      document.getElementById('userpass2').required=true;
+      document.getElementById('usernombre').required=true;
+    }else{
+      document.getElementById('usernick').required=false;
+      document.getElementById('userpass').required=false;
+      document.getElementById('userpass2').required=false;
+      document.getElementById('usernombre').required=false;
+    }
+
+
+     $('#fomruploaduser').foundation('validateForm');
 
 
 
+    if(document.getElementById('userpass').value != document.getElementById('userpass2').value){
+      
+      $( "#userpass" ).addClass( "is-invalid-input" );
+      $( "#userpass2" ).addClass( "is-invalid-input" );
+    }else{
+      $( "#userpass" ).removeClass( "is-invalid-input" );
+      $( "#userpass2" ).removeClass( "is-invalid-input" );
+    }
+
+   
+
+
+
+var validacion=false;
+/*
+$( "#panel1f-label" ).removeClass( "is-invalid-input" );
+$( "#panel2d-label" ).removeClass( "is-invalid-input" );
+$( "#panel3d-label" ).removeClass( "is-invalid-input" );
+$( "#panel4c-label" ).removeClass( "is-invalid-input" );
+$( "#panel5c-label" ).removeClass( "is-invalid-input" );
+$( "#panel6c-label" ).removeClass( "is-invalid-input" );
+$( "#panel7c-label" ).removeClass( "is-invalid-input" );
+$( "#panel8c-label" ).removeClass( "is-invalid-input" );
+$( "#panel9c-label" ).removeClass( "is-invalid-input" );
+*/
+   
+
+    
+$('#fomruploaduser').find('input').each(function(){ 
+  console.log(this.id);
+
+    if($( "#"+this.id).hasClass( "is-invalid-input" )){
+        console.log(this.id);
+        //$( "#panel1f-label" ).addClass( "is-invalid-input" );
+        validacion=true;
+    }
+
+     });
+
+
+
+    if(validacion){
+         console.log("Hay errores");
+         alert("¡¡Verifica Que Todos Los Datos Sean Correctos!!");
+         return validacion;
+    }
+
+
+   var data = new FormData(document.forms['fomruploaduser']);
+   data.append('function', "subir");
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        //alert(xmlhttp.responseText);
+        $( "#cerrarmodalreguser" ).click();
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+                
+                                });
+
+$("#elimuser").click(function(event) {
+  
+   var data = new FormData();
+   data.append('function', "obtienelosusers");
+   
+   //data.append('id', obj.id);
+
+   //data.append('TipoCliente', "df");
+   
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+
+        
+        $("#tablaeliminauser tbody tr").remove();
+        //alert(xmlhttp.responseText);
+        obJ = JSON.parse(xmlhttp.responseText);
+        
+        $.each(obJ, function(i,solicitud){
+            var newRow =
+            "<tr>"
+            +"<td> <input onclick='eliminaruser(this.id)' class='button' type='button' name='"+solicitud.id+"' id='"+solicitud.id+"' value='"+solicitud.id+"'></td>";
+
+            newRow+="<td>"+solicitud.user+"</td>";
+            newRow+="<td>"+solicitud.nombre+"</td>";
+
+
+
+
+
+            newRow+="</tr>";
+
+            
+           
+            $(newRow).appendTo("#tablaeliminauser tbody");
+        });
+        
+        
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+
+   
+                
+                                });
+
+function eliminaruser(id){
+    var data = new FormData();
+   data.append('function', "eliminar");
+   data.append('id', id);
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        alert(xmlhttp.responseText);
+        $( "#cerrarmodaldeluser" ).click();
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+}
+
+
+
+
+$("#modifuser").click(function(event) {
+  
+   var data = new FormData();
+   data.append('function', "obtienelosusers");
+   
+   //data.append('id', obj.id);
+
+   //data.append('TipoCliente', "df");
+   
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+
+        
+        $("#tablamodificauser tbody tr").remove();
+        //alert(xmlhttp.responseText);
+        obJ = JSON.parse(xmlhttp.responseText);
+        
+        $.each(obJ, function(i,solicitud){
+            var newRow =
+            "<tr>"
+            +"<td> <input onclick='idamodificar(this.id)' class='button' type='button' name='"+solicitud.id+"' id='"+solicitud.id+"' value='"+solicitud.id+"'></td>";
+
+            newRow+="<td>"+solicitud.user+"</td>";
+            newRow+="<td>"+solicitud.nombre+"</td>";
+
+
+
+
+
+            newRow+="</tr>";
+
+            
+           
+            $(newRow).appendTo("#tablamodificauser tbody");
+        });
+        
+        
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+
+   
+                
+                                });
+function idamodificar(id){
+  document.getElementById('idusermod').value=id;
+}
+
+
+$("#botonparamodificar").click(function(event) {
+ 
+
+
+     //$('#modalmodifuser').foundation('validateForm');
+
+
+
+    if(document.getElementById('passmoduser').value != document.getElementById('passmoduser2').value){
+      
+      $( "#passmoduser" ).addClass( "is-invalid-input" );
+      $( "#passmoduser2" ).addClass( "is-invalid-input" );
+    }else{
+      $( "#passmoduser" ).removeClass( "is-invalid-input" );
+      $( "#passmoduser2" ).removeClass( "is-invalid-input" );
+    }
+
+   
+
+
+
+var validacion=false;
+/*
+$( "#panel1f-label" ).removeClass( "is-invalid-input" );
+$( "#panel2d-label" ).removeClass( "is-invalid-input" );
+$( "#panel3d-label" ).removeClass( "is-invalid-input" );
+$( "#panel4c-label" ).removeClass( "is-invalid-input" );
+$( "#panel5c-label" ).removeClass( "is-invalid-input" );
+$( "#panel6c-label" ).removeClass( "is-invalid-input" );
+$( "#panel7c-label" ).removeClass( "is-invalid-input" );
+$( "#panel8c-label" ).removeClass( "is-invalid-input" );
+$( "#panel9c-label" ).removeClass( "is-invalid-input" );
+*/
+   
+
+    
+$('#modalmodifuser').find('input').each(function(){ 
+  console.log(this.id);
+
+    if($( "#"+this.id).hasClass( "is-invalid-input" )){
+        console.log(this.id);
+        //$( "#panel1f-label" ).addClass( "is-invalid-input" );
+        validacion=true;
+    }
+
+     });
+
+
+
+    if(validacion){
+         console.log("Hay errores");
+         alert("¡¡Verifica Que Todos Los Datos Sean Correctos!!");
+         return validacion;
+    }
+
+
+var data = new FormData();
+   data.append('function', "modificaruser");
+   data.append('id', document.getElementById('idusermod').value);
+   data.append('pass', document.getElementById('passmoduser').value);
+   data.append('responsable', document.getElementById('modnombrerespon').value);
+
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        alert(xmlhttp.responseText);
+        $( "#cerrarmodalmodifuser" ).click();
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+                
+                                });
+
+
+
+$("#per").change(function (event) {
+  if(document.getElementById('per').checked){
+    var permiso=1;
+  }else{
+    var permiso=0;
+  }
+
+
+
+var data = new FormData();
+   data.append('function', "cambiapermisos");
+   data.append('id', permisos.id);
+   data.append('permite', permiso);
+   data.append('permiso', 'GSolicitudes');
+
+
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        //alert(xmlhttp.responseText);
+        
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+
+
+});
+
+$("#per1").change(function (event) {
+  if(document.getElementById('per1').checked){
+    var permiso=1;
+  }else{
+    var permiso=0;
+  }
+
+
+
+var data = new FormData();
+   data.append('function', "cambiapermisos");
+   data.append('id', permisos.id);
+   data.append('permite', permiso);
+   data.append('permiso', 'BSolicitudes');
+
+
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        //alert(xmlhttp.responseText);
+        
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+
+
+});
+
+$("#per2").change(function (event) {
+  if(document.getElementById('per2').checked){
+    var permiso=1;
+  }else{
+    var permiso=0;
+  }
+
+
+
+var data = new FormData();
+   data.append('function', "cambiapermisos");
+   data.append('id', permisos.id);
+   data.append('permite', permiso);
+   data.append('permiso', 'GCotizacion');
+
+
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        //alert(xmlhttp.responseText);
+        
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+
+
+});
+
+$("#per3").change(function (event) {
+  if(document.getElementById('per3').checked){
+    var permiso=1;
+  }else{
+    var permiso=0;
+  }
+
+
+
+var data = new FormData();
+   data.append('function', "cambiapermisos");
+   data.append('id', permisos.id);
+   data.append('permite', permiso);
+   data.append('permiso', 'BQeQ');
+
+
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        //alert(xmlhttp.responseText);
+        
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+
+
+});
+
+$("#per4").change(function (event) {
+  if(document.getElementById('per4').checked){
+    var permiso=1;
+  }else{
+    var permiso=0;
+  }
+
+
+
+var data = new FormData();
+   data.append('function', "cambiapermisos");
+   data.append('id', permisos.id);
+   data.append('permite', permiso);
+   data.append('permiso', 'SetConf');
+
+
+
+
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+         if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        //alert(xmlhttp.responseText);
+        
+        
+         obtieneusuarios();
+        
+
+        
+      }
+  }
+xmlhttp.open("POST","users.php",true);
+xmlhttp.send(data);
+
+
+});
 
 </script>
-
+    <script scr="js/users.js"></script>
     <script  scr="js/validasolicitud.js"></script>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>

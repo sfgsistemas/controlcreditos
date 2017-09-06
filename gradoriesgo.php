@@ -2,6 +2,84 @@
 
 
 switch ($_REQUEST['function']) {
+    case 'tienexmlqeq':
+        include('Conexion2.php');
+         $rawdata = array();
+            $i=0;
+        $result=mysqli_query($cnx,"select * from registroxml inner join gradoriesgo on registroxml.Folio_Sol=gradoriesgo.id where gradoriesgo.id='".$_REQUEST['registro']."'");
+        if($result===false){
+            echo "Error -- Queru no realizado!!!";
+            break;
+        }
+        while($row=mysqli_fetch_array($result)){
+            $rawdata[$i] = $row;
+                $i++;
+        }
+
+        echo json_encode($rawdata);
+        break;
+    case 'verobtenqeq':
+        include('Requests-1.7.0/library/Requests.php');
+        
+        echo leer($_REQUEST['url']);
+
+        break;
+    case 'obtenqeq':
+        include('Requests-1.7.0/library/Requests.php');
+        include('Conexion2.php');
+
+        $result=mysqli_query($cnx,"select * from clientes inner join solicitudes on clientes.id=solicitudes.FolioCliente where solicitudes.GradoRiesgo='".$_REQUEST['id']."'");
+
+        
+        if($result===false){
+            echo "Error -- Consulta no realizada";
+            break;
+        }
+        if(!mysqli_num_rows($result)>0){
+            echo "Error -- ¡¡No hay registros favor de intentar de nuevo!!";
+        }
+
+        $row=mysqli_fetch_array($result);
+
+        if ($row['TipoCliente']=='Persona Fisica') {
+            # code...
+             renewSA:
+                 $cooc=conexion();
+
+                  $arra= array();
+               
+                $per1=$row['NombrePF'].' '.$row['SegNombrePF'].' '.$row['ApPatPF'].' '.$row['ApMatPF'];
+                //$con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF']."&curp=".$row['CURPPF']."&rfc=".$row['RFCPF'];
+                $con1="https://qeq.mx/datos/qws/pepsp?nombre=".$row['NombrePF'].' '.$row['SegNombrePF']."&paterno=".$row['ApPatPF']." &materno=".$row['ApMatPF'];
+                try {
+                $dir=consulta($con1,$per1,$cooc);
+                array_push($arra, array($per1.' -PPE- '.$row['CURPPF'],$dir,'cliente',$per1));
+                } catch (Exception $e) {
+                  echo 'Caught exception: ',  $e->getMessage(), "\n";
+                     goto renewSA;
+                }
+
+                foreach ($arra as $valor){
+        mysqli_query($cnx,"insert into registroxml (Folio_Sol,PersonaRazonsoc,DirXML,Nombre,Clasificacion) values('".$_REQUEST['id']."','".$valor[0]."','".$valor[1]."','".$valor[3]."','".$valor[2]."') ON DUPLICATE KEY UPDATE Folio_Sol = '".$_REQUEST['id']."', PersonaRazonsoc = '".$valor[0]."', DirXML='".$valor[1]."', Nombre='".$valor[3]."',clasificacion='".$valor[2]."' ");
+        
+        
+    }
+    mysqli_query($cnx,"insert into xml (Folio_Sol,FechaConsulta) values('".$_REQUEST['id']."','".date('Y-m-d')."')");
+
+
+        //echo leer($dir);
+
+        }else{
+
+        }
+
+        echo "¡¡Guardado y registrado!!";
+
+        //echo json_encode($arra);
+
+        //echo json_encode(mysqli_fetch_array($result));
+
+        break;
     case 'continuarconocimiento':
         include('Conexion2.php');
         try {
@@ -266,4 +344,170 @@ switch ($_REQUEST['function']) {
 
 }
 
+
+function conexion(){
+    // First, include Requests
+
+
+    // Next, make sure Requests can load internal classes
+    Requests::register_autoloader();
+
+    // Say you need to fake a login cookie
+    $c = new Requests_Cookie_Jar(['login_uid' =>  'something']);
+
+    renew:
+    try {
+   // Now let's make a request!
+    $request = Requests::get('https://qeq.mx/datos/qws/access?var1=silvia@vwdgo.com&var2=qeq939', // Url
+    [],  // No need to set the headers the Jar does this for us
+    ['cookies' => $c] // Pass in the Jar as an option
+    );
+
+
+    } catch (Exception $e) {
+    goto renew;
+    }
+
+    return $c;
+}
+
+function consulta($url,$persona,$coc){
+     
+    $count2=0;
+    
+    $count=0;
+
+    renewQuest:
+    try {
+   // Now let's make a request!
+    $request2 = Requests::get($url, // Url
+    [],  // No need to set the headers the Jar does this for us
+    ['cookies' => $coc] // Pass in the Jar as an option
+    );
+
+
+    } catch (Exception $e) {
+    if($count<2){
+        $count++;
+        goto renewQuest;
+    }else{
+        echo "Error Tiempo Excedido";
+        exit();
+    }
+    
+    }
+
+
+
+
+
+    // Check what we received
+    //var_dump($request2->body);
+    $xml = new DOMDocument();
+    $xml-> loadXML($request2->body);
+    $xml->formatOutput = true;
+    $el_xml = $xml->saveXML();
+    $json = json_encode($xml);
+    //$array = json_decode($json,TRUE);
+    $pos = strpos($el_xml, 'No se pudo autenticar');
+
+    // Nótese el uso de ===. Puesto que == simple no funcionará como se espera
+    // porque la posición de 'a' está en el 1° (primer) caracter.
+
+ 
+    //se puede hacer la comparacion con 'false' o 'true' y los comparadores '===' o '!=='
+    if ($pos === false) {
+    
+    } else {
+        if($count2<2){
+        $count2++;
+        sleep(10);
+        //goto renew;
+        goto renewQuest;
+    }else{
+        echo "Error Tiempo Excedido";
+        exit();
+    }
+            
+            }
+
+
+    $DirXML='xml/'.$persona.' '.date('Y-m-d').'.xml';
+   $xml->save($DirXML);
+   return $DirXML;
+  // include('Conexion2.php');
+  // mysqli_query($cnx,"insert into registroxml (Folio_Sol,PersonaRazonsoc,DirXML) values('$foli','$persona','$DirXML') ON DUPLICATE KEY UPDATE Folio_Sol = '$foli', PersonaRazonsoc = '$persona', DirXML='$DirXML';");
+
+
+
+            
+    //echo htmlentities($el_xml);
+
+
+}
+ 
+
+
+//leer($dir);
+
+//Para leerlo
+function leer($urli){
+    
+    $xml = simplexml_load_file($urli);
+    $salida ="";
+    //echo "<h1>Hola<h1>";
+    foreach($xml->persona as $item){
+      $salida .=
+        "<b>Lista: </b> " . $item->lista ."<br>".
+        "<b>Nombre: </b>".$item->nombrecomp."<br>".
+        "<b>RFC: </b>".$item->rfc."<br>".
+        "<b>Estatus: </b>".$item->estatus."<br>".
+        "<b>Dependencia: </b>".$item->dependencia. "<br>".
+        "<b>Puesto: </b>".$item->puesto."<br>".
+        "<b>Area: </b>".$item->area."<br>".
+        "<b>Entidad: </b>".$item->entidad."<br/><hr/>";
+        
+    }
+    if($salida==""){
+        echo "No es un PEP";
+    }else{
+        echo $salida;
+    }
+    
+    
+}
+
+/*
+function leer($url){
+    try {
+            $xml = simplexml_load_file($url);
+           
+    $salida ="";
+    
+    foreach($xml->persona as $item){
+      $salida .=
+        "<b>Lista: </b> " . $item->lista ."<br>".
+        "<b>Estatus: </b>".$item->estatus."<br>".
+        "<b>Dependencia: </b>".$item->dependencia. "<br>".
+        "<b>Puesto: </b>".$item->puesto."<br>".
+        "<b>Area: </b>".$item->area."<br>".
+        "<b>Entidad: </b>".$item->entidad."<br/><hr/>";
+        
+    }
+    if($salida==""){
+        echo "No es un PEP";
+    }else{
+        echo $salida;
+    }
+    ?> <script> window.print(); </script> <?php
+    }catch (Exception $e) {
+      echo 'Caught exception:---->>>> ',  $e->getMessage(), "\n";
+        exit();
+    }
+    
+    
+    
+  }
+
+*/
 ?>

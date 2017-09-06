@@ -3,7 +3,25 @@
 
 switch ($_REQUEST['function']) {
 	case 'subir':
+	$status="Incompleto";
+	if(
+		($_REQUEST['textfield39']!='' || $_REQUEST['textfield40']!='' || $_REQUEST['textfield41']!='' || $_REQUEST['textfield42']!='' || $_REQUEST['textfield44']!='')
 
+		&&
+
+		$_REQUEST['cot']!=''
+
+		&&
+
+		$_REQUEST['fechaComprobante']!=''
+
+		&&
+
+		$_REQUEST['seldom']!=''
+
+		){
+		$status="Finalizado";
+	}
 
 include("Conexion2.php");
 	$add1 = array();
@@ -15,8 +33,8 @@ for ($con=1; $con < 11 ; $con++) {
 $uploadedfile_size=$_FILES['file'.$con]['size'];
 $msg='';
 
-if ($_FILES['file'.$con]['size']>200000)
-{$msg=$msg."Error -- El archivo es mayor que 200KB, debes reduzcirlo antes de subirlo";
+if ($_FILES['file'.$con]['size']>2000000)
+{$msg=$msg."Error -- El archivo es mayor que 2MB, debes reduzcirlo antes de subirlo";
 $uploadedfileload="false";}
 
 if (!($_FILES['file'.$con]['type'] =="image/jpeg" OR $_FILES['file'.$con]['type'] =="application/pdf" OR $_FILES['file'.$con]['type'] =="image/png"))
@@ -43,6 +61,8 @@ else{echo $msg; break;}
 }
 /*
 */
+
+
 $string1="";
 if ($add1[1]!="") {	$string1="INEurl='".$add1[1]."',";}
 $string2="";
@@ -63,7 +83,6 @@ $string9="";
 if ($add1[9]!="") {	$string1="cedula='".$add1[9]."',";}
 $string10="";
 if ($add1[10]!="") {	$string1="poderes='".$add1[10]."',";}
-
 
 //echo $_REQUEST['visor1'];
 
@@ -88,7 +107,7 @@ domId='".$_REQUEST['seldom']."',
 $string8
 	$string9
 		$string10
-Status='Incompleto'
+Status='$status'
  WHERE id='".$_REQUEST['id']."'
 
 
@@ -99,6 +118,7 @@ $result=mysqli_query($cnx,"select INEurl,pasaporteurl,cartillaurl,licenciaurl,ot
 
 
 echo json_encode(mysqli_fetch_array($result));
+
 
 
 		break;
@@ -139,7 +159,14 @@ case 'requestmodificardocu':
 	$result=mysqli_query($cnx,"select * from docu where id = (select Documentacion from solicitudes where Id = '".$_REQUEST['registro']."')");
 	if ($result === false) {
 		echo "Error Consulta";
+		break;
 	}
+	if (!mysqli_num_rows($result)>0) {
+		# code...
+		echo "Error -- ¡¡No existe la solicitud o no tiene asignada su documentación!!";
+		break;
+	}
+
 	echo json_encode(mysqli_fetch_array($result));
 	break;
 	case 'continuar':

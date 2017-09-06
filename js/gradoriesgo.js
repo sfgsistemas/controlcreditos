@@ -1,3 +1,163 @@
+$("#panel4g-label").click(function(event) {
+    tienexmlqeq();
+   
+});
+
+function tienexmlqeq(){
+  var data = new FormData();
+   data.append('function', "tienexmlqeq");
+    if(typeof (obj2)!= 'undefined'){
+    
+      data.append('registro', obj2[0]);
+   }
+   if(typeof (obj4)!= 'undefined'){
+
+      data.append('registro', obj4.Id);
+   }
+   
+   //data.append('id', obj.id);
+
+   //data.append('TipoCliente', "df");
+   
+    if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        //alert(xmlhttp.responseText);
+       
+
+        
+        if(xmlhttp.responseText.indexOf("Error") !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
+        if(xmlhttp.responseText === "null"){
+          alert("Error -- La solicitud no existe o no contiene matriz de grado de riesgo");
+          return false;
+        }
+        
+        //alert(xmlhttp.responseText);
+        xmlsqeq = JSON.parse(xmlhttp.responseText);
+        if(Object.keys(xmlsqeq).length>0){
+          //alert("continene datos");
+          document.getElementById('rowdebusquedaqeq').style.display='none';
+          $.each(xmlsqeq, function(i,solicitud){
+            //alert(solicitud.Clasificacion);
+           if(solicitud.Clasificacion=="cliente"){
+            document.getElementById('divclienteqeq').style.display='block';
+            document.getElementById('clienteqeq').innerHTML=solicitud.Nombre;
+            document.getElementById("botonverxmlcliente").onclick = function() {verdatosxml(solicitud.DirXML,"contenidomodalxmlcliente")};
+           }
+        });
+        
+        }else{
+          document.getElementById('rowdebusquedaqeq').style.display='block';
+        }
+        
+        
+        
+        
+      }
+  }
+xmlhttp.open("POST","gradoriesgo.php",true);
+xmlhttp.send(data);
+}
+
+function verdatosxml(url,contenedor){
+  //alert(url);
+  //alert(contenedor);
+                                                                                  
+              $.ajax({
+                    type: "POST",
+                    url: "gradoriesgo.php",
+                    data: "function=verobtenqeq&url="+url,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#"+contenedor).html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("Error de servidor intente de nuevo");
+                    },
+                    success: function(data){                                                    
+                          $("#"+contenedor).empty();
+
+                         if(data.indexOf("Error") !== -1){
+                          alert(data);
+                          return false;
+                        }
+                        if(data === "null"){
+                          alert("Error -- XML Inexistente");
+                          return false;
+                        }
+                        
+                        //alert(data);
+                        document.getElementById(contenedor).innerHTML=data;
+        
+                                                             
+                    }
+              });
+}
+
+$("#generappe").click(function(event) {
+
+            if(typeof (obj2)!= 'undefined'){
+    
+               var registro=obj2[0];
+             }
+             if(typeof (obj4)!= 'undefined'){
+
+               var registro=obj4.Id;
+             }
+                            
+              //hace la búsqueda
+                                                                                  
+              $.ajax({
+                    type: "POST",
+                    url: "gradoriesgo.php",
+                    data: "function=obtenqeq&id="+registro,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#loadingqeq").html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("Error de servidor intente de nuevo");
+                    },
+                    success: function(data){                                                    
+                          $("#loadingqeq").empty();
+
+                         if(data.indexOf("Error") !== -1){
+                          alert(data);
+                          return false;
+                        }
+                        if(data === "null"){
+                          alert("Error -- La solicitud no existe o no contiene matriz de grado de riesgo");
+                          return false;
+                        }
+                        
+                        alert(data);
+                        tienexmlqeq();
+        
+                                                             
+                    }
+              });
+                                                                                  
+});
+
+
+
+
+
+
 $("#continuarconocimiento").click(function(event) {
     
    var data = new FormData();
