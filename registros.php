@@ -93,6 +93,7 @@
             <li class="tabs-title" id="tabpanel7c" style="display: none;"><a href="#panel7c">Accionistas</a></li>
             <li class="tabs-title"><a href="#panel8c">Beneficiario</a></li>
             <li class="tabs-title"><a href="#panel9c">Situacion Financiera</a></li>
+
           </ul>
           <div class="tabs-content" data-tabs-content="collapsing-tabs">
             <div class="tabs-panel is-active" id="panel1c" >
@@ -1050,11 +1051,20 @@
             <div class="tabs-panel" id="panel8c">
             </div>
             <div class="row">
-              
-            <input class="button" type="button" name="guardarcliente" id="guardarcliente" value="Guardar" style="display: none;">
+              <div class="medium-1 columns">
+                <input class="button" type="button" name="guardarcliente" id="guardarcliente" value="Guardar" style="display: none;">
+                
+              </div>
             <input class="button" type="button" name="botonmodcliente" id="botonmodcliente" value="Guardar" style="display: none;">
-            <input class="button" type="button" name="cancelarcliente" id="cancelarcliente" value="Cancelar Registro">
+              <div class="medium-12 columns">
+                <div id="statuscliente" class="callout" >Status:</div>
+                
+              </div>
             <input style="display: none;"  name="fecharegistro" type="text" id="fecharegistro" value="<?php echo date("Y-m-d");?>" size="10px" readonly>
+            </div>
+            <div class="row">
+              <input class="button" type="button" name="cancelarcliente" id="cancelarcliente" value="Cancelar Registro">
+              
             </div>
           </div>
         </div>
@@ -1556,6 +1566,14 @@
               <input class="button" type="button" name="guardarsolicitud" id="guardarsolicitud" value="Guardar" style="display: none;">
               <input class="button" type="button" name="botonmodsolicitud" id="botonmodsolicitud" value="Guardar" style="display: none;">
               <input class="button" type="button" name="cancelarsolicitud" id="cancelarsolicitud" value="Cancelar Registro">
+              <div class="row">
+                
+                <div class="medium-12 columns">
+                  <div id="statussolicitud" class="callout" >Status:</div>
+                  
+                </div>
+
+              </div>
               <!--<input name="fechasolicitudregistro" type="text" id="fechasolicitudregistro" value="<?php echo date("Y-m-d");?>" size="10px" readonly>-->
             </div>
           </div>
@@ -1791,7 +1809,7 @@
                             </div>
                             
                         </div>
-                        
+
                         <div class="medium-12 columns" id="divBeneficiarioqeq" style="display: none;" >
                           <label  >
                             <h4 >Beneficiario: </h4>
@@ -2240,6 +2258,10 @@
 
                 <div class="row">
                   <input class="button" type="button" name="guardargradriesgo" id="guardargradriesgo" value="Guardar">
+                  <div class="medium-12 columns">
+                    <div id="statusgradoriesgo" class="callout" >Status:</div>
+                    
+                  </div>
                   <input  name="fecharegistrogradriesgo" type="text" id="fecharegistrogradriesgo" value="<?php echo date("Y-m-d");?>" size="10px" readonly>
                   </div>
                 </div>
@@ -2307,7 +2329,7 @@
         <ul class="tabs" data-active-collapse="true" data-tabs id="collapsing-tabs">
   <li class="tabs-title is-active"><a href="#panel1f" aria-selected="true">Identificación</a></li>
   <li class="tabs-title"><a href="#panel2f">Otros documentos</a></li>
-  <li class="tabs-title"><a href="#panel3f">Tab 3</a></li>
+  <li class="tabs-title"><a href="#panel3f">Generar Documento(s)</a></li>
   <li class="tabs-title"><a href="#panel4f">Tab 4</a></li>
 </ul>
 
@@ -2474,6 +2496,20 @@
                        </div>
                              <div class="tabs-panel" id="panel3f">
                                                       <!--<img class="thumbnail" src="assets/img/generic/rectangle-3.jpg">-->
+                              <div class="row">
+                                <p>
+                                  
+                                  <div class="medium-4 columns">
+                                    <div class="input-group">
+                                      <span class="input-group-label">Generar documento</span>
+                                      <div class="input-group-button">
+                                        <input class="button" type="button" id="botongeneradoc" name="botongeneradoc" value="Generar">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                </p>
+                              </div>
                               </div>
                               <div class="tabs-panel" id="panel4f">
                                                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -2481,7 +2517,7 @@
                           </form>
 
                           </div>
-                           <input type="button" class="button" id="subir" name="subir" value="Subir archivo"  >
+                           <input type="button" class="button" id="subir" name="subir" value="Guardar"  >
         </div>
         </div>
                                       <div class="tabs-panel" id="panel5v">

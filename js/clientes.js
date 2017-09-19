@@ -1,3 +1,48 @@
+function estadocliente(cliente,div){
+  //alert(url);
+  //alert(contenedor);
+                                                                                  
+              $.ajax({
+                    type: "POST",
+                    url: "clientes.php",
+                    data: "function=estadocliente&id="+cliente,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#"+div).html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("Error de servidor intente de nuevo");
+                    },
+                    success: function(data){                                                    
+                          $("#"+div).empty();
+
+                         if(data.indexOf("Error") !== -1){
+                          alert(data);
+                          return false;
+                        }
+                        if(data === "null"){
+                          alert("Error -- Registro Inexistente");
+                          return false;
+                        }
+                        
+                        //alert(data);
+                        data=JSON.parse(data);
+                        document.getElementById(div).innerHTML="Status: "+data.Status;
+                        if(data.Status=="Incompleto"){
+                            $('#'+div).removeClass('callout success');
+                            $('#'+div).addClass('callout warning');
+                        }
+                        if(data.Status=="Finalizado"){
+                            $('#'+div).removeClass('callout warning');
+                            $('#'+div).addClass('callout success');
+                        }
+        
+                                                             
+                    }
+              });
+}
+
 
 $( "#textfield60" ).change(function() {
     estcivbene();
@@ -218,8 +263,8 @@ xmlhttp.onreadystatechange=function()
         document.getElementById("nomref2c").value=obj.RefPerApMat2PF;
         document.getElementById("parenref2").value=obj.RefPerParentesco2PF;
         document.getElementById("telref12").value=obj.RefPerTelefono2PF;
-        document.getElementById("refperdir2").value=obj.RefPerDirPF;
-        document.getElementById("refpernumdir2").value=obj.RefPerNumDirPF;
+        document.getElementById("refperdir2").value=obj.RefPerDirPF2;
+        document.getElementById("refpernumdir2").value=obj.RefPerNumDirPF2;
         document.getElementById("refpercp2").value=obj.RefPerCPPF2;
             cdd=document.getElementById("refpercol2");
             recpostales = document.createElement("option");
@@ -303,10 +348,10 @@ xmlhttp.onreadystatechange=function()
 
 
         document.getElementById("refcomemp2").value=obj.RefComEmp2;
-        document.getElementById("telrefcom22").value=obj.RefComTel1;
-        document.getElementById("antirefcom2").value=obj.RefComAnt1;
-        document.getElementById("refcomdir2").value=obj.RefComDir;
-        document.getElementById("refcomnumdir2").value=obj.RefComNumDir;
+        document.getElementById("telrefcom22").value=obj.RefComTel2;
+        document.getElementById("antirefcom2").value=obj.RefComAnt2;
+        document.getElementById("refcomdir2").value=obj.RefComDir2;
+        document.getElementById("refcomnumdir2").value=obj.RefComNumDir2;
         document.getElementById("refcomcp2").value=obj.RefComCP2;
             cdd=document.getElementById("refcomcol2");
             recpostales = document.createElement("option");
@@ -849,9 +894,20 @@ $('#panel9c').find('select').each(function(){
    var data = new FormData(document.forms['form1']);
    data.append('function', "modificacioncliente");
    
-   data.append('id', obj.id);
+   if(typeof (obj)!= 'undefined'){
+    
+        data.append('id', obj[0]);
+        var parastatus=obj[0];
+        data.append('TipoCliente', document.getElementById('TipoCliente').value);
+        
+   }else if(typeof (dat)!= 'undefined'){
 
-   data.append('TipoCliente', obj.TipoCliente);
+      data.append('id', dat[0]);
+      data.append('TipoCliente', obj.TipoCliente);
+      var parastatus=dat[0];
+   }
+   
+
    
     if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -869,6 +925,7 @@ xmlhttp.onreadystatechange=function()
         alert(xmlhttp.responseText);
         
         document.getElementById("cancelarcliente").disabled = true;
+        estadocliente(parastatus,'statuscliente');
         
       }
   }
@@ -1094,8 +1151,8 @@ xmlhttp.onreadystatechange=function()
         document.getElementById("nomref2c").value=obj.RefPerApMat2PF;
         document.getElementById("parenref2").value=obj.RefPerParentesco2PF;
         document.getElementById("telref12").value=obj.RefPerTelefono2PF;
-        document.getElementById("refperdir2").value=obj.RefPerDirPF;
-        document.getElementById("refpernumdir2").value=obj.RefPerNumDirPF;
+        document.getElementById("refperdir2").value=obj.RefPerDirPF2;
+        document.getElementById("refpernumdir2").value=obj.RefPerNumDirPF2;
         document.getElementById("refpercp2").value=obj.RefPerCPPF2;
         cdd=document.getElementById("refpercol2");
             recpostales = document.createElement("option");
@@ -1800,10 +1857,16 @@ xmlhttp.onreadystatechange=function()
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
       {
         
+        if(xmlhttp.responseText.indexOf('Error') !== -1){
+          alert(xmlhttp.responseText);
+          return false;
+        }
         alert(xmlhttp.responseText);
         
         document.getElementById("cancelarcliente").disabled = true;
         document.getElementById('TipoCliente').style.display='none';
+        document.getElementById('guardarcliente').style.display='none';
+        document.getElementById('botonmodcliente').style.display='block';
 
         
       }

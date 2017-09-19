@@ -2,7 +2,20 @@
 switch ($_REQUEST['function']) {
     
 
+    case 'estadocliente':
+    include('Conexion2.php');
+        $result=mysqli_query($cnx,"select Status from clientes where Id='".$_REQUEST['id']."'");
+        if($result===false){
+            echo "Error -- Fallo en Query";
+        }
+        if(!mysqli_num_rows($result)>0){
+            echo "Error -- Registro no encontrado";
+        }
 
+        echo json_encode(mysqli_fetch_array($result));
+        
+
+        break;
 
 
 
@@ -82,7 +95,7 @@ switch ($_REQUEST['function']) {
 
             &&
 
-            (($_REQUEST['refcomemp1']!='' && $_REQUEST['telrefcom11']!='' && $_REQUEST['antirefcom1']!='' && $_REQUEST['refcomdir']!='' && $_REQUEST['refcomnumdir']!='' && $_REQUEST['refcomcp']!='' && $_REQUEST['refcomcol']!='' && $_REQUEST['refcomest']!='' && $_REQUEST['refcommun']!=''))
+            (($_REQUEST['actempresarial']=='Si' && $_REQUEST['refcomemp1']!='' && $_REQUEST['telrefcom11']!='' && $_REQUEST['antirefcom1']!='' && $_REQUEST['refcomdir']!='' && $_REQUEST['refcomnumdir']!='' && $_REQUEST['refcomcp']!='' && $_REQUEST['refcomcol']!='' && $_REQUEST['refcomest']!='' && $_REQUEST['refcommun']!='') || ($_REQUEST['actempresarial']=='No' && $_REQUEST['refcomemp1']=='' && $_REQUEST['telrefcom11']=='' && $_REQUEST['antirefcom1']=='' && $_REQUEST['refcomdir']=='' && $_REQUEST['refcomnumdir']=='' && $_REQUEST['refcomcp']=='' && $_REQUEST['refcomcol']=='' && $_REQUEST['refcomest']=='' && $_REQUEST['refcommun']==''))
 
             &&
 
@@ -95,9 +108,9 @@ switch ($_REQUEST['function']) {
 
             &&
             
-/*
-            */
             ($_REQUEST['nomsol']!=''  &&  $_REQUEST['apepasol']!=''  &&  $_REQUEST['rfc1']!='' && $_REQUEST['telsol1']!='' && $_REQUEST['movsol1']!='' && $_REQUEST['mailsol']!='' && $_REQUEST['dirsol']!='' && $_REQUEST['dirsol']!='' && $_REQUEST['dirnumsol']!='' && $_REQUEST['colsol']!='' && $_REQUEST['cpsol']!='' && $_REQUEST['lugnacsol']!='' && $_REQUEST['edosol']!='' && $_REQUEST['cdsol']!='' && $_REQUEST['textfield5']!='' && $_REQUEST['curpsol']!='' && $_REQUEST['sexsol']!='' && $_REQUEST['fechnacsol']!='0000-00-00' && $_REQUEST['edsol']!='' && $_REQUEST['nacsol']!='' && $_REQUEST['acdomsol']!='' && $_REQUEST['anosol']!='' && $_REQUEST['arraisol']!='' && $_REQUEST['inmusol']!='' )
+
+            
 
             &&
 
@@ -138,9 +151,11 @@ switch ($_REQUEST['function']) {
                         //&& $_REQUEST['textfield59']=='' 
                         && $_REQUEST['textfield60']=='' 
                         && $_REQUEST['textfield61']=='' 
-                        && $_REQUEST['textfield62']=='')*/
+                        && $_REQUEST['textfield62']=='')
 
+                                */
                 )
+                        
             
 
              ){
@@ -288,7 +303,7 @@ $status="Finalizado";
 
 
     	include("Conexion2.php");
-    	mysqli_query($cnx,"update clientes set TipoCliente='".$_REQUEST['TipoCliente']."', NombrePF='".$_REQUEST['nomsol']."', SegNombrePF='".$_REQUEST['segnomsol']."', ApPatPF='".$_REQUEST['apepasol']."', ApMatPF='".$_REQUEST['apemasol']."', 
+    	mysqli_query($cnx,"update clientes set  NombrePF='".$_REQUEST['nomsol']."', SegNombrePF='".$_REQUEST['segnomsol']."', ApPatPF='".$_REQUEST['apepasol']."', ApMatPF='".$_REQUEST['apemasol']."', 
     		RFCPF='".$_REQUEST['rfc1']."', 
     		TelefonoPF='".$_REQUEST['telsol1']."', 
     		MovilPF='".$_REQUEST['movsol1']."', 

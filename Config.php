@@ -516,31 +516,33 @@ xmlhttp.send(data);
 
 
 $("#botonuploatuser").click(function(event) {
-    if(document.getElementById('usernick').value!='' || document.getElementById('userpass').value!=''|| document.getElementById('userpass2').value!='' || document.getElementById('usernombre').value!='' ){
-      document.getElementById('usernick').required=true;
-      document.getElementById('userpass').required=true;
-      document.getElementById('userpass2').required=true;
-      document.getElementById('usernombre').required=true;
-    }else{
-      document.getElementById('usernick').required=false;
-      document.getElementById('userpass').required=false;
-      document.getElementById('userpass2').required=false;
-      document.getElementById('usernombre').required=false;
-    }
-
-
-     $('#fomruploaduser').foundation('validateForm');
-
-
-
-    if(document.getElementById('userpass').value != document.getElementById('userpass2').value){
+    if(document.getElementById('usernick').value!='' && document.getElementById('userpass').value!=''&& document.getElementById('userpass2').value!='' && document.getElementById('usernombre').value!='' ){
+      $( "#usernick" ).removeClass( "is-invalid-input" );
+      $( "#userpass" ).removeClass( "is-invalid-input" );
+      $( "#userpass2" ).removeClass( "is-invalid-input" );
+      $( "#usernombre" ).removeClass( "is-invalid-input" );
+      if(document.getElementById('userpass').value != document.getElementById('userpass2').value){
       
       $( "#userpass" ).addClass( "is-invalid-input" );
       $( "#userpass2" ).addClass( "is-invalid-input" );
+      alert("Error -- ¡¡La contraseña no coincide favor de intentar de nuevo!!");
     }else{
       $( "#userpass" ).removeClass( "is-invalid-input" );
       $( "#userpass2" ).removeClass( "is-invalid-input" );
     }
+    }else{
+      $( "#usernick" ).addClass( "is-invalid-input" );
+      $( "#userpass" ).addClass( "is-invalid-input" );
+      $( "#userpass2" ).addClass( "is-invalid-input" );
+      $( "#usernombre" ).addClass( "is-invalid-input" );
+    }
+
+
+
+
+//     $('#fomruploaduser').foundation('validateForm');
+
+    
 
    
 
@@ -783,6 +785,7 @@ $("#botonparamodificar").click(function(event) {
       
       $( "#passmoduser" ).addClass( "is-invalid-input" );
       $( "#passmoduser2" ).addClass( "is-invalid-input" );
+      alert("¡¡La contraseña no coincide, Favor de intentarlo de nuevo!!");
     }else{
       $( "#passmoduser" ).removeClass( "is-invalid-input" );
       $( "#passmoduser2" ).removeClass( "is-invalid-input" );

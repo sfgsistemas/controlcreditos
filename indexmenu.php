@@ -68,7 +68,7 @@ document.oncontextmenu = function(){return false;}
 	}
 	
 	if($_SESSION['BSolicitudes']=="1"){
-	echo '<li id="boton2"><a href="#"><i class="fi-graph-trend"></i><span>Solicitudes</span></a></li>';
+	echo '<li id="boton2"><a href="#"><i class="fi-graph-trend"></i><span>Consultas</span></a></li>';
 	}
 	
 	if($_SESSION['GCotizacion']=="1"){

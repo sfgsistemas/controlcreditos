@@ -1,3 +1,25 @@
+$("#botongeneradoc").click(function(event) {
+   
+   
+
+   if(typeof (dat)!= 'undefined'){
+    
+      var id=dat[0];
+   }else if(typeof (tunder)!= 'undefined'){
+
+      var id=tunder.id;
+   }
+   
+  
+        
+        window.open('upload1.php?function=generaciondocument&id='+id, '_blank',"toolbar=0,scrollbars=0,resizable=0,top=0,width="+screen.width+",height="+screen.height);
+       
+
+        
+});
+
+
+
 $("#subir").click(function(event) {
     if(document.getElementById('textfield39').value!="" || document.getElementById('visor1').innerHTML!='' || document.getElementById('file1').value!=""){
         document.getElementById("textfield39").required=true;

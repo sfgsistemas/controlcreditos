@@ -1,3 +1,49 @@
+function estadogradoriesgo(gradoriesgo,div){
+  //alert(url);
+  //alert(contenedor);
+                                                                                  
+              $.ajax({
+                    type: "POST",
+                    url: "gradoriesgo.php",
+                    data: "function=estadogradoriesgo&id="+gradoriesgo,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#"+div).html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("Error de servidor intente de nuevo");
+                    },
+                    success: function(data){                                                    
+                          $("#"+div).empty();
+
+                         if(data.indexOf("Error") !== -1){
+                          alert(data);
+                          return false;
+                        }
+                        if(data === "null"){
+                          alert("Error -- Registro Inexistente");
+                          return false;
+                        }
+                        
+                        //alert(data);
+                        data=JSON.parse(data);
+                        document.getElementById(div).innerHTML="Folio Solicitud: "+data.Id+" Status: "+data.Status;
+                        if(data.Status=="Incompleto"){
+                            $('#'+div).removeClass('callout success');
+                            $('#'+div).addClass('callout warning');
+                        }
+                        if(data.Status=="Finalizado"){
+                            $('#'+div).removeClass('callout warning');
+                            $('#'+div).addClass('callout success');
+                        }
+        
+                                                             
+                    }
+              });
+}
+
+
 $("#panel4g-label").click(function(event) {
     tienexmlqeq();
    
@@ -9,8 +55,7 @@ function tienexmlqeq(){
     if(typeof (obj2)!= 'undefined'){
     
       data.append('registro', obj2[0]);
-   }
-   if(typeof (obj4)!= 'undefined'){
+   }else if(typeof (obj4)!= 'undefined'){
 
       data.append('registro', obj4.Id);
    }
@@ -181,13 +226,13 @@ $("#generappe").click(function(event) {
             if(typeof (obj2)!= 'undefined'){
                 
                var registro=obj2[0];
-             }
-
-             if(typeof (obj4)!= 'undefined'){
+               alert("1"+registro);
+             }else if(typeof (obj4)!= 'undefined'){
                 
                var registro=obj4.Id;
+               alert("2"+registro);
              }
-
+             alert("final:"+registro);
 
                             
               //hace la búsqueda
@@ -466,6 +511,7 @@ xmlhttp.onreadystatechange=function()
         document.getElementById('select20').value=obj4.Reg_TributacionPM;
         document.getElementById('select21').value=obj4.Reg_TributacionPF;
         traertipocliente(id);
+        //estadogradoriesgo(id,'statusgradoriesgo');
         
       }
   }
@@ -763,10 +809,11 @@ $('#panel9c').find('input').each(function(){
    if(typeof (obj2)!= 'undefined'){
     
       data.append('registro', obj2[0]);
-   }
-   if(typeof (obj4)!= 'undefined'){
+      var variablestatus=obj2[0];
+   }else if(typeof (obj4)!= 'undefined'){
 
       data.append('registro', obj4.Id);
+      var variablestatus=obj4.Id;
    }
    
    //data.append('id', obj.id);
@@ -794,7 +841,7 @@ xmlhttp.onreadystatechange=function()
         alert(xmlhttp.responseText);
         //obJ = JSON.parse(xmlhttp.responseText);
         
-        
+        estadogradoriesgo(variablestatus,'statusgradoriesgo');
         
       }
   }

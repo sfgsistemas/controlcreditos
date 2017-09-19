@@ -2,6 +2,23 @@
 
 
 switch ($_REQUEST['function']) {
+
+    case 'estadogradoriesgo':
+        include('Conexion2.php');
+        $result=mysqli_query($cnx,"select gradoriesgo.Status,solicitudes.Id from gradoriesgo inner join solicitudes on gradoriesgo.Id=solicitudes.GradoRiesgo where gradoriesgo.Id='".$_REQUEST['id']."'");
+        if($result===false){
+            echo "Error -- Fallo en Query";
+        }
+        if(!mysqli_num_rows($result)>0){
+            echo "Error -- Registro no encontrado";
+        }
+
+        echo json_encode(mysqli_fetch_array($result));
+
+        break;
+
+
+
     case 'tienexmlqeq':
         include('Conexion2.php');
          $rawdata = array();

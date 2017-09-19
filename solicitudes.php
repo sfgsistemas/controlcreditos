@@ -1,5 +1,30 @@
 <?php
 switch ($_REQUEST['function']) {
+
+    case 'estadosolicitud':
+    include('Conexion2.php');
+        $result=mysqli_query($cnx,"select Status from solicitudes where Id='".$_REQUEST['id']."'");
+        if($result===false){
+            echo "Error -- Fallo en Query";
+        }
+        if(!mysqli_num_rows($result)>0){
+            echo "Error -- Registro no encontrado";
+        }
+
+        echo json_encode(mysqli_fetch_array($result));
+        
+
+        break;
+
+
+
+
+
+
+
+
+
+
     case 'continuaregistro':
         include('Conexion2.php');
         try {

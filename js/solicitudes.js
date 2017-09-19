@@ -1,3 +1,51 @@
+function estadosolicitud(solicitud,div){
+  //alert(url);
+  //alert(contenedor);
+                                                                                 
+              $.ajax({
+                    type: "POST",
+                    url: "solicitudes.php",
+                    data: "function=estadosolicitud&id="+solicitud,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#"+div).html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("Error de servidor intente de nuevo");
+                    },
+                    success: function(data){                                                    
+                          $("#"+div).empty();
+
+                         if(data.indexOf("Error") !== -1){
+                          alert(data);
+                          return false;
+                        }
+                        if(data === "null"){
+                          alert("Error -- Registro Inexistente");
+                          return false;
+                        }
+                        
+                        //alert(data);
+                        data=JSON.parse(data);
+                        document.getElementById(div).innerHTML="Status: "+data.Status;
+                        if(data.Status=="Incompleto"){
+                            $('#'+div).removeClass('callout success');
+                            $('#'+div).addClass('callout warning');
+                        }
+                        if(data.Status=="Finalizado"){
+                            $('#'+div).removeClass('callout warning');
+                            $('#'+div).addClass('callout success');
+                        }
+        
+                                                             
+                    }
+              });
+}
+
+
+
+
 function datosAuto() {
     ///PORCENTAJE
     var porcentaje = (parseFloat(document.getElementById("textfield87").value) * 100) / parseFloat(document.getElementById("textfield86").value);
@@ -611,10 +659,11 @@ $('#panel9c').find('input').each(function(){
    if(typeof (obj2)!= 'undefined'){
     
       data.append('id', obj2[0]);
-   }
-   if(typeof (obj5)!= 'undefined'){
+      var parastatussol=obj2[0];
+   }else if(typeof (obj5)!= 'undefined'){
 
       data.append('id', obj5.Id);
+      var parastatussol=obj5.Id;
    }
    
    
@@ -639,7 +688,7 @@ xmlhttp.onreadystatechange=function()
         
         document.getElementById("cancelarsolicitud").disabled = true;
         //document.getElementById('').style.display='none';
-
+        estadosolicitud(parastatussol,'statussolicitud');
         
       }
   }

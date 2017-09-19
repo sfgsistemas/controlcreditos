@@ -31,16 +31,31 @@ switch ($_REQUEST['function']) {
 
 	case 'modificaruser':
 		include('Conexion2.php');
-		if ($_REQUEST['responsable']=='') {
+		if ($_REQUEST['responsable']=='' && $_REQUEST['pass']!='') {
 			# code...
 			mysqli_query($cnx,"update acceso set pass='".md5($_REQUEST['pass'])."' where id='".$_REQUEST['id']."'");
-		} else {
+			echo "¡¡Contraseña Modificada!!";
+			break;
+		} 
+		if ($_REQUEST['responsable']=='' && $_REQUEST['pass']=='') {
+			# code...
+			echo "Error -- ¡¡Favor de ingresar responsable o contraseña para modificar!!";
+			break;
+		} 
+		if ($_REQUEST['responsable']!='' && $_REQUEST['pass']=='') {
+			# code...
+			mysqli_query($cnx,"update acceso set nombre='".$_REQUEST['responsable']."' where id='".$_REQUEST['id']."'");
+			echo "¡¡Nombre del responsable modificado!!";
+			break;
+		} 
+		if ($_REQUEST['responsable']!='' && $_REQUEST['pass']!='') {
 			# code...
 			mysqli_query($cnx,"update acceso set pass='".md5($_REQUEST['pass'])."', nombre='".$_REQUEST['responsable']."' where id='".$_REQUEST['id']."'");
-		}
-		
-		
-		echo "Modificado";
+			echo "¡¡Registro Modificado!!";
+			break;
+		} 
+
+		echo "Error -- ¡¡Registro no modificado!!";
 		break;
 
 	case 'cambiapermisos':
