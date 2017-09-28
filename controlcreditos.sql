@@ -1,146 +1,388 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 28-09-2017 a las 16:10:28
+-- Versión del servidor: 10.1.16-MariaDB
+-- Versión de PHP: 5.6.28
 
-Source Server         : localhost
-Source Server Version : 50505
-Source Host           : localhost:3306
-Source Database       : controlcreditos
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-Target Server Type    : MYSQL
-Target Server Version : 50505
-File Encoding         : 65001
 
-Date: 2017-03-15 10:42:36
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `acceso`
--- ----------------------------
-DROP TABLE IF EXISTS `acceso`;
+--
+-- Base de datos: `controlcreditos`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `acceso`
+--
+
 CREATE TABLE `acceso` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(255) NOT NULL,
-  `pass` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `pass` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `llave_autorizacion` varchar(6) NOT NULL,
+  `GSolicitudes` int(1) NOT NULL,
+  `BSolicitudes` int(1) NOT NULL,
+  `GCotizacion` int(1) NOT NULL,
+  `BQeQ` int(1) NOT NULL,
+  `SetConf` int(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of acceso
--- ----------------------------
-INSERT INTO `acceso` VALUES ('1', 'admin', 'admin', 'Administrador');
+--
+-- Volcado de datos para la tabla `acceso`
+--
 
--- ----------------------------
--- Table structure for `clientes`
--- ----------------------------
-DROP TABLE IF EXISTS `clientes`;
+INSERT INTO `acceso` (`id`, `user`, `pass`, `nombre`, `llave_autorizacion`, `GSolicitudes`, `BSolicitudes`, `GCotizacion`, `BQeQ`, `SetConf`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrador', '250202', 1, 1, 1, 1, 1),
+(2, 'zoomwas', '3fe4687df0a384ddd0806ab07788fbb0', 'Adrián Eduardo Mata Martínez', '123456', 1, 1, 1, 1, 1),
+(34, 'sfg-gral', '0c9f23c5dfa93d79f817c487053f854b', 'Silvia Mancinas', '', 1, 1, 1, 1, 1),
+(35, 'rh', 'd41d8cd98f00b204e9800998ecf8427e', 'Rh Modificado', '', 0, 0, 0, 0, 0),
+(36, 'LUIS', 'f92756e14cab65e10729bc236ab1621a', 'LUIS RODRIGUEZ', '', 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clientes`
+--
+
 CREATE TABLE `clientes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(255) NOT NULL,
-  `RFC` varchar(255) NOT NULL,
-  `Tel` varchar(255) NOT NULL,
-  `Cel` varchar(255) NOT NULL,
-  `Direccion` varchar(255) NOT NULL,
-  `Numero` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `Colonia` varchar(255) NOT NULL,
-  `Ciudad` varchar(255) NOT NULL,
-  `LugNacimiento` varchar(255) NOT NULL,
-  `Estado` varchar(255) NOT NULL,
-  `CP` varchar(255) NOT NULL,
-  `CURP` varchar(255) NOT NULL,
-  `Sexo` varchar(255) NOT NULL,
-  `Nacimiento` varchar(255) NOT NULL,
-  `Edad` varchar(255) NOT NULL,
-  `Nacionalidad` varchar(255) NOT NULL,
-  `Dependientes` varchar(255) NOT NULL,
-  `AcreDom` varchar(255) NOT NULL,
-  `Vivienda` varchar(255) NOT NULL,
-  `Inmueble` varchar(255) NOT NULL,
-  `AnResidirCD` varchar(255) NOT NULL,
-  `ArraigoDomicilio` varchar(255) NOT NULL,
-  `Beneficiario` varchar(255) NOT NULL,
-  `EstadoCivil` varchar(255) NOT NULL,
-  `AutoPropio` varchar(255) NOT NULL,
-  `PuestoEmpleo` varchar(255) NOT NULL,
-  `DepartamentoEmpleo` varchar(255) NOT NULL,
-  `Desdean` varchar(255) NOT NULL,
-  `Empresa` varchar(255) NOT NULL,
-  `TelEmpleo` varchar(255) NOT NULL,
-  `ExtensionEmpleo` varchar(255) NOT NULL,
-  `TipoCliente` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL,
+  `TipoCliente` varchar(20) NOT NULL,
+  `NombrePF` varchar(20) NOT NULL,
+  `SegNombrePF` varchar(20) NOT NULL,
+  `ApPatPF` varchar(20) NOT NULL,
+  `ApMatPF` varchar(20) NOT NULL,
+  `RFCPF` varchar(13) NOT NULL,
+  `TelefonoPF` varchar(11) NOT NULL,
+  `MovilPF` varchar(11) NOT NULL,
+  `EmailPF` varchar(30) NOT NULL,
+  `DireccionPF` varchar(40) NOT NULL,
+  `NumDireccionPF` varchar(6) NOT NULL,
+  `ColoniaPF` varchar(20) NOT NULL,
+  `CPPF` varchar(20) NOT NULL,
+  `LugNacimientoPF` varchar(20) NOT NULL,
+  `EstadoPF` varchar(20) NOT NULL,
+  `CiudadPF` varchar(20) NOT NULL,
+  `MunicipioPF` varchar(20) NOT NULL,
+  `CURPPF` varchar(20) NOT NULL,
+  `SexoPF` varchar(10) NOT NULL,
+  `FechNacimientoPF` date NOT NULL,
+  `Edad` varchar(2) NOT NULL,
+  `NacionalidadPF` varchar(20) NOT NULL,
+  `NumDependientesPF` varchar(2) NOT NULL,
+  `AcreditaDomPF` varchar(20) NOT NULL,
+  `RecidirCiudadPF` varchar(2) NOT NULL,
+  `ArraigoDomPF` date NOT NULL,
+  `ArraigoAniosDomPF` int(3) NOT NULL,
+  `ViviendaPF` varchar(35) NOT NULL,
+  `EspViviendaPF` varchar(20) NOT NULL,
+  `EstCivilPF` varchar(30) NOT NULL,
+  `AutoPropioPF` varchar(2) NOT NULL,
+  `EspAuto` varchar(30) NOT NULL,
+  `InmueblePF` varchar(2) NOT NULL,
+  `ActividadEmpresarial` varchar(2) NOT NULL,
+  `PuestoPF` varchar(20) NOT NULL,
+  `DepartamentoPF` varchar(20) NOT NULL,
+  `DesdeEmpPF` date NOT NULL,
+  `DesdeAniosEmpPF` int(3) NOT NULL,
+  `CompaniaPF` varchar(30) NOT NULL,
+  `TelefonoEmpPF` varchar(11) NOT NULL,
+  `ExtensionEmpPF` varchar(6) NOT NULL,
+  `GiroPF` varchar(40) NOT NULL,
+  `NumEmpleadosPF` varchar(4) NOT NULL,
+  `DomicilioNegPF` varchar(40) NOT NULL,
+  `NumDomicilioNegPF` varchar(7) NOT NULL,
+  `CPNegPF` varchar(5) NOT NULL,
+  `EstadoNegPF` varchar(40) NOT NULL,
+  `MunicipioNegPF` varchar(40) NOT NULL,
+  `CiudadNegPF` varchar(40) NOT NULL,
+  `ColoniaNegPF` varchar(40) NOT NULL,
+  `RefPerNom1PF` varchar(40) NOT NULL,
+  `RefPerApPat1PF` varchar(30) NOT NULL,
+  `RefPerApMat1PF` varchar(30) NOT NULL,
+  `RefPerParentesco1PF` varchar(20) NOT NULL,
+  `RefPerTelefono1PF` varchar(11) NOT NULL,
+  `RefPerDirPF` varchar(50) NOT NULL,
+  `RefPerNumDirPF` varchar(7) NOT NULL,
+  `RefPerCPPF` varchar(5) NOT NULL,
+  `RefPerEstPF` varchar(40) NOT NULL,
+  `RefPerMunPF` varchar(40) NOT NULL,
+  `RefPerCdPF` varchar(40) NOT NULL,
+  `RefPerColPF` varchar(40) NOT NULL,
+  `RefPerNom2PF` varchar(40) NOT NULL,
+  `RefPerApPat2PF` varchar(20) NOT NULL,
+  `RefPerApMat2PF` varchar(20) NOT NULL,
+  `RefPerParentesco2PF` varchar(20) NOT NULL,
+  `RefPerTelefono2PF` varchar(11) NOT NULL,
+  `RefPerDirPF2` varchar(50) NOT NULL,
+  `RefPerNumDirPF2` varchar(7) NOT NULL,
+  `RefPerCPPF2` varchar(5) NOT NULL,
+  `RefPerEstPF2` varchar(40) NOT NULL,
+  `RefPerMunPF2` varchar(40) NOT NULL,
+  `RefPerCdPF2` varchar(40) NOT NULL,
+  `RefPerColPF2` varchar(40) NOT NULL,
+  `Banco1` varchar(135) NOT NULL,
+  `TipoCuenta1` varchar(20) NOT NULL,
+  `CuentaBanc1` varchar(29) NOT NULL,
+  `SucursalBanc1` varchar(30) NOT NULL,
+  `FechaApertura1` date NOT NULL,
+  `Banco2` varchar(135) NOT NULL,
+  `TipoCuenta2` varchar(20) DEFAULT NULL,
+  `CuentaBanc2` varchar(29) NOT NULL,
+  `SucursalBanc2` varchar(30) NOT NULL,
+  `FechaApertura2` date NOT NULL,
+  `CarDirBanco` varchar(135) NOT NULL,
+  `CLABE` varchar(18) NOT NULL,
+  `RefComEmp1` varchar(40) NOT NULL,
+  `RefComTel1` varchar(11) NOT NULL,
+  `RefComAnt1` varchar(4) NOT NULL,
+  `RefComDir` varchar(40) NOT NULL,
+  `RefComNumDir` varchar(7) NOT NULL,
+  `RefComCP` varchar(5) NOT NULL,
+  `RefComEst` varchar(40) NOT NULL,
+  `RefComMun` varchar(40) NOT NULL,
+  `RefComCol` varchar(40) NOT NULL,
+  `RefComCd` varchar(40) NOT NULL,
+  `RefComEmp2` varchar(40) NOT NULL,
+  `RefComTel2` varchar(11) NOT NULL,
+  `RefComAnt2` varchar(4) NOT NULL,
+  `RefComDir2` varchar(40) NOT NULL,
+  `RefComNumDir2` varchar(7) NOT NULL,
+  `RefComCP2` varchar(5) NOT NULL,
+  `RefComEst2` varchar(40) NOT NULL,
+  `RefComMun2` varchar(40) NOT NULL,
+  `RefComCd2` varchar(40) NOT NULL,
+  `RefComCol2` varchar(40) NOT NULL,
+  `ConyugeNom` varchar(30) NOT NULL,
+  `ConyugeApPat` varchar(20) NOT NULL,
+  `ConyugeApMat` varchar(20) NOT NULL,
+  `ConyugeCompania` varchar(30) NOT NULL,
+  `ConyugePuesto` varchar(30) NOT NULL,
+  `BeneficiarioNom` varchar(30) NOT NULL,
+  `BeneficiarioApPat` varchar(20) NOT NULL,
+  `BeneficiarioApMat` varchar(20) NOT NULL,
+  `BeneficiarioDom` varchar(30) NOT NULL,
+  `BeneficiarioCol` varchar(20) NOT NULL,
+  `BeneficiarioCP` varchar(7) NOT NULL,
+  `BeneficiarioPais` varchar(20) NOT NULL,
+  `BeneficiarioTel` varchar(11) NOT NULL,
+  `BeneficiarioCURP` varchar(20) NOT NULL,
+  `BeneficiarioRFC` varchar(13) NOT NULL,
+  `BeneficiarioParent` varchar(30) NOT NULL,
+  `BeneficiarioPorciento` varchar(7) NOT NULL,
+  `BeneficiarioFechNac` date NOT NULL,
+  `BeneficiarioMun` varchar(20) NOT NULL,
+  `BeneficiarioEstado` varchar(20) NOT NULL,
+  `BeneficiarioEstCivil` varchar(30) NOT NULL,
+  `BeneficiarioSocConyugal` varchar(20) NOT NULL,
+  `BeneficiarioOcupacion` varchar(30) NOT NULL,
+  `RazonSocial` varchar(40) NOT NULL,
+  `TelPM` varchar(11) NOT NULL,
+  `RFCPM` varchar(13) NOT NULL,
+  `DireccionPM` varchar(40) NOT NULL,
+  `NumDireccionPM` varchar(6) NOT NULL,
+  `EmailPM` varchar(50) NOT NULL,
+  `ColoniaPM` varchar(20) NOT NULL,
+  `CiudadPM` varchar(20) NOT NULL,
+  `EstadoPM` varchar(20) NOT NULL,
+  `CPPM` varchar(6) NOT NULL,
+  `ActPrinPM` varchar(40) NOT NULL,
+  `CantPersonalPM` varchar(4) NOT NULL,
+  `InOperacionesPM` date NOT NULL,
+  `ConstEmpresaPM` date NOT NULL,
+  `AntiguedadPM` varchar(4) NOT NULL,
+  `ApoderadoPM` varchar(40) NOT NULL,
+  `ContEmpNombre` varchar(20) NOT NULL,
+  `ContEmpSegNombre` varchar(20) NOT NULL,
+  `ContEmpApPat` varchar(20) NOT NULL,
+  `ContEmpApMat` varchar(20) NOT NULL,
+  `ContEmpDireccion` varchar(30) NOT NULL,
+  `ContEmpColonia` varchar(20) NOT NULL,
+  `ContEmpCiudad` varchar(20) NOT NULL,
+  `ContEmpEstado` varchar(20) NOT NULL,
+  `ContEmpCP` varchar(6) NOT NULL,
+  `ContEmpRFC` varchar(13) NOT NULL,
+  `ContEmpTel` varchar(11) NOT NULL,
+  `ContEmpEmail` varchar(30) NOT NULL,
+  `ContEmpPuesto` varchar(20) NOT NULL,
+  `Acc1Nombre` varchar(40) NOT NULL,
+  `Acc1ApPat` varchar(20) NOT NULL,
+  `Acc1ApMat` varchar(20) NOT NULL,
+  `Acc1RFC` varchar(13) NOT NULL,
+  `Acc1Porcentaje` varchar(7) NOT NULL,
+  `Acc2Nombre` varchar(40) NOT NULL,
+  `Acc2ApPat` varchar(20) NOT NULL,
+  `Acc2ApMat` varchar(20) NOT NULL,
+  `Acc2RFC` varchar(13) NOT NULL,
+  `Acc2Porcentaje` varchar(7) NOT NULL,
+  `Acc3Nombre` varchar(40) NOT NULL,
+  `Acc3ApPat` varchar(20) NOT NULL,
+  `Acc3ApMat` varchar(20) NOT NULL,
+  `Acc3RFC` varchar(13) NOT NULL,
+  `Acc3Porcentaje` varchar(7) NOT NULL,
+  `Acc4Nombre` varchar(40) NOT NULL,
+  `Acc4ApPat` varchar(20) NOT NULL,
+  `Acc4ApMat` varchar(20) NOT NULL,
+  `Acc4RFC` varchar(13) NOT NULL,
+  `Acc4Porcentaje` varchar(7) NOT NULL,
+  `Acc5Nombre` varchar(40) NOT NULL,
+  `Acc5ApPat` varchar(20) NOT NULL,
+  `Acc5ApMat` varchar(20) NOT NULL,
+  `Acc5RFC` varchar(13) NOT NULL,
+  `Acc5Porcentaje` varchar(7) NOT NULL,
+  `Acc6Nombre` varchar(40) NOT NULL,
+  `Acc6ApPat` varchar(20) NOT NULL,
+  `Acc6ApMat` varchar(20) NOT NULL,
+  `Acc6RFC` varchar(13) NOT NULL,
+  `Acc6Porcentaje` varchar(7) NOT NULL,
+  `FechaRegistro` date NOT NULL,
+  `Status` varchar(20) NOT NULL,
+  `FechaModificacion` date NOT NULL,
+  `ModPor` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of clientes
--- ----------------------------
-INSERT INTO `clientes` VALUES ('5', 'Adrian Eduardo Mata Martinez', 'MAMA890907CV4', '6181949311', '6183030413', 'Operadores', '222', 'zoomwas@hotmail.com', 'Fidel Velazquez 1', 'Durango', 'México', 'Durango', '34229', 'MAMA890907HDGTR07', 'Masculino', '1989-09-07', '27', 'Mexicana', '3', 'Recibo', 'Casa propiedad de sus familiares', 'Si', '25', '2010', 'Maria Guadalupe Alvarado Higareda', 'Casado Bienes Separados', 'Si', 'Desarrollo', 'Administración', '2016', 'Volkswagen', '6189999999', '144', 'PFA');
-INSERT INTO `clientes` VALUES ('9', 'Adrian Mata Martinez', 'MAMA890907CV4', '6181949311', '6183030413', 'operadores', '222', 'zoomwas@hotmail.com', 'Fidel Velazquez 1', 'Durango', 'Mexico', 'Durango', '34229', 'MAMA890907HDGTR07', 'Masculino', '1989-09-07', '27', 'Mexicana', '3', 'Recibo', 'Con familiares', 'Si', '25', '2000', 'Maria Guadalupe Alvarado Higareda', 'Casado Bienes Separados', 'Si', 'desarrollo', '', '2016', 'GAMA', '6183030413', '144', 'PFNA');
-INSERT INTO `clientes` VALUES ('10', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '06-05-06-198', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '13', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('11', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '06-05-06-198', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '13', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('12', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '198-05-06-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '13', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('13', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '1989-5-06-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '13', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('14', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '1989-05-06-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '13', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('15', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '1989-05-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '13', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('16', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '1989-05-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '13', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('17', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '1989-05-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '1989', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('18', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '1989-05-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '1989', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('19', 'Sdf Sdf Sdf ', '6464646464646', '4546464646', '4546654545', '465465', '4654', 'z@g.com', '654', '6546', '465', '5465', '465', '4654', 'Masculino', '1989-05-06', '321', '321', '321', '32', 'Rentada', 'Si', '213', '13', '321 Sdf Sdf', 'Casado Bienes Mancomunados', 'Si', '32', '', '1989', '13', '3132132131', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('20', '  ', '', '', '', '', '', '', '', '', '', '', '', '', '', '--', '', '', '', '', '', '', '', '', '  ', '', '', '', '', '', '', '', '', 'PFNA');
-INSERT INTO `clientes` VALUES ('21', 'Asd Asd Asd ', '3131313131321', '3213213131', '3133213212', '321', '321', 'asd@gf.com', '321', '321', '3213', '321', '21321', '321321', 'Masculino', '1989-01-31', '321', '321', '321', '321', 'Casa Propia', 'No', '321', '321', 'Asd Asd Asd', 'Casado Bienes Separados', 'Si', 'asd', '', '1989', 'asd', '3313313113', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('22', 'Asd Asd Asd ', '3131313131321', '3213213131', '3133213212', '321', '321', 'asd@gf.com', '321', '321', '3213', '321', '21321', '321321', 'Masculino', '1989-01-31', '321', '321', '321', '321', 'Casa Propia', 'No', '321', '321', 'Asd Asd Asd', 'Casado Bienes Separados', 'Si', 'asd', '', '1989', 'asd', '3313313113', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('23', 'Asd Asd Asd ', '3131313131321', '3213213131', '3133213212', '321', '321', 'asd@gf.com', '321', '321', '3213', '321', '21321', '321321', 'Masculino', '1989-01-31', '321', '321', '321', '321', 'Casa Propia', 'No', '321', '321', 'Asd Asd Asd', 'Casado Bienes Separados', 'Si', 'asd', '', '1989', 'asd', '3313313113', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('24', 'Asd Asd Asd ', '3131313131321', '3213213131', '3133213212', '321', '321', 'asd@gf.com', '321', '321', '3213', '321', '21321', '321321', 'Masculino', '1989-01-31', '321', '321', '321', '321', 'Casa Propia', 'No', '321', '321', 'Asd Asd Asd', 'Casado Bienes Separados', 'Si', 'asd', '', '1989', 'asd', '3313313113', '321', 'PFNA');
-INSERT INTO `clientes` VALUES ('25', '  ', '', '', '', '', '', '', '', '', '', '', '', '', '', '--', '', '', '', '', '', '', '', '', '  ', '', '', '', '', '', '', '', '', 'PFA');
-INSERT INTO `clientes` VALUES ('26', '  ', '', '', '', '', '', '', '', '', '', '', '', '', '', '--', '', '', '', '', '', '', '', '', '  ', '', '', '', '', '', '', '', '', 'PFA');
-INSERT INTO `clientes` VALUES ('27', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '32132', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '--', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('28', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '32132', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('29', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '32132', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('30', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '32132', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('31', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '32132', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('32', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('33', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('34', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('35', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('36', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('37', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('38', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('39', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('40', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('41', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('42', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('43', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('44', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('45', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('46', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('47', 'Lkm Lkm Lkm ', '2313131313131', '3123312131', '2233131313', 'df', '222', 'z@f.com', '321', '3213', '21321', '3213', '21321', '3213', 'Masculino', '1989-09-07', '32', 'sdf', '321', '231321', 'Casa Propia', 'Si', '321', '321321', 'Sdf Sdf Sd', 'Casado Bienes Mancomunados', 'Si', '321321', '32132', '1321', '32132', '1313131321', '321321', 'PFA');
-INSERT INTO `clientes` VALUES ('48', '  ', '', '', '', '', '', '', '', '', '', '', '', '', '', '--', '', '', '', '', '', '', '', '', '  ', '', '', '', '', '', '', '', '', 'PFNA');
-INSERT INTO `clientes` VALUES ('49', 'Lkj Lkj Lkj Lkj', '2131213212121', '2121212121', '2121212121', '2132132132', '132', 'df@s.com', '132', '132', '213', '13', '21', '321', 'Masculino', '1989-09-07', '321321', '3213', '2132', '132', 'Casa Propia', 'Si', '2132', '13213', 'Kjlkj Asda Lkjl', 'Casado Bienes Mancomunados', 'Si', 'jhkjhk', '', '1989', 'kjhk', '5454545454', '6546546', 'PFNA');
+--
+-- Volcado de datos para la tabla `clientes`
+--
 
--- ----------------------------
--- Table structure for `datos`
--- ----------------------------
-DROP TABLE IF EXISTS `datos`;
+INSERT INTO `clientes` (`id`, `TipoCliente`, `NombrePF`, `SegNombrePF`, `ApPatPF`, `ApMatPF`, `RFCPF`, `TelefonoPF`, `MovilPF`, `EmailPF`, `DireccionPF`, `NumDireccionPF`, `ColoniaPF`, `CPPF`, `LugNacimientoPF`, `EstadoPF`, `CiudadPF`, `MunicipioPF`, `CURPPF`, `SexoPF`, `FechNacimientoPF`, `Edad`, `NacionalidadPF`, `NumDependientesPF`, `AcreditaDomPF`, `RecidirCiudadPF`, `ArraigoDomPF`, `ArraigoAniosDomPF`, `ViviendaPF`, `EspViviendaPF`, `EstCivilPF`, `AutoPropioPF`, `EspAuto`, `InmueblePF`, `ActividadEmpresarial`, `PuestoPF`, `DepartamentoPF`, `DesdeEmpPF`, `DesdeAniosEmpPF`, `CompaniaPF`, `TelefonoEmpPF`, `ExtensionEmpPF`, `GiroPF`, `NumEmpleadosPF`, `DomicilioNegPF`, `NumDomicilioNegPF`, `CPNegPF`, `EstadoNegPF`, `MunicipioNegPF`, `CiudadNegPF`, `ColoniaNegPF`, `RefPerNom1PF`, `RefPerApPat1PF`, `RefPerApMat1PF`, `RefPerParentesco1PF`, `RefPerTelefono1PF`, `RefPerDirPF`, `RefPerNumDirPF`, `RefPerCPPF`, `RefPerEstPF`, `RefPerMunPF`, `RefPerCdPF`, `RefPerColPF`, `RefPerNom2PF`, `RefPerApPat2PF`, `RefPerApMat2PF`, `RefPerParentesco2PF`, `RefPerTelefono2PF`, `RefPerDirPF2`, `RefPerNumDirPF2`, `RefPerCPPF2`, `RefPerEstPF2`, `RefPerMunPF2`, `RefPerCdPF2`, `RefPerColPF2`, `Banco1`, `TipoCuenta1`, `CuentaBanc1`, `SucursalBanc1`, `FechaApertura1`, `Banco2`, `TipoCuenta2`, `CuentaBanc2`, `SucursalBanc2`, `FechaApertura2`, `CarDirBanco`, `CLABE`, `RefComEmp1`, `RefComTel1`, `RefComAnt1`, `RefComDir`, `RefComNumDir`, `RefComCP`, `RefComEst`, `RefComMun`, `RefComCol`, `RefComCd`, `RefComEmp2`, `RefComTel2`, `RefComAnt2`, `RefComDir2`, `RefComNumDir2`, `RefComCP2`, `RefComEst2`, `RefComMun2`, `RefComCd2`, `RefComCol2`, `ConyugeNom`, `ConyugeApPat`, `ConyugeApMat`, `ConyugeCompania`, `ConyugePuesto`, `BeneficiarioNom`, `BeneficiarioApPat`, `BeneficiarioApMat`, `BeneficiarioDom`, `BeneficiarioCol`, `BeneficiarioCP`, `BeneficiarioPais`, `BeneficiarioTel`, `BeneficiarioCURP`, `BeneficiarioRFC`, `BeneficiarioParent`, `BeneficiarioPorciento`, `BeneficiarioFechNac`, `BeneficiarioMun`, `BeneficiarioEstado`, `BeneficiarioEstCivil`, `BeneficiarioSocConyugal`, `BeneficiarioOcupacion`, `RazonSocial`, `TelPM`, `RFCPM`, `DireccionPM`, `NumDireccionPM`, `EmailPM`, `ColoniaPM`, `CiudadPM`, `EstadoPM`, `CPPM`, `ActPrinPM`, `CantPersonalPM`, `InOperacionesPM`, `ConstEmpresaPM`, `AntiguedadPM`, `ApoderadoPM`, `ContEmpNombre`, `ContEmpSegNombre`, `ContEmpApPat`, `ContEmpApMat`, `ContEmpDireccion`, `ContEmpColonia`, `ContEmpCiudad`, `ContEmpEstado`, `ContEmpCP`, `ContEmpRFC`, `ContEmpTel`, `ContEmpEmail`, `ContEmpPuesto`, `Acc1Nombre`, `Acc1ApPat`, `Acc1ApMat`, `Acc1RFC`, `Acc1Porcentaje`, `Acc2Nombre`, `Acc2ApPat`, `Acc2ApMat`, `Acc2RFC`, `Acc2Porcentaje`, `Acc3Nombre`, `Acc3ApPat`, `Acc3ApMat`, `Acc3RFC`, `Acc3Porcentaje`, `Acc4Nombre`, `Acc4ApPat`, `Acc4ApMat`, `Acc4RFC`, `Acc4Porcentaje`, `Acc5Nombre`, `Acc5ApPat`, `Acc5ApMat`, `Acc5RFC`, `Acc5Porcentaje`, `Acc6Nombre`, `Acc6ApPat`, `Acc6ApMat`, `Acc6RFC`, `Acc6Porcentaje`, `FechaRegistro`, `Status`, `FechaModificacion`, `ModPor`) VALUES
+(134, 'Persona Fisica', 'kevin', 'artuto', 'elisea', 'mazatan', 'MAMA890907CV4', '618-2735833', '618-1234566', 'kda@4w.com', 'validacion aqui', '630 b ', 'Fidel Velázquez I', '34229', 'hvbnvbn', 'Durango', 'Victoria de Durango', 'Durango', '', 'Masculino', '1994-08-01', '23', 'mexicano', '10', 'ife', '22', '1989-09-07', 27, 'Otros especificar', 'otros', 'Casado Bienes Mancomunados', 'Si', 'atros', 'No', 'Si', 'jhjhg', 'sdfsf', '1989-01-01', 28, 'kjhjkh', '618-3030304', '321', '321312', '2123', 'ghjghj', '34220', '34229', 'Durango', 'Durango', 'Victoria de Durango', 'Fideicomiso Ciudad Industrial', 'asdkjh', '', '', 'kjsdhf', '618-3213213', 'sdfsdf', '156', '34220', 'Durango', 'Durango', 'Victoria de Durango', 'Las Fuentes', 'kjh', '', '', 'kjh', '651-6165161', 'sdfsdf', '156', '34229', 'Durango', 'Durango', 'Victoria de Durango', 'Fideicomiso Ciudad Industrial', '002 BANAMEX Banco Nacional de México, S.A., Institución de Banca Múltiple, Grupo Financiero Banamex', '1', '1234-1234-1234-1234', '315', '1989-09-07', '014 SANTANDER Banco Santander (México), S.A., Institución de Banca Múltiple, Grupo Financiero Santander', '2', '12345678912', '014', '1989-09-07', 'ksajdha', '321654987654321654', 'hgjhgjhg', '315-6165165', '2017', 'asdasdasda', '54', '34229', 'Durango', 'Durango', 'Fidel Velázquez I', 'Victoria de Durango', 'asdkjh', '315-6165165', '2017', 'asdasdasda', '54', '34220', 'Durango', 'Durango', 'Victoria de Durango', 'Guadalupe Victoria INFONAVIT', 'fghf', 'hfghf', 'ghfgh', 'fghfgh', 'fghfgh', 'dfgd', 'dgdfg', 'dfgdfg', 'fgdfgd', 'Fideicomiso Ciudad I', '34229', 'dfgdfg', '651-6516516', 'MAMA890907HDGTRD07', 'MAMA890907CV4', 'sdfsdf', '100', '1989-09-07', 'Durango', 'Durango', 'Casado', 'Bienes Mancomunados', 'sdfsdf', '', '616-5165166', '', 'jdjdjh', '446 df', 'djd@f.com', 'Fidel Velázquez I', 'Victoria de Durango', 'Durango', '34229', 'jdfjkd', '425', '1989-09-07', '1989-09-07', '27', 'kdjkdjdj', 'bjhbj', 'bjhb', 'jhbjh', 'bjhbjh', 'bjhbj', 'Hacienda de Fray Die', 'Victoria de Durango', 'Durango', '34200', 'MAMA890908CV4', '651-6515615', 'sdfs@dfg.com', 'sdfsdf', 'fghfgh', '', '', 'MAMA890907CV4', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-08-01', 'Incompleto', '2017-09-27', 'admin'),
+(203, 'Persona Fisica', 'Adrian', 'Eduardo', 'Mata', 'Martinez', 'MAMA890907CV4', '618-1949311', '618-3030413', 'zoomwas@hotmail.com', 'operadores', '222', 'Fidel Velázquez I', '34229', 'Mexico', 'Durango', 'Victoria de Durango', 'Durango', 'MAMA890907HDGTRD07', 'Masculino', '1989-09-07', '28', 'Mexicana', '3', 'Recibo del agua', '28', '2010-02-11', 7, 'Casa propiedad de sus familiares', '', 'Casado Bienes Separados', 'Si', 'Atos 2003', 'No', 'Si', 'Accionista principal', 'Gerencia', '2016-10-01', 0, 'Gama Telecomunicaciones', '618-1111111', '1234', 'Telecomunicaciones', '3', 'blvd francisco villa', 'SN', '34229', 'Durango', 'Durango', 'Victoria de Durango', 'Fideicomiso Ciudad Industrial', 'Alejandro', 'garcia', 'alvarado', 'Compadre', '618-9999999', 'sdfgsf', '120', '34220', 'Durango', 'Durango', 'Victoria de Durango', 'Guadalupe Victoria INFONAVIT', '', '', '', '', '', '', '', '', '', '', '', '', '014 SANTANDER Banco Santander (México), S.A., Institución de Banca Múltiple, Grupo Financiero Santander', '1', '1234-1234-1234-1234', '001', '2016-10-01', '', '', '', '', '0000-00-00', '', '', 'empresa', '618-8888888', '2010', 'blvd frac villa', 'SN', '34229', 'Durango', 'Durango', 'Real de Villas', 'Victoria de Durango', '123', '', '', '', '', '', '', '', '', '', 'Maria guadalupe', 'alvarado', 'higareda', 'NA', 'Ama de Casa', 'maria guadalupe', 'alvarado', 'higareda', 'julian vera #210 ', 'Juan Lira Bracho', '34188', 'Mexico', '618-2971422', 'MAMA890907HDGTRD07', 'MAMA890907CV4', 'Esposa', '100', '1988-02-22', 'Durango', 'Durango', 'Casado', 'Bienes Separados', 'Ama de casa', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-11', 'Incompleto', '2017-09-26', 'admin'),
+(207, 'Persona Moral', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', '', '0000-00-00', 0, '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Santander', '', '1234-5678-9456-1231-3212', '002', '2017-08-01', '', NULL, '', '', '0000-00-00', '', '', 'empresa Ref COm', '618-9888888', '2010', 'asdasd', '2321', '34220', 'Durango', 'Durango', 'Cibeles', 'Victoria de Durango', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'julian vera #210 ', 'Juan Lira Bracho', '34188', 'Mexico', '618-7777777', 'MAMA890907HDGTRD08', 'MAMA890907CV9', 'Esposa', '100', '1988-02-22', 'Durango', 'Durango', 'Casado', 'Bienes Separados', 'Ama de Casa', 'Gama Telecomunicaciones', '618-1111111', 'MAMA890907CV4', 'operadores ', '222', 'telecomunicacionesgama@hotmail.com', 'Fidel Velázquez I', 'Victoria de Durango', 'Durango', '34229', 'Telecomunicaciones', '3', '2017-09-01', '2017-08-01', '0', 'Alejandro Ariel Garcia Alvarado', 'Adrian ', 'Eduardo', 'Mata', 'Martinez', 'operadores 222', 'Fidel Velázquez I', 'Victoria de Durango', 'Durango', '34229', 'MAMA890907CV5', '618-3030413', 'zoomwas@hotmail.com', 'Accionista principal', 'Alejandro Ariel', 'Garcia', 'Alvarado', 'MAMA890907CV6', '33', 'Adrian Eduardo', 'Mata', 'Martinez', 'MAMA890907CV7', '33', 'Kevin Arturo', 'Elisea', 'Mazatan', 'MAMA890907CV8', '33', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-12', 'Finalizado', '2017-09-12', 'admin'),
+(216, 'Persona Fisica', 'CESAR', 'OCTAVIO', 'ALCARAZ', 'ARREOLA', 'AAAC811012BK7', '618-1855663', '618-8006696', 'ALCARAZ_ARREOLAC@HOTMAIL.COM', 'AV. LAS MARGARITAS', '211', 'Colinas del Saltito', '34105', 'DURANGO', 'Durango', 'Victoria de Durango', 'Durango', 'AAAC811012HDGLRS08', 'Masculino', '1981-10-12', '35', 'MEXICANA', '2', 'RECIBO DE CFE', '35', '1982-10-12', 34, 'Casa propiedad de sus familiares', '', 'Casado Bienes Mancomunados', 'Si', 'MAZDA', 'Si', 'Si', 'GERENTE DE REFACCION', 'REFACCIONES', '2013-07-29', 4, 'AUTOMOTRIZ DEL GUADIANA', '618-8142255', '110', 'COMERCIAL', '70', 'BLVD. FRANCISCO VILLA ', 'SN', '34208', 'Durango', 'Durango', 'Victoria de Durango', 'Ciudad Industrial', 'PERLA YADIRA', 'BARNEY', 'BELTRAN', 'AMISTAD', '618-8141439', 'POTASIO', 'SN', '34208', 'Durango', 'Durango', 'Victoria de Durango', 'Ciudad Industrial', 'MIGUEL ANGEL', 'NUÑEZ', 'FLORES', 'AMISTAD', '', '', '', '34000', 'Ciudad de México', 'Benito Juárez', 'Ciudad de México', 'Álamos', '', '', '', '', '0000-00-00', '', NULL, '', '', '0000-00-00', '012 BBVA BANCOMER BBVA Bancomer, S.A., Institución de Banca Múltiple, Grupo Financiero BBVA Bancomer', '014190655025299396', 'EASED', '618-8130199', '2010', 'PATONI', '624', '34000', 'Durango', 'Durango', 'Victoria de Durango Centro', 'Victoria de Durango', 'COMERDIS DEL NORTE', '618-8141439', '2012', 'POTASIO ', 'SN', '34208', 'Durango', 'Durango', 'Victoria de Durango', 'Ciudad Industrial', 'PAOLA ESTAFANI', 'HERNANDEZ', 'SALAS', 'SEP', 'ADMINISTRATIVA', 'PAOLA ESTFANI', 'HERNANDEZ', 'SALAS', 'AV. LAS MARGARITAS 211', 'Colinas del Saltito', '34105', 'MEXICO', '618-1855663', '', '', 'ESPOSA', '100', '0000-00-00', 'Durango', 'Durango', 'Casado', 'Bienes Mancomunados', 'ADMINISTRATIVA', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-22', 'Incompleto', '2017-09-22', 'admin'),
+(217, 'Persona Fisica', 'JOSE', 'LUIS', 'CASTAÑEDA', 'RIVERA', 'CARL680606KX0', '', '', '', 'UNIDOS VENCEREMOS', '304', 'José Revueltas', '34219', 'DURANGO', 'Durango', 'Victoria de Durango', 'Durango', 'CARL680606HDGSVS00', 'Masculino', '1968-06-06', '49', 'MEXICANA', '', 'RECIBO DE CFE', '49', '1968-06-06', 49, 'Casa propiedad de sus familiares', '', 'Soltero', 'No', '', 'No', 'Si', 'VIGILANTE', 'ADMINISTRACION', '2013-12-16', 3, 'AUTOMOTRIZ DEL GUADIANA SA DE ', '618-8142255', '130', 'COMERCIAL', '70', 'BLVD FRANCISCO VILLA', 'SN', '34208', 'Durango', 'Durango', 'Victoria de Durango', 'Ciudad Industrial', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', NULL, '', '', '0000-00-00', 'SANTANDER', '', 'DISTRIBUIDORA DE CERVEZAS MODELO EN EL N', '618-8181700', '2013', 'DURANGO-TORREON', 'SN', '34280', 'Durango', 'Durango', 'J Guadalupe Rodriguez', 'Victoria de Durango', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'SOLIS', 'AURELIANA', 'CASTAÑEDA', 'UNIDOS VENCEREMOS 304', 'José Revueltas', '34219', 'MEXICO', '', '', '', 'MADRE', '100', '0000-00-00', 'Durango', 'Durango', '', '', 'AMA DE CASA', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-22', 'Incompleto', '2017-09-22', 'LUIS'),
+(218, 'Persona Fisica', 'ROSA', 'MARIA', 'CANGAS', 'PULIDO', 'CAPR610614HP3', '618-8141650', '', 'rosy.cangas@vwdgo.com', 'LABORATORISTAS', '130', 'Fidel Velázquez II', '34229', 'DURANGO', 'Durango', 'Victoria de Durango', 'Durango', 'CAPR610614MDGNLS00', 'Femenino', '1961-06-14', '56', 'MEXICANA', '3', 'RECIBO DE CFE', '56', '1961-06-14', 56, 'Casa Propia', '', 'Soltero', 'Si', 'VW', 'Si', 'Si', 'EJECUTIVO DE VENTAS', 'VENTAS', '1998-07-28', 19, 'AUTOMOTRIZ DEL GUADIANA SA DE ', '618-8142255', '123', 'COMERCIAL', '70', 'BLVD FRANCISCO VILLA', 'SN', '34208', 'Durango', 'Durango', 'Victoria de Durango', 'Ciudad Industrial', 'FERNANDO', '', 'DELGADO', 'AMISTAD', '', 'LABORATORISTA', '130', '34229', 'Durango', 'Durango', 'Victoria de Durango', 'Villas del Guadiana IV', 'FRANCISCA', '', 'CONTRERAS', 'AMISTAD', '', 'GERANIO', '900', '', '', '', '', '', '', '', '', '', '0000-00-00', '', NULL, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-22', 'Incompleto', '2017-09-22', 'LUIS'),
+(219, 'Persona Fisica', 'SILVIA', 'MAYELA', 'MANCINAS ', 'FRANCO', 'MAFS7011233Q1', '618-8131947', '618-1586343', 'silvia@vwdgo.com', 'FRANCISCO ARRIETA', '249', 'Domingo Arrieta', '34180', 'NUEVO IDEAL', 'Durango', 'Victoria de Durango', 'Durango', 'MAFS701123MDGNRL08', 'Femenino', '1970-11-23', '46', 'MEXICANA', '1', 'RECIBO TELMEX', '', '0000-00-00', 0, 'Casa propiedad de sus familiares', '', 'Soltero', '', '', '', 'Si', 'GERENTE GENERAL', 'ADMINISTRACION', '1997-02-03', 20, 'AUTOMOTRIZ DEL GUADIANA SA DE ', '618-8142255', '101', 'COMERCIAL', '70', 'BLVD FRANCISCO VILLA', 'SN', '34208', 'Durango', 'Durango', 'Victoria de Durango', 'Ciudad Industrial', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', NULL, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'SOTELO', 'EUSEBIA', 'MANCINAS', 'FRANCISCO ARRIETA 249', 'Domingo Arrieta', '34180', 'MEXICO', '618-8131947', '', '', 'MADRE', '100', '0000-00-00', 'Durango', 'Durango', 'Viudo', '', 'AMA DE CASA', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-22', 'Incompleto', '2017-09-22', 'LUIS'),
+(220, 'Persona Fisica', 'LUIS', 'ALBERTO', 'RODRIGUEZ ', 'CAMPOS', 'ROCL900317JJA', '', '618-2188645', 'LGA_LUIS17@YAHOO.COM.MX', 'PLATINO', '134', 'Fidel Velázquez I', '34229', 'DURANGO', 'Durango', 'Victoria de Durango', 'Durango', 'ROCL900317HDGDMS09', 'Masculino', '1990-03-17', '27', 'MEXICABA', '3', 'RECIBO DE MEGACABLE', '27', '1990-03-17', 27, 'Casa propiedad de sus familiares', '', 'Casado Bienes Mancomunados', 'Si', 'VW', 'No', 'Si', '', '', '0000-00-00', 0, '', '', '', '', '', '', '', '', '', '', '', '', 'SONIA', 'CHAVEZ', 'SERRANO', 'CUÑADA', '618-8335968', 'RET VARSOVIA', '5', '34220', 'Durango', 'Durango', 'Victoria de Durango', 'Privada Villa Jardín', 'ORLANDO ENRIQUE', 'GUZMAN', 'NAVARRO', 'AMISTAD', '618-2655450', 'ISLA CERRALVO', '203', '34204', 'Durango', 'Durango', 'Victoria de Durango', 'Puerta de San Ignacio', '', '', '', '', '0000-00-00', '', NULL, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'MARIA JUDITH', 'CHAVEZ', 'SERRANO', '', 'AMA DE CASA', 'MARIA JUDITH', 'CHAVEZ', 'SERRANO', 'RET VARSOVIA 5', 'Guadalupe Victoria I', '34220', 'MEXICO', '618-1707315', 'CASJ900805MDGHRD07', '', 'ESPOSA', '100', '1990-08-05', 'Durango', 'Durango', 'Divorciado', '', 'AMA DE CASA', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-22', 'Incompleto', '2017-09-22', 'LUIS');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comisionesyseguros`
+--
+
+CREATE TABLE `comisionesyseguros` (
+  `id` int(11) NOT NULL,
+  `Folio_Solicitud` varchar(10) NOT NULL,
+  `Comision_Apertura` double NOT NULL,
+  `Seguro_Auto` double NOT NULL,
+  `Seguro_Vida` double NOT NULL,
+  `Seguro_Desempleo` double NOT NULL,
+  `Enganche` double NOT NULL,
+  `Plazo` int(2) NOT NULL,
+  `Interes_Anual` double NOT NULL,
+  `CAT` varchar(7) NOT NULL,
+  `Fecha_Inicio` date NOT NULL,
+  `ValorAuto_Mont_a_Fin` double NOT NULL,
+  `PagMenEsp` double NOT NULL,
+  `MontFin` double NOT NULL,
+  `PorEnganche` varchar(7) NOT NULL,
+  `PorFinanciado` varchar(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comisionesyseguros`
+--
+
+INSERT INTO `comisionesyseguros` (`id`, `Folio_Solicitud`, `Comision_Apertura`, `Seguro_Auto`, `Seguro_Vida`, `Seguro_Desempleo`, `Enganche`, `Plazo`, `Interes_Anual`, `CAT`, `Fecha_Inicio`, `ValorAuto_Mont_a_Fin`, `PagMenEsp`, `MontFin`, `PorEnganche`, `PorFinanciado`) VALUES
+(8, 'SA-014', 3, 0, 0, 0, 10000, 48, 15, '%', '0000-00-00', 100000, 1500, 90000, '10.00 %', '90.00 %'),
+(9, 'SA-015', 3, 0, 0, 0, 0, 48, 91.7, '%', '0000-00-00', 3213, 31231, 0, '', ''),
+(10, 'SA-016', 3, 0, 0, 0, 0, 48, 91.7, '%', '0000-00-00', 3213, 31231, 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos`
+--
+
 CREATE TABLE `datos` (
   `id` int(11) NOT NULL,
   `NombreLayer` varchar(0) DEFAULT NULL,
-  `Columna` varchar(0) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `Columna` varchar(0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of datos
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `gradoriesgo`
--- ----------------------------
-DROP TABLE IF EXISTS `gradoriesgo`;
+--
+-- Estructura de tabla para la tabla `docu`
+--
+
+CREATE TABLE `docu` (
+  `id` int(6) NOT NULL,
+  `Rsolicitud` varchar(40) NOT NULL,
+  `INE` varchar(40) NOT NULL,
+  `INEurl` varchar(120) NOT NULL,
+  `pasaporte` varchar(40) NOT NULL,
+  `pasaporteurl` varchar(120) NOT NULL,
+  `cartilla` varchar(40) NOT NULL,
+  `cartillaurl` varchar(120) NOT NULL,
+  `licencia` varchar(40) NOT NULL,
+  `licenciaurl` varchar(120) NOT NULL,
+  `otra` varchar(40) NOT NULL,
+  `inotra` varchar(50) NOT NULL,
+  `otraurl` varchar(120) NOT NULL,
+  `secotejo` varchar(40) NOT NULL,
+  `addcurp` varchar(40) NOT NULL,
+  `addcurpurl` varchar(120) NOT NULL,
+  `adddomicilio` varchar(40) NOT NULL,
+  `adddomiciliourl` varchar(120) NOT NULL,
+  `fechadom` date NOT NULL,
+  `domId` varchar(40) NOT NULL,
+  `Status` varchar(11) NOT NULL,
+  `acta` varchar(50) NOT NULL,
+  `cedula` varchar(50) NOT NULL,
+  `poderes` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `docu`
+--
+
+INSERT INTO `docu` (`id`, `Rsolicitud`, `INE`, `INEurl`, `pasaporte`, `pasaporteurl`, `cartilla`, `cartillaurl`, `licencia`, `licenciaurl`, `otra`, `inotra`, `otraurl`, `secotejo`, `addcurp`, `addcurpurl`, `adddomicilio`, `adddomiciliourl`, `fechadom`, `domId`, `Status`, `acta`, `cedula`, `poderes`) VALUES
+(95, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(96, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(97, '', '', '', '', '', '', '', '', '', '', '', '', '-Seleccione una opcion-', '', '', '', '', '0000-00-00', 'Si', 'Incompleto', 'Carga documentacion/Captura de pantalla (32).png', '', ''),
+(98, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(99, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(100, '', 'XXXXXXX', 'Carga documentacion/Amortizaci&oacute;n.pdf', 'jgh', 'Carga documentacion/CESAR ALCARAZ.pdf', 'jhgj', 'Carga documentacion/JOSE LUIS GARCIA.pdf', 'hgjkb', 'Carga documentacion/AUGUSTO CASTRO.pdf', 'gfgfgf', 'gfgf', 'Carga documentacion/MARTHA CASTRO.pdf', 'Si', '', 'Carga documentacion/AUGUSTO CASTRO.pdf', '', '', '2017-08-09', 'Si', 'Finalizado', '', '', ''),
+(108, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(109, '', '321346', 'Carga documentacion/firebase-php.pdf', '', '', '', '', '', '', '', '', '', ' ', '', '', '', '', '0000-00-00', ' ', 'Incompleto', '', '', ''),
+(110, '', 'XXXXXXXXXXXXXXX', 'Carga documentacion/firebase-php.pdf', '', '', '', '', '', '', '', '', '', ' ', '', 'Carga documentacion/Captura de pantalla (69).png', '', '', '0000-00-00', ' ', 'Incompleto', '', '', ''),
+(111, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(112, '', 'xxxxxxxxxxxxxxxxxxxxx', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', 'dfgdgdfgdg', 'Carga documentacion/pagos.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(113, '', 'gdfgdfgd', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(114, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(115, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(116, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(117, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(118, '', '123456789', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', 'hjk', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', 'hjk', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', 'hjk', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', 'qweqwe', 'asdasd', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', 'Si', '', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '1989-09-07', 'Si', 'Incompleto', '', '', ''),
+(119, '', 'asdasdas', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '', '', '', '', '', '', '', '', '', 'Si', '', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '0000-00-00', '', 'Incompleto', '', '', ''),
+(120, '', 'XXXXXXXXXXXX', 'Carga documentacion/36 COMP.pdf', '', '', '', '', '', '', '', '', '', 'Si', '', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '', 'Carga documentacion/pagos.jpg', '0000-00-00', '', 'Incompleto', '', '', ''),
+(121, '', 'XXXXXXXXXXX', 'Carga documentacion/36 COMP.pdf', '', '', '', '', '', '', '', '', '', 'Si', '', '', '', '', '2017-09-07', 'Si', 'Finalizado', '', '', ''),
+(122, '', 'AAAAAAAAAAAA', 'Carga documentacion/36 COMP.pdf', '', '', '', '', '', '', '', '', '', 'Si', '', '', '', 'Carga documentacion/36 COMP.pdf', '0000-00-00', '', 'Incompleto', 'Carga documentacion/Manual Tecnico Entrega BD-PF.p', 'Carga documentacion/36 COMP.pdf', 'Carga documentacion/Manual Tecnico Entrega BD-PF.p'),
+(123, '', 'gdfgsdfg', 'Carga documentacion/36 COMP.pdf', 'sdfgsdfg', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', 'dsfgsd', 'Carga documentacion/36 COMP.pdf', 'gdfgsdf', 'Carga documentacion/pagos.jpg', 'dfgsdfg', 'gdfg', 'Carga documentacion/36 COMP.pdf', 'Si', '', 'Carga documentacion/36 COMP.pdf', '', 'Carga documentacion/Manual Tecnico Entrega BD-PF.pdf', '0000-00-00', '', 'Incompleto', '', '', ''),
+(124, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Incompleto', '', '', ''),
+(125, '', 'AAAAAAAAAAAAAA', 'Carga documentacion/36 COMP.pdf', '', '', '', '', '', '', '', '', '', 'Si', '', '', '', 'Carga documentacion/36 COMP.pdf', '2017-08-01', 'Si', 'Finalizado', 'Carga documentacion/36 COMP.pdf', 'Carga documentacion/Manual Tecnico Entrega BD-PF.p', 'Carga documentacion/36 COMP.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gradoriesgo`
+--
+
 CREATE TABLE `gradoriesgo` (
-  `Folio_sol` varchar(20) NOT NULL,
-  `Folio_Cliente` varchar(20) NOT NULL,
+  `Id` int(8) NOT NULL,
   `Antiguedad_ObjetoSocial` varchar(20) NOT NULL,
   `Antiguedad_Cliente` varchar(20) NOT NULL,
   `Naturaleza_Operaciones` varchar(20) NOT NULL,
@@ -158,419 +400,362 @@ CREATE TABLE `gradoriesgo` (
   `Origen_Recursos` varchar(20) NOT NULL,
   `Destino_Recursos` varchar(20) NOT NULL,
   `Pais_EstadoResidenciaTerceros` varchar(20) NOT NULL,
+  `Edad_Cliente` varchar(40) NOT NULL,
+  `An_Construccion` varchar(40) NOT NULL,
+  `Reg_TributacionPF` varchar(40) NOT NULL,
+  `Reg_TributacionPM` varchar(40) NOT NULL,
   `GradoRiesgo` varchar(20) NOT NULL,
-  `INESolicitante` varchar(20) NOT NULL,
-  `Adjunta_INESolicitante` varchar(20) NOT NULL,
-  `Pasaporte_o_CedulaProfSolicitante` varchar(20) NOT NULL,
-  `Adjunta_Pasaporte_o_CedulaProfSolicitante` varchar(20) NOT NULL,
-  `CartillaMilitarSolicitante` varchar(20) NOT NULL,
-  `Adjunta_CartillaMilitarSolicitante` varchar(20) NOT NULL,
-  `LicenciaConducirSolicitante` varchar(20) NOT NULL,
-  `Adjunta_LicenciaConducirSolicitante` varchar(20) NOT NULL,
-  `OtraIdentSolicitante` varchar(20) NOT NULL,
-  `Adjunta_OtraIdentSolicitante` varchar(20) NOT NULL,
-  `EspIdentSolicitante` varchar(20) NOT NULL,
-  `CotejoVsOriginal` varchar(20) NOT NULL,
-  `Adjunta_CURP_RFC_FEA` varchar(20) NOT NULL,
-  `Adjunta_ComprobanteDom` varchar(20) NOT NULL,
-  `DomicilioCoincideId` varchar(20) NOT NULL,
-  `FechaComprobanteDom` date NOT NULL,
-  `DomBeneficiario` varchar(20) NOT NULL,
-  `ColBeneficiario` varchar(20) NOT NULL,
-  `CPBeneficiario` varchar(20) NOT NULL,
-  `PaisBeneficiario` varchar(20) NOT NULL,
-  `TelBeneficiario` varchar(20) NOT NULL,
-  `CURPBeneficiario` varchar(20) NOT NULL,
-  `RFCBeneficiario` varchar(20) NOT NULL,
-  `ParentescoBeneficiario` varchar(20) NOT NULL,
-  `PorcientoBeneficiario` varchar(20) NOT NULL,
-  `FeNacBeneficiario` varchar(20) NOT NULL,
-  `MunBeneficiario` varchar(20) NOT NULL,
-  `EdoBeneficiario` varchar(20) NOT NULL,
-  `EdoCivilBeneficiario` varchar(20) NOT NULL,
-  `SoConBeneficiario` varchar(20) NOT NULL,
-  `OcuProfBeneficiario` varchar(20) NOT NULL,
-  `PEPSBeneficiario` varchar(20) NOT NULL,
-  `OrigenRecBeneficiario` varchar(20) NOT NULL,
-  `PerTrans1` double(11,2) NOT NULL,
-  `FuentePerTrans1` varchar(20) NOT NULL,
-  `PerTrans2` double(11,2) NOT NULL,
-  `FuentePerTrans2` varchar(20) NOT NULL,
-  `PerTrans3` double(11,2) NOT NULL,
-  `FuentePerTrans3` varchar(20) NOT NULL,
-  `PerTrans4` double(11,2) NOT NULL,
-  `FuentePerTrans4` varchar(20) NOT NULL,
-  `PerTrans5` double(11,2) NOT NULL,
-  `FuentePerTrans5` varchar(20) NOT NULL,
-  `PerTrans6` double(11,2) NOT NULL,
-  `FuentePerTrans6` varchar(20) NOT NULL,
-  `PerTrans7` double(11,2) NOT NULL,
-  `FuentePerTrans7` varchar(20) NOT NULL,
-  `PerTrans8` double(11,2) NOT NULL,
-  `FuentePerTrans8` varchar(20) NOT NULL,
-  `PerTrans9` double(11,2) NOT NULL,
-  `FuentePerTrans9` varchar(20) NOT NULL,
-  `PerTrans10` double(11,2) NOT NULL,
-  `FuentePerTrans10` varchar(20) NOT NULL,
-  `TotalIngreso` double(11,2) NOT NULL,
-  `ValorAuto` double(11,2) NOT NULL,
-  `EngAutomovil` double(11,2) NOT NULL,
-  `PorEnganche` varchar(255) NOT NULL,
-  `PorFinanciamiento` varchar(255) NOT NULL,
-  `MontoFinanciado` double(11,2) NOT NULL,
-  `Plazo` int(11) NOT NULL,
-  `PagoMensEsp` double(11,2) NOT NULL,
-  `PEPS` varchar(20) NOT NULL,
-  `NombrePEPS` varchar(20) NOT NULL,
-  `ParentescoPEPS` varchar(20) NOT NULL,
-  `PuestoPEPS` varchar(20) NOT NULL,
-  PRIMARY KEY (`Folio_sol`)
+  `ingrcomp1` double NOT NULL,
+  `fuenteingrcomp1` varchar(40) NOT NULL,
+  `ingrcomp2` double NOT NULL,
+  `fuenteingrcomp2` varchar(40) NOT NULL,
+  `ingrcomp3` double NOT NULL,
+  `fuenteingrcomp3` varchar(40) NOT NULL,
+  `ingrcomp4` double NOT NULL,
+  `fuenteingrcomp4` varchar(40) NOT NULL,
+  `ingrcomp5` double NOT NULL,
+  `fuenteingrcomp5` varchar(40) NOT NULL,
+  `ingrnocomp1` double NOT NULL,
+  `fuenteingrnocomp1` varchar(40) NOT NULL,
+  `ingrnocomp2` double NOT NULL,
+  `fuenteingrnocomp2` varchar(40) NOT NULL,
+  `ingrnocomp3` double NOT NULL,
+  `fuenteingrnocomp3` varchar(40) NOT NULL,
+  `ingrnocomp4` double NOT NULL,
+  `fuenteingrnocomp4` varchar(40) NOT NULL,
+  `ingrnocomp5` double NOT NULL,
+  `fuenteingrnocomp5` varchar(40) NOT NULL,
+  `tienepeprel` varchar(2) NOT NULL,
+  `quienpep` varchar(50) NOT NULL,
+  `parentescopep` varchar(40) NOT NULL,
+  `puestorelpep` varchar(50) NOT NULL,
+  `Status` varchar(10) NOT NULL,
+  `FechaModificacion` date NOT NULL,
+  `ModPor` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of gradoriesgo
--- ----------------------------
-INSERT INTO `gradoriesgo` VALUES ('$Folio_Sol', '$cliente', '$select', '$select2', '$select3', '$select4', '$select5', '$select6', '$select7', '$select8', '$select9', '$select10', '$select11', '$select12', '$select13', '$select14', '$select15', '$select16', '$select17', '$GradoRiesgo', '$INESolicitante', '$copias', '$Pasaporte_o_CedulaP', '$copias2', '$CartillaMilitarSoli', '$copias3', '$LicenciaConducirSol', '$copias4', '$OtraIdentSolicitant', '$copias5', '$EspIdentSolicitante', '$cotejo', '$adjuntos1', '$adjuntos2', '$adjuntos3', '0000-00-00', '$DomBeneficiario', '$ColBeneficiario', '$CPBeneficiario', '$PaisBeneficiario', '$TelBeneficiario', '$CURPBeneficiario', '$RFCBeneficiario', '$ParentescoBeneficia', '$PorcientoBeneficiar', '$FeNacBeneficiario', '$MunBeneficiario', '$EdoBeneficiario', '$EdoCivilBeneficiari', '$SoConBeneficiario', '$OcuProfBeneficiario', '$PEPSBeneficiario', '$OrigenRecBeneficiar', '0.00', '$FuentePerTrans1', '0.00', '$FuentePerTrans2', '0.00', '$FuentePerTrans3', '0.00', '$FuentePerTrans4', '0.00', '$FuentePerTrans5', '0.00', '$FuentePerTrans6', '0.00', '$FuentePerTrans7', '0.00', '$FuentePerTrans8', '0.00', '$FuentePerTrans9', '0.00', '$FuentePerTrans10', '0.00', '0.00', '0.00', '$PorEnganche', '$PorFinanciamiento', '0.00', '0', '0.00', '$PEPS', '$NombrePEPS', '$ParentescoPEPS', '$PuestoPEPS');
-INSERT INTO `gradoriesgo` VALUES ('SA-001', 'PFA-018', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '0.00', '0.00', '', '', '0.00', '0', '0.00', '', '', '', '');
-INSERT INTO `gradoriesgo` VALUES ('SA-011', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '2017-02-01', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-012', 'PFA-017', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-013', 'PFA-018', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'No', '', '', '');
-INSERT INTO `gradoriesgo` VALUES ('SA-014', 'PFA-019', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'No', '', '', '');
-INSERT INTO `gradoriesgo` VALUES ('SA-015', 'PFA-020', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'No', '', '', '');
-INSERT INTO `gradoriesgo` VALUES ('SA-016', 'PFA-021', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'Durango-Chihuhua-Jalisco-México-CD Méxic', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'No', '', '', '');
-INSERT INTO `gradoriesgo` VALUES ('SA-017', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-018', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-019', 'PFA-022', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'Otros', 'Bajo', 'asd', 'Si', '', '', '', '', '', '', '', '', '', 'Si', 'Si', 'Si', 'Si', '0000-00-00', 'lkjlkjlk', 'jlkjlkjlkj', '324342', 'sdfadfkl', '65465465464', 'sdasdkasdjh', 'hkjhkjh', 'kjhkjhkjhkj', '100', '1985-10-01', 'asdasdlkj', 'lkjlkj', 'lkjlkjlk', 'jlkjlkj', 'lkjlkj', 'lkjlkj', 'lkjlkj', '5000.00', 'asd', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '5000.00', '15000.00', '5000.00', '33.33 %', '66.67 %', '10000.00', '60', '2000.00', 'Si', 'asd', 'asd', 'asdf');
-INSERT INTO `gradoriesgo` VALUES ('SA-020', 'PFA-023', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'Otros', 'Bajo', 'asd', 'Si', '', '', '', '', '', '', '', '', '', 'Si', 'Si', 'Si', 'Si', '0000-00-00', 'lkjlkjlk', 'jlkjlkjlkj', '324342', 'sdfadfkl', '65465465464', 'sdasdkasdjh', 'hkjhkjh', 'kjhkjhkjhkj', '100', '1985-10-01', 'asdasdlkj', 'lkjlkj', 'lkjlkjlk', 'jlkjlkj', 'lkjlkj', 'lkjlkj', 'lkjlkj', '5000.00', 'asd', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '5000.00', '15000.00', '5000.00', '33.33 %', '66.67 %', '10000.00', '60', '2000.00', 'Si', 'asd', 'asd', 'asdf');
-INSERT INTO `gradoriesgo` VALUES ('SA-021', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-022', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-023', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-024', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-025', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-026', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-027', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-028', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-029', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-030', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-031', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-032', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-033', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-034', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-035', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-100', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SA-999', 'PFA-016', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'Otros', 'Bajo', '321321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '321', 'Si', '32321', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '21321', '321', '3213', '213', '213', '21', '321', '321', '321321', '1989-12-31', '321', '3213', '2132', '1321321', '321', '321', '321', '32321.00', '321', '321.00', '321', '321.00', '321', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '32963.00', '150000.00', '50000.00', '33.33 %', '66.67 %', '100000.00', '60', '2000.00', 'Si', '321', '321', '321');
-INSERT INTO `gradoriesgo` VALUES ('SM-001', 'PM-001', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-010', 'PFNA-019', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '0.00', '0.00', '', '', '0.00', '0', '0.00', '', '', '', '');
-INSERT INTO `gradoriesgo` VALUES ('SN-011', 'PFNA-020', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-012', 'PFNA-021', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-013', 'PFNA-022', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '', '', '', '', '', '', '', '', '', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-014', 'PFNA-023', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-015', 'PFNA-024', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-016', 'PFNA-025', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-017', 'PFNA-026', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-018', 'PFNA-027', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '0.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-019', 'PFNA-028', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-020', 'PFNA-029', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-021', 'PFNA-030', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-022', 'PFNA-031', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-023', 'PFNA-032', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-024', 'PFNA-033', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '6546', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-025', 'PFNA-034', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '1989-09-07', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-026', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-027', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-028', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-029', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-030', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-031', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-032', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-033', 'PFNA-034', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-034', 'PFNA-034', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-035', 'PFNA-034', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-036', 'PFNA-034', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
-INSERT INTO `gradoriesgo` VALUES ('SN-037', 'PFNA-034', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', 'Bajo', '65466546', 'Si', '54', 'Si', '654', 'Si', '465', 'Si', '546', 'Si', '654', 'Si', 'Si', 'Si', 'Si', '0000-00-00', '6546546', '5465', '465', '465', '465', '465', '465', '465', '4654', '1989-09-07', '5465', '4654', '654', '6546', '546', '546', '546', '5465.00', '46546', '546.00', '54', '654.00', '654', '65.00', '46', '54.00', '654', '654.00', '654', '65.00', '456', '4.00', '654', '654.00', '65', '46.00', '5465', '8207.00', '654654.00', '65456.00', '10.00 %', '90.00 %', '589198.00', '48', '2000.00', 'Si', '654', '654', '654');
+--
+-- Volcado de datos para la tabla `gradoriesgo`
+--
 
--- ----------------------------
--- Table structure for `ins`
--- ----------------------------
-DROP TABLE IF EXISTS `ins`;
+INSERT INTO `gradoriesgo` (`Id`, `Antiguedad_ObjetoSocial`, `Antiguedad_Cliente`, `Naturaleza_Operaciones`, `Numero_Beneficiarios`, `Numero_TercerosRelacionados`, `PEPs_Relacionados`, `Alerta_Reputacional`, `Volumen_Esperado`, `Frecuencia_Esperada`, `Instrumento_Monetario`, `Canales_MediosUtilizados`, `Pais_EstadoOficial`, `Pais_EstadoResidencia`, `Pais_EstadoOperacion`, `Origen_Recursos`, `Destino_Recursos`, `Pais_EstadoResidenciaTerceros`, `Edad_Cliente`, `An_Construccion`, `Reg_TributacionPF`, `Reg_TributacionPM`, `GradoRiesgo`, `ingrcomp1`, `fuenteingrcomp1`, `ingrcomp2`, `fuenteingrcomp2`, `ingrcomp3`, `fuenteingrcomp3`, `ingrcomp4`, `fuenteingrcomp4`, `ingrcomp5`, `fuenteingrcomp5`, `ingrnocomp1`, `fuenteingrnocomp1`, `ingrnocomp2`, `fuenteingrnocomp2`, `ingrnocomp3`, `fuenteingrnocomp3`, `ingrnocomp4`, `fuenteingrnocomp4`, `ingrnocomp5`, `fuenteingrnocomp5`, `tienepeprel`, `quienpep`, `parentescopep`, `puestorelpep`, `Status`, `FechaModificacion`, `ModPor`) VALUES
+(26, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Bajo', 5000, 'sdfsdf', 7500, 'Segundo Empleo', 1500, 'Tercer Empleo', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'No', '', '', '', 'Incompleto', '2017-08-22', 'admin'),
+(27, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(28, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(29, 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', '18 - 26', '', 'Incorporacion Fiscal', '', 'Medio', 15000, 'jhfhfg', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'Si', 'lkñlkñkñkl', 'ñkl', 'ñlkñlk', 'Finalizado', '2017-09-04', 'admin'),
+(30, 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', '18 - 26', '', 'Incorporacion Fiscal', '', 'Medio', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'No', '', '', '', 'Incompleto', '2017-08-26', 'admin'),
+(31, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(32, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(33, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(34, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(35, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(36, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Bajo', 150000, 'sfsdfsdf', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '2017-09-06', 'admin'),
+(37, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(38, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(39, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(40, 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', '18 - 26', '', 'Incorporacion Fiscal', '', 'Medio', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'No', '', '', '', 'Incompleto', '2017-08-26', 'admin'),
+(41, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(42, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(43, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(44, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(45, 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', '18 - 26', '', 'Asalariado', '', 'Medio', 5000, 'Empleo', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'No', '', '', '', 'Finalizado', '2017-09-11', 'admin'),
+(46, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(47, 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', '27 - 36', '', 'Asalariado', '', 'Bajo', 5000, 'Empleo', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'No', '', '', '', 'Finalizado', '2017-09-11', 'admin'),
+(48, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Bajo', 5000, 'Empleo', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '2017-09-11', 'admin'),
+(49, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(50, 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', '18 - 26', '', 'Asalariado', '', 'Medio', 5000, 'Empleo', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'No', '', '', '', 'Finalizado', '2017-09-11', 'admin'),
+(51, 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'México', '27 - 36', '', 'Servicios Profesionales', '', 'Medio', 5000, 'Empleo', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 'No', '', '', '', 'Finalizado', '2017-09-11', 'admin'),
+(52, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', '', '', '', '', 'Incompleto', '0000-00-00', ''),
+(53, 'Otra', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'Durango-Chihuhua-Jalisco-México-CD México-Sonora', 'México', 'México', 'México', '', '0 - 3', '', 'Regimen general de ley', 'Bajo', 15000, 'Instalacion de CCTV', 12000, 'Instalacion de cableado', 0, '', 0, '', 0, '', 0, '', 5000, 'Instalacion de radio bases', 0, '', 0, '', 0, '', 'No', '', '', '', 'Finalizado', '2017-09-18', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ins`
+--
+
 CREATE TABLE `ins` (
   `id` int(11) NOT NULL,
   `label` varchar(255) NOT NULL,
   `variable` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of ins
--- ----------------------------
-INSERT INTO `ins` VALUES ('0', 'Id', 'Id');
-INSERT INTO `ins` VALUES ('1', 'No. CLiente', 'Cliente');
-INSERT INTO `ins` VALUES ('2', 'Tipo de credito', 'TipoCredito');
-INSERT INTO `ins` VALUES ('3', 'Nombre', 'NomSolicitante');
-INSERT INTO `ins` VALUES ('4', 'RFC', 'RFCSolicitante');
-INSERT INTO `ins` VALUES ('5', 'Telefono', 'TelSolicitante');
-INSERT INTO `ins` VALUES ('6', 'Telefono Movil', 'MovSolicitante');
-INSERT INTO `ins` VALUES ('7', 'Direccion', 'DirSolicitante');
-INSERT INTO `ins` VALUES ('8', 'Colonia/Fraccionamiento', 'ColSolicitante');
-INSERT INTO `ins` VALUES ('9', 'Ciudad', 'CdSolicitante');
-INSERT INTO `ins` VALUES ('10', 'Lugar de Nacimiento', 'LugNacSolicitante');
-INSERT INTO `ins` VALUES ('12', 'Estado', 'EdoSolicitante');
-INSERT INTO `ins` VALUES ('13', 'Codigo Postal', 'CPSolicitante');
-INSERT INTO `ins` VALUES ('14', 'CURP', 'CURPSolicitante');
-INSERT INTO `ins` VALUES ('15', 'Email', 'EmailSolicitante');
-INSERT INTO `ins` VALUES ('178', 'Fax', 'FaxSolicitante');
-INSERT INTO `ins` VALUES ('17', 'Nombre/Razon social ', 'NomDatConEmp');
-INSERT INTO `ins` VALUES ('18', 'Telefono', 'TelDatConEmp');
-INSERT INTO `ins` VALUES ('19', 'Email', 'EmailDatConEmp');
-INSERT INTO `ins` VALUES ('20', 'RFC', 'RFCDatConEmp');
-INSERT INTO `ins` VALUES ('21', 'Fax', 'FaxDatConEmp');
-INSERT INTO `ins` VALUES ('22', 'Puesto', 'PuestDatConEmp');
-INSERT INTO `ins` VALUES ('23', 'Sexo', 'SexoDatGen');
-INSERT INTO `ins` VALUES ('24', 'Fecha de nacimiento', 'FeNacDatGen');
-INSERT INTO `ins` VALUES ('25', 'Edad', 'EdDatGen');
-INSERT INTO `ins` VALUES ('26', 'Nacionalidad', 'NaDatGen');
-INSERT INTO `ins` VALUES ('27', 'No. de Dependientes', 'NoDepDatGen');
-INSERT INTO `ins` VALUES ('28', 'Acredita domicilio', 'AcDomDatGen');
-INSERT INTO `ins` VALUES ('29', 'Vive en', 'VivDatGen');
-INSERT INTO `ins` VALUES ('30', 'Vive en(otro)', 'OtrvivDatGen');
-INSERT INTO `ins` VALUES ('31', 'Importe mensual de pago', 'ImpMenDatGen');
-INSERT INTO `ins` VALUES ('32', 'Propietario de inmueble', 'PropInmuDatGen');
-INSERT INTO `ins` VALUES ('33', 'Arraigo en domicilio', 'ArDomDatGen');
-INSERT INTO `ins` VALUES ('34', 'Años de residir', 'AnResDatGen');
-INSERT INTO `ins` VALUES ('35', 'Beneficiario ', 'BenDatGen');
-INSERT INTO `ins` VALUES ('36', 'Estado civil ', 'EstCivDatGen');
-INSERT INTO `ins` VALUES ('37', 'Auto propio', 'AuPropDatGen');
-INSERT INTO `ins` VALUES ('38', 'Marca y Tipo', 'MarDatGen');
-INSERT INTO `ins` VALUES ('39', 'Actividad principal', 'ActPrinDatGenPM');
-INSERT INTO `ins` VALUES ('40', 'Inicio de operaciones', 'IniOpDatGenPM');
-INSERT INTO `ins` VALUES ('41', 'Cantidad de personal ', 'CantPerDatGenPM');
-INSERT INTO `ins` VALUES ('42', 'Antiguedad', 'AntConsEmp');
-INSERT INTO `ins` VALUES ('43', 'Apoderado', 'ApoConsEmp');
-INSERT INTO `ins` VALUES ('44', 'Ocupacion', 'OcupDatEmp');
-INSERT INTO `ins` VALUES ('45', 'Puesto', 'PuestDatEmp');
-INSERT INTO `ins` VALUES ('46', 'Departamento/Area', 'DepDatEmp');
-INSERT INTO `ins` VALUES ('47', 'Desde el año', 'DesAnDatEmp');
-INSERT INTO `ins` VALUES ('48', 'Compañia', 'CompDatEmp');
-INSERT INTO `ins` VALUES ('49', 'Telefono', 'TelDatEmp');
-INSERT INTO `ins` VALUES ('50', 'Extencion', 'ExtDatEmp');
-INSERT INTO `ins` VALUES ('51', 'No. Empleados', 'NoEmDatEmp');
-INSERT INTO `ins` VALUES ('52', 'Giro', 'GiroDatEmp');
-INSERT INTO `ins` VALUES ('53', 'Domicilio del negocio', 'DomDatEmp');
-INSERT INTO `ins` VALUES ('54', 'Nombre', 'NomRefPer');
-INSERT INTO `ins` VALUES ('55', 'Parentesco', 'ParenRefPer');
-INSERT INTO `ins` VALUES ('56', 'Telefono', 'TelRefPer');
-INSERT INTO `ins` VALUES ('57', 'Nombre', 'NomRefPer2');
-INSERT INTO `ins` VALUES ('58', 'Parentesco', 'ParenRefPer2');
-INSERT INTO `ins` VALUES ('59', 'Telefono', 'TelRefPer2');
-INSERT INTO `ins` VALUES ('60', 'Banco', 'BancRefBan');
-INSERT INTO `ins` VALUES ('61', 'No. de Cuenta', 'NoTarRefBan');
-INSERT INTO `ins` VALUES ('62', 'Sucursal', 'SucRefBan');
-INSERT INTO `ins` VALUES ('63', 'Banco', 'BancRefBan2');
-INSERT INTO `ins` VALUES ('64', 'No. de Cuenta', 'NoTarRefBan2');
-INSERT INTO `ins` VALUES ('65', 'Fecha de apertura', 'FecApRefBan');
-INSERT INTO `ins` VALUES ('66', 'Sucursal', 'SucRefBan2');
-INSERT INTO `ins` VALUES ('67', 'Fecha apertura', 'FecApRefBan');
-INSERT INTO `ins` VALUES ('68', 'Empresa', 'EmpRefCom');
-INSERT INTO `ins` VALUES ('69', 'Antiguedad', 'AntRefCom');
-INSERT INTO `ins` VALUES ('70', 'Telefono', 'TelRefCom');
-INSERT INTO `ins` VALUES ('71', 'Empresa', 'EmpRefCom2');
-INSERT INTO `ins` VALUES ('72', 'Antiguedad', 'AntRefCom2');
-INSERT INTO `ins` VALUES ('73', 'Telefono', 'TelRefCom2');
-INSERT INTO `ins` VALUES ('74', 'Banco', 'BancCarDir');
-INSERT INTO `ins` VALUES ('75', 'No. de Cuenta', 'NoTarCarDir');
-INSERT INTO `ins` VALUES ('76', 'Nombre', 'NomDatCon');
-INSERT INTO `ins` VALUES ('77', 'Compañia', 'CompDatCon');
-INSERT INTO `ins` VALUES ('78', 'Puesto', 'PuestDatCon');
-INSERT INTO `ins` VALUES ('79', 'Nombre', 'NomObPerMor');
-INSERT INTO `ins` VALUES ('80', 'Direccion', 'DirObPerMor');
-INSERT INTO `ins` VALUES ('81', 'Colonia/Fraccionamiento', 'ColObPerMor');
-INSERT INTO `ins` VALUES ('82', 'Ciudad', 'CdObPerMor');
-INSERT INTO `ins` VALUES ('83', 'Lugar de nacimiento', 'LugNacObPerMor');
-INSERT INTO `ins` VALUES ('84', 'Estado', 'EdoObPerMor');
-INSERT INTO `ins` VALUES ('85', 'Codigo Postal', 'CPObPerMor');
-INSERT INTO `ins` VALUES ('86', 'RFC', 'RFCObPerMor');
-INSERT INTO `ins` VALUES ('87', 'Telefono', 'TelObPerMor');
-INSERT INTO `ins` VALUES ('88', 'Fax', 'FaxObPerMor');
-INSERT INTO `ins` VALUES ('89', 'Antiguedad', 'AntConsEmpPM');
-INSERT INTO `ins` VALUES ('90', 'Apoderado', 'ApoConsEmpPM');
-INSERT INTO `ins` VALUES ('91', 'Actividad principal', 'ActPrinDatGen');
-INSERT INTO `ins` VALUES ('92', 'Inicio de operaciones', 'IniOpDatGen');
-INSERT INTO `ins` VALUES ('93', 'Cantidad de personal ', 'CantPerDatGen');
-INSERT INTO `ins` VALUES ('94', 'Nombre', 'NomAccionista1');
-INSERT INTO `ins` VALUES ('95', 'RFC', 'RFCAccionista1');
-INSERT INTO `ins` VALUES ('96', '%', 'PorcentAccionista1');
-INSERT INTO `ins` VALUES ('97', 'Nombre', 'NomAccionista2');
-INSERT INTO `ins` VALUES ('98', 'RFC', 'RFCAccionista2');
-INSERT INTO `ins` VALUES ('99', '%', 'PorcentAccionista2');
-INSERT INTO `ins` VALUES ('100', 'Nombre', 'NomAccionista3');
-INSERT INTO `ins` VALUES ('101', 'RFC', 'RFCAccionista3');
-INSERT INTO `ins` VALUES ('102', '%', 'PorcentAccionista3');
-INSERT INTO `ins` VALUES ('103', 'Nombre', 'NomAccionista4');
-INSERT INTO `ins` VALUES ('104', 'RFC', 'RFCAccionista4');
-INSERT INTO `ins` VALUES ('105', '%', 'PorcentAccionista4');
-INSERT INTO `ins` VALUES ('106', 'Nombre', 'NomAccionistaPM1');
-INSERT INTO `ins` VALUES ('107', 'RFC', 'RFCAccionistaPM1');
-INSERT INTO `ins` VALUES ('108', '%', 'PorcentAccionistaPM1');
-INSERT INTO `ins` VALUES ('109', 'Nombre', 'NomAccionistaPM2');
-INSERT INTO `ins` VALUES ('110', 'RFC', 'RFCAccionistaPM2');
-INSERT INTO `ins` VALUES ('111', '%', 'PorcentAccionistaPM2');
-INSERT INTO `ins` VALUES ('112', 'Nombre', 'NomObSol');
-INSERT INTO `ins` VALUES ('113', 'RFC', 'RFCObSol');
-INSERT INTO `ins` VALUES ('114', 'Telefono', 'TelObSol');
-INSERT INTO `ins` VALUES ('115', 'Telefono Movil', 'MovObSol');
-INSERT INTO `ins` VALUES ('116', 'Direccion', 'DirObSol');
-INSERT INTO `ins` VALUES ('117', 'Colonia/Fraccionamiento', 'ColObSol');
-INSERT INTO `ins` VALUES ('118', 'Ciudad', 'CdObSol');
-INSERT INTO `ins` VALUES ('119', 'Lugar de nacimiento', 'LugNacObSol');
-INSERT INTO `ins` VALUES ('120', 'Propiedad', 'PropObSol');
-INSERT INTO `ins` VALUES ('121', 'Estado', 'EdoObSol');
-INSERT INTO `ins` VALUES ('122', 'Codigo Postal', 'CPObSol');
-INSERT INTO `ins` VALUES ('123', 'Email', 'EmailObSol');
-INSERT INTO `ins` VALUES ('124', 'Sexo', 'SexoObSol');
-INSERT INTO `ins` VALUES ('125', 'Fecha de nacimiento', 'FeNacObSol');
-INSERT INTO `ins` VALUES ('126', 'Edad', 'EdObSol');
-INSERT INTO `ins` VALUES ('127', 'CURP', 'CURPObSol');
-INSERT INTO `ins` VALUES ('128', 'Nombre', 'NomObSolPF');
-INSERT INTO `ins` VALUES ('129', 'Sexo', 'SexoObSolPF');
-INSERT INTO `ins` VALUES ('130', 'Fecha de nacimiento', 'FeNacObSolPF');
-INSERT INTO `ins` VALUES ('131', 'RFC', 'RFCObSolPF');
-INSERT INTO `ins` VALUES ('132', 'CURP', 'CURPObSolPF');
-INSERT INTO `ins` VALUES ('133', 'Edad', 'EdObSolPF');
-INSERT INTO `ins` VALUES ('134', 'Nombre', 'NomObSol2');
-INSERT INTO `ins` VALUES ('135', 'RFC', 'RFCObSol2');
-INSERT INTO `ins` VALUES ('136', 'Telefono', 'TelObSol2');
-INSERT INTO `ins` VALUES ('137', 'Telefono Movil', 'MovObSol2');
-INSERT INTO `ins` VALUES ('138', 'Direccion', 'DirObSol2');
-INSERT INTO `ins` VALUES ('139', 'Colonia/Fraccionamiento', 'ColObSol2');
-INSERT INTO `ins` VALUES ('140', 'Ciudad', 'CdObSol2');
-INSERT INTO `ins` VALUES ('141', 'Lugar de nacimiento', 'LugNacObSol2');
-INSERT INTO `ins` VALUES ('142', 'Propiedad', 'PropObSol2');
-INSERT INTO `ins` VALUES ('143', 'Estado', 'EdoObSol2');
-INSERT INTO `ins` VALUES ('144', 'Codigo Postal', 'CPObSol2');
-INSERT INTO `ins` VALUES ('145', 'Email', 'EmailObSol2');
-INSERT INTO `ins` VALUES ('146', 'Sexo', 'SexoObSol2');
-INSERT INTO `ins` VALUES ('147', 'Fecha de nacimiento', 'FeNacObSol2');
-INSERT INTO `ins` VALUES ('148', 'Edad', 'EdObSol2');
-INSERT INTO `ins` VALUES ('149', 'CURP', 'CURPObSol2');
-INSERT INTO `ins` VALUES ('150', 'Nombre', 'NomObSolPF2');
-INSERT INTO `ins` VALUES ('151', 'Sexo', 'SexoObSolPF2');
-INSERT INTO `ins` VALUES ('152', 'Fecha de nacimiento', 'FeNacObSolPF2');
-INSERT INTO `ins` VALUES ('153', 'RFC', 'RFCObSolPF2');
-INSERT INTO `ins` VALUES ('154', 'CURP', 'CURPObSolPF2');
-INSERT INTO `ins` VALUES ('155', 'Edad', 'EdObSolPF2');
-INSERT INTO `ins` VALUES ('156', 'Nombre', 'NomRepLegInvHist');
-INSERT INTO `ins` VALUES ('157', 'RFC', 'RFCRepLegInvHist');
-INSERT INTO `ins` VALUES ('158', 'Direccion', 'DirRepLegInvHist');
-INSERT INTO `ins` VALUES ('159', 'Colonia/Fraccionamiento', 'ColRepLegInvHist');
-INSERT INTO `ins` VALUES ('160', 'Ciudad', 'CdRepLegInvHist');
-INSERT INTO `ins` VALUES ('161', 'Estado', 'EdoRepLegInvHist');
-INSERT INTO `ins` VALUES ('162', 'Codigo Postal', 'CPRepLegInvHist');
-INSERT INTO `ins` VALUES ('163', 'Telefono', 'TelRepLegInHist');
-INSERT INTO `ins` VALUES ('164', 'Nombre', 'NomObSolPFInvHist');
-INSERT INTO `ins` VALUES ('165', 'RFC', 'RFCObSolPFInvHist');
-INSERT INTO `ins` VALUES ('166', 'Direccion', 'DirObSolPFInvHist');
-INSERT INTO `ins` VALUES ('167', 'Colonia/Fraccionamiento ', 'ColObSolPFInvHist');
-INSERT INTO `ins` VALUES ('168', 'Ciudad', 'CdObSolPFInvHist');
-INSERT INTO `ins` VALUES ('169', 'Estado', 'EdoObSolPFInvHist');
-INSERT INTO `ins` VALUES ('170', 'Codigo Postal', 'CPObSolPFInvHist');
-INSERT INTO `ins` VALUES ('171', 'Telefono', 'TelObSolPFInHist');
-INSERT INTO `ins` VALUES ('172', 'Fecha', 'Fecha');
-INSERT INTO `ins` VALUES ('173', 'Clave Concesionario', 'ClavConcesionario');
-INSERT INTO `ins` VALUES ('174', 'Nombre concesionario', 'NomConcesionario');
-INSERT INTO `ins` VALUES ('175', 'Nombre vendedor', 'NomVendedor');
-INSERT INTO `ins` VALUES ('176', 'Nombre Gerente gral.', 'NomGerenteGral');
-INSERT INTO `ins` VALUES ('177', 'Tipo de solicitud', 'TipoSolicitud');
-INSERT INTO `ins` VALUES ('16', 'Numero de Domicilio', 'NumDirSol');
-INSERT INTO `ins` VALUES ('11', 'Municipio', 'MunicipioSolicitante');
-INSERT INTO `ins` VALUES ('180', 'Numero de serie de la FIEL', 'NumSerieFIEL');
-INSERT INTO `ins` VALUES ('181', 'Domicilio donde labora', 'DomicilioLaboral');
-INSERT INTO `ins` VALUES ('182', 'Sueldo o ingreso mensual', 'SueldoSolicitante');
-INSERT INTO `ins` VALUES ('183', 'Actividad economica adicional', 'ActEcoAdicional');
-INSERT INTO `ins` VALUES ('184', 'Ingresos adicional mensual', 'IngAdMensualAprox');
-INSERT INTO `ins` VALUES ('185', 'INE', 'INESolicitante');
-INSERT INTO `ins` VALUES ('186', 'Adjunto de INE', 'Adjunta_INESolicitante');
-INSERT INTO `ins` VALUES ('187', 'Pasaporte o Cedula', 'Pasaporte_o_CedulaProfSolicitante');
-INSERT INTO `ins` VALUES ('188', 'Cartilla Militar', 'CartillaMilitarSolicitante');
-INSERT INTO `ins` VALUES ('189', 'Adjunto Cartilla', 'Adjunta_LicenciaConducirSolicitante');
-INSERT INTO `ins` VALUES ('190', 'Otra identificacion', 'OtraIdentSolicitante');
-INSERT INTO `ins` VALUES ('191', 'Adjunto de identificacion', 'Adjunta_OtraIdentSolicitante');
-INSERT INTO `ins` VALUES ('192', 'Especificacion de la identificacion', 'EspIdentSolicitante');
-INSERT INTO `ins` VALUES ('193', 'Cotejo vs Original', 'CotejoVsOriginal');
-INSERT INTO `ins` VALUES ('194', 'Adjunto de Curp', 'Adjunta_CURP_RFC_FEA');
-INSERT INTO `ins` VALUES ('195', 'Adjunto de CURP', 'Adjunta_ComprobanteDom');
-INSERT INTO `ins` VALUES ('196', 'Domicilio coincide con ID', 'DomicilioCoincideId');
-INSERT INTO `ins` VALUES ('197', 'Domicilio ', 'DomBeneficiario');
-INSERT INTO `ins` VALUES ('198', 'Colonia / Fraccionamiento', 'ColBeneficiario');
-INSERT INTO `ins` VALUES ('199', 'Codigo Postal', 'CPBeneficiario');
-INSERT INTO `ins` VALUES ('200', 'Pais', 'PaisBeneficiario');
-INSERT INTO `ins` VALUES ('201', 'Telefono', 'TelBeneficiario');
-INSERT INTO `ins` VALUES ('202', 'CURP', 'CURPBeneficiario');
-INSERT INTO `ins` VALUES ('203', 'RFC', 'RFCBeneficiario');
-INSERT INTO `ins` VALUES ('204', 'Parentesco', 'ParentescoBeneficiario');
-INSERT INTO `ins` VALUES ('205', 'Porcentaje', 'PorcientoBeneficiario');
-INSERT INTO `ins` VALUES ('206', 'Fecha de nacimiento', 'FeNacBeneficiario');
-INSERT INTO `ins` VALUES ('207', 'Municipio', 'MunBeneficiario');
-INSERT INTO `ins` VALUES ('208', 'Estado', 'EdoBeneficiario');
-INSERT INTO `ins` VALUES ('209', 'Estado civil', 'EdoCivilBeneficiario');
-INSERT INTO `ins` VALUES ('210', 'Sociedad conyugal', 'SoConBeneficiario');
-INSERT INTO `ins` VALUES ('211', 'Ocupacion o Profesion', 'OcuProfBeneficiario');
-INSERT INTO `ins` VALUES ('212', 'PEP\'S', 'PEPSBeneficiario');
-INSERT INTO `ins` VALUES ('213', 'Origen de los recursos', 'OrigenRecBeneficiario');
-INSERT INTO `ins` VALUES ('214', 'Ingreso Comprobable(1)', 'PerTrans1');
-INSERT INTO `ins` VALUES ('215', 'Fuente', 'FuentePerTrans1');
-INSERT INTO `ins` VALUES ('216', 'Ingreso Comprobable(2)', 'PerTrans2');
-INSERT INTO `ins` VALUES ('217', 'Fuente', 'FuentePerTrans2');
-INSERT INTO `ins` VALUES ('218', 'Ingreso Comprobable(3)', 'PerTrans3');
-INSERT INTO `ins` VALUES ('219', 'Fuente', 'FuentePerTrans3');
-INSERT INTO `ins` VALUES ('220', 'Ingreso Comprobable(4)', 'PerTrans4');
-INSERT INTO `ins` VALUES ('221', 'Fuente', 'FuentePerTrans4');
-INSERT INTO `ins` VALUES ('222', 'Ingreso Comprobable(5)', 'PerTrans5');
-INSERT INTO `ins` VALUES ('223', 'Fuente', 'FuentePerTrans5');
-INSERT INTO `ins` VALUES ('224', 'Ingreso Comprobable(6)', 'PerTrans6');
-INSERT INTO `ins` VALUES ('225', 'Fuente', 'FuentePerTrans6');
-INSERT INTO `ins` VALUES ('226', 'Ingreso Comprobable(7)', 'PerTrans7');
-INSERT INTO `ins` VALUES ('227', 'Fuente', 'FuentePerTrans7');
-INSERT INTO `ins` VALUES ('228', 'Ingreso Comprobable(8)', 'PerTrans8');
-INSERT INTO `ins` VALUES ('229', 'Fuente', 'FuentePerTrans8');
-INSERT INTO `ins` VALUES ('230', 'Ingreso Comprobable(9)', 'PerTrans9');
-INSERT INTO `ins` VALUES ('231', 'Fuente', 'FuentePerTrans9');
-INSERT INTO `ins` VALUES ('232', 'Ingreso Comprobable(10)', 'PerTrans10');
-INSERT INTO `ins` VALUES ('233', 'Fuente', 'FuentePerTrans10');
-INSERT INTO `ins` VALUES ('234', 'Total de ingreso', 'TotalIngreso');
-INSERT INTO `ins` VALUES ('235', 'Valor del automovil', 'ValorAuto');
-INSERT INTO `ins` VALUES ('236', 'Enganche del automovil', 'EngAutomovil');
-INSERT INTO `ins` VALUES ('237', 'Porcentaje de enganche', 'PorEnganche');
-INSERT INTO `ins` VALUES ('238', 'Porcentaje de financiamiento', 'PorFinanciamiento');
-INSERT INTO `ins` VALUES ('239', 'Monto financiado', 'MontoFinanciado');
-INSERT INTO `ins` VALUES ('240', 'Plazo', 'Plazo');
-INSERT INTO `ins` VALUES ('241', 'Pago mensual esperado', 'PagoMensEsp');
-INSERT INTO `ins` VALUES ('242', 'PEP\'S', 'PEPS');
-INSERT INTO `ins` VALUES ('243', 'Nombre', 'NombrePEPS');
-INSERT INTO `ins` VALUES ('244', 'Parentesco', 'ParentescoPEPS');
-INSERT INTO `ins` VALUES ('245', 'Puesto', 'PuestoPEPS');
-INSERT INTO `ins` VALUES ('246', 'Antiguedad objeto social', 'Antiguedad_ObjetoSocial');
-INSERT INTO `ins` VALUES ('247', 'Antiguedad cliente', 'Antiguedad_Cliente');
-INSERT INTO `ins` VALUES ('248', 'Naturaleza operaciones', 'Naturaleza_Operaciones');
-INSERT INTO `ins` VALUES ('249', 'Numero de beneficiarios', 'Numero_Beneficiarios');
-INSERT INTO `ins` VALUES ('250', 'Numero terceros relacionados', 'Numero_TercerosRelacionados');
-INSERT INTO `ins` VALUES ('251', 'PEP\'S relacionados', 'PEPs_Relacionados');
-INSERT INTO `ins` VALUES ('252', 'Alerta reputacional', 'Alerta_Reputacional');
-INSERT INTO `ins` VALUES ('253', 'Volumen esperado', 'Volumen_Esperado');
-INSERT INTO `ins` VALUES ('254', 'Frecuencia esperada', 'Frecuencia_Esperada');
-INSERT INTO `ins` VALUES ('255', 'Instrumento monetario', 'Instrumento_Monetario');
-INSERT INTO `ins` VALUES ('256', 'Medios utilizados', 'Canales_MediosUtilizados');
-INSERT INTO `ins` VALUES ('257', 'Pais estado oficial', 'Pais_EstadoOficial');
-INSERT INTO `ins` VALUES ('258', 'Pais estado residencia', 'Pais_EstadoResidencia');
-INSERT INTO `ins` VALUES ('259', 'Pais estado operacion', 'Pais_EstadoOperacion');
-INSERT INTO `ins` VALUES ('260', 'Origen recursos', 'Origen_Recursos');
-INSERT INTO `ins` VALUES ('261', 'Destino', 'Destino_Recursos');
-INSERT INTO `ins` VALUES ('262', 'Pais estado residencia terceros', 'Pais_EstadoResidenciaTerceros');
-INSERT INTO `ins` VALUES ('179', 'B', 'Id');
-INSERT INTO `ins` VALUES ('263', 'Grado de riesgo', 'GradoRiesgo');
+--
+-- Volcado de datos para la tabla `ins`
+--
 
--- ----------------------------
--- Table structure for `log`
--- ----------------------------
-DROP TABLE IF EXISTS `log`;
+INSERT INTO `ins` (`id`, `label`, `variable`) VALUES
+(0, 'Id', 'Id'),
+(1, 'No. CLiente', 'Cliente'),
+(2, 'Tipo de credito', 'TipoCredito'),
+(3, 'Nombre', 'NomSolicitante'),
+(4, 'RFC', 'RFCSolicitante'),
+(5, 'Telefono', 'TelSolicitante'),
+(6, 'Telefono Movil', 'MovSolicitante'),
+(7, 'Direccion', 'DirSolicitante'),
+(8, 'Colonia/Fraccionamiento', 'ColSolicitante'),
+(9, 'Ciudad', 'CdSolicitante'),
+(10, 'Lugar de Nacimiento', 'LugNacSolicitante'),
+(12, 'Estado', 'EdoSolicitante'),
+(13, 'Codigo Postal', 'CPSolicitante'),
+(14, 'CURP', 'CURPSolicitante'),
+(15, 'Email', 'EmailSolicitante'),
+(178, 'Fax', 'FaxSolicitante'),
+(17, 'Nombre/Razon social ', 'NomDatConEmp'),
+(18, 'Telefono', 'TelDatConEmp'),
+(19, 'Email', 'EmailDatConEmp'),
+(20, 'RFC', 'RFCDatConEmp'),
+(21, 'Fax', 'FaxDatConEmp'),
+(22, 'Puesto', 'PuestDatConEmp'),
+(23, 'Sexo', 'SexoDatGen'),
+(24, 'Fecha de nacimiento', 'FeNacDatGen'),
+(25, 'Edad', 'EdDatGen'),
+(26, 'Nacionalidad', 'NaDatGen'),
+(27, 'No. de Dependientes', 'NoDepDatGen'),
+(28, 'Acredita domicilio', 'AcDomDatGen'),
+(29, 'Vive en', 'VivDatGen'),
+(30, 'Vive en(otro)', 'OtrvivDatGen'),
+(31, 'Importe mensual de pago', 'ImpMenDatGen'),
+(32, 'Propietario de inmueble', 'PropInmuDatGen'),
+(33, 'Arraigo en domicilio', 'ArDomDatGen'),
+(34, 'Años de residir', 'AnResDatGen'),
+(35, 'Beneficiario ', 'BenDatGen'),
+(36, 'Estado civil ', 'EstCivDatGen'),
+(37, 'Auto propio', 'AuPropDatGen'),
+(38, 'Marca y Tipo', 'MarDatGen'),
+(39, 'Actividad principal', 'ActPrinDatGenPM'),
+(40, 'Inicio de operaciones', 'IniOpDatGenPM'),
+(41, 'Cantidad de personal ', 'CantPerDatGenPM'),
+(42, 'Antiguedad', 'AntConsEmp'),
+(43, 'Apoderado', 'ApoConsEmp'),
+(44, 'Ocupacion', 'OcupDatEmp'),
+(45, 'Puesto', 'PuestDatEmp'),
+(46, 'Departamento/Area', 'DepDatEmp'),
+(47, 'Desde el año', 'DesAnDatEmp'),
+(48, 'Compañia', 'CompDatEmp'),
+(49, 'Telefono', 'TelDatEmp'),
+(50, 'Extencion', 'ExtDatEmp'),
+(51, 'No. Empleados', 'NoEmDatEmp'),
+(52, 'Giro', 'GiroDatEmp'),
+(53, 'Domicilio del negocio', 'DomDatEmp'),
+(54, 'Nombre', 'NomRefPer'),
+(55, 'Parentesco', 'ParenRefPer'),
+(56, 'Telefono', 'TelRefPer'),
+(57, 'Nombre', 'NomRefPer2'),
+(58, 'Parentesco', 'ParenRefPer2'),
+(59, 'Telefono', 'TelRefPer2'),
+(60, 'Banco', 'BancRefBan'),
+(61, 'No. de Cuenta', 'NoTarRefBan'),
+(62, 'Sucursal', 'SucRefBan'),
+(63, 'Banco', 'BancRefBan2'),
+(64, 'No. de Cuenta', 'NoTarRefBan2'),
+(65, 'Fecha de apertura', 'FecApRefBan'),
+(66, 'Sucursal', 'SucRefBan2'),
+(67, 'Fecha apertura', 'FecApRefBan'),
+(68, 'Empresa', 'EmpRefCom'),
+(69, 'Antiguedad', 'AntRefCom'),
+(70, 'Telefono', 'TelRefCom'),
+(71, 'Empresa', 'EmpRefCom2'),
+(72, 'Antiguedad', 'AntRefCom2'),
+(73, 'Telefono', 'TelRefCom2'),
+(74, 'Banco', 'BancCarDir'),
+(75, 'No. de Cuenta', 'NoTarCarDir'),
+(76, 'Nombre', 'NomDatCon'),
+(77, 'Compañia', 'CompDatCon'),
+(78, 'Puesto', 'PuestDatCon'),
+(79, 'Nombre', 'NomObPerMor'),
+(80, 'Direccion', 'DirObPerMor'),
+(81, 'Colonia/Fraccionamiento', 'ColObPerMor'),
+(82, 'Ciudad', 'CdObPerMor'),
+(83, 'Lugar de nacimiento', 'LugNacObPerMor'),
+(84, 'Estado', 'EdoObPerMor'),
+(85, 'Codigo Postal', 'CPObPerMor'),
+(86, 'RFC', 'RFCObPerMor'),
+(87, 'Telefono', 'TelObPerMor'),
+(88, 'Fax', 'FaxObPerMor'),
+(89, 'Antiguedad', 'AntConsEmpPM'),
+(90, 'Apoderado', 'ApoConsEmpPM'),
+(91, 'Actividad principal', 'ActPrinDatGen'),
+(92, 'Inicio de operaciones', 'IniOpDatGen'),
+(93, 'Cantidad de personal ', 'CantPerDatGen'),
+(94, 'Nombre', 'NomAccionista1'),
+(95, 'RFC', 'RFCAccionista1'),
+(96, '%', 'PorcentAccionista1'),
+(97, 'Nombre', 'NomAccionista2'),
+(98, 'RFC', 'RFCAccionista2'),
+(99, '%', 'PorcentAccionista2'),
+(100, 'Nombre', 'NomAccionista3'),
+(101, 'RFC', 'RFCAccionista3'),
+(102, '%', 'PorcentAccionista3'),
+(103, 'Nombre', 'NomAccionista4'),
+(104, 'RFC', 'RFCAccionista4'),
+(105, '%', 'PorcentAccionista4'),
+(106, 'Nombre', 'NomAccionistaPM1'),
+(107, 'RFC', 'RFCAccionistaPM1'),
+(108, '%', 'PorcentAccionistaPM1'),
+(109, 'Nombre', 'NomAccionistaPM2'),
+(110, 'RFC', 'RFCAccionistaPM2'),
+(111, '%', 'PorcentAccionistaPM2'),
+(112, 'Nombre', 'NomObSol'),
+(113, 'RFC', 'RFCObSol'),
+(114, 'Telefono', 'TelObSol'),
+(115, 'Telefono Movil', 'MovObSol'),
+(116, 'Direccion', 'DirObSol'),
+(117, 'Colonia/Fraccionamiento', 'ColObSol'),
+(118, 'Ciudad', 'CdObSol'),
+(119, 'Lugar de nacimiento', 'LugNacObSol'),
+(120, 'Propiedad', 'PropObSol'),
+(121, 'Estado', 'EdoObSol'),
+(122, 'Codigo Postal', 'CPObSol'),
+(123, 'Email', 'EmailObSol'),
+(124, 'Sexo', 'SexoObSol'),
+(125, 'Fecha de nacimiento', 'FeNacObSol'),
+(126, 'Edad', 'EdObSol'),
+(127, 'CURP', 'CURPObSol'),
+(128, 'Nombre', 'NomObSolPF'),
+(129, 'Sexo', 'SexoObSolPF'),
+(130, 'Fecha de nacimiento', 'FeNacObSolPF'),
+(131, 'RFC', 'RFCObSolPF'),
+(132, 'CURP', 'CURPObSolPF'),
+(133, 'Edad', 'EdObSolPF'),
+(134, 'Nombre', 'NomObSol2'),
+(135, 'RFC', 'RFCObSol2'),
+(136, 'Telefono', 'TelObSol2'),
+(137, 'Telefono Movil', 'MovObSol2'),
+(138, 'Direccion', 'DirObSol2'),
+(139, 'Colonia/Fraccionamiento', 'ColObSol2'),
+(140, 'Ciudad', 'CdObSol2'),
+(141, 'Lugar de nacimiento', 'LugNacObSol2'),
+(142, 'Propiedad', 'PropObSol2'),
+(143, 'Estado', 'EdoObSol2'),
+(144, 'Codigo Postal', 'CPObSol2'),
+(145, 'Email', 'EmailObSol2'),
+(146, 'Sexo', 'SexoObSol2'),
+(147, 'Fecha de nacimiento', 'FeNacObSol2'),
+(148, 'Edad', 'EdObSol2'),
+(149, 'CURP', 'CURPObSol2'),
+(150, 'Nombre', 'NomObSolPF2'),
+(151, 'Sexo', 'SexoObSolPF2'),
+(152, 'Fecha de nacimiento', 'FeNacObSolPF2'),
+(153, 'RFC', 'RFCObSolPF2'),
+(154, 'CURP', 'CURPObSolPF2'),
+(155, 'Edad', 'EdObSolPF2'),
+(156, 'Nombre', 'NomRepLegInvHist'),
+(157, 'RFC', 'RFCRepLegInvHist'),
+(158, 'Direccion', 'DirRepLegInvHist'),
+(159, 'Colonia/Fraccionamiento', 'ColRepLegInvHist'),
+(160, 'Ciudad', 'CdRepLegInvHist'),
+(161, 'Estado', 'EdoRepLegInvHist'),
+(162, 'Codigo Postal', 'CPRepLegInvHist'),
+(163, 'Telefono', 'TelRepLegInHist'),
+(164, 'Nombre', 'NomObSolPFInvHist'),
+(165, 'RFC', 'RFCObSolPFInvHist'),
+(166, 'Direccion', 'DirObSolPFInvHist'),
+(167, 'Colonia/Fraccionamiento ', 'ColObSolPFInvHist'),
+(168, 'Ciudad', 'CdObSolPFInvHist'),
+(169, 'Estado', 'EdoObSolPFInvHist'),
+(170, 'Codigo Postal', 'CPObSolPFInvHist'),
+(171, 'Telefono', 'TelObSolPFInHist'),
+(172, 'Fecha', 'Fecha'),
+(173, 'Clave Concesionario', 'ClavConcesionario'),
+(174, 'Nombre concesionario', 'NomConcesionario'),
+(175, 'Nombre vendedor', 'NomVendedor'),
+(176, 'Nombre Gerente gral.', 'NomGerenteGral'),
+(177, 'Tipo de solicitud', 'TipoSolicitud'),
+(16, 'Numero de Domicilio', 'NumDirSol'),
+(11, 'Municipio', 'MunicipioSolicitante'),
+(180, 'Numero de serie de la FIEL', 'NumSerieFIEL'),
+(181, 'Domicilio donde labora', 'DomicilioLaboral'),
+(182, 'Sueldo o ingreso mensual', 'SueldoSolicitante'),
+(183, 'Actividad economica adicional', 'ActEcoAdicional'),
+(184, 'Ingresos adicional mensual', 'IngAdMensualAprox'),
+(185, 'INE', 'INESolicitante'),
+(186, 'Adjunto de INE', 'Adjunta_INESolicitante'),
+(187, 'Pasaporte o Cedula', 'Pasaporte_o_CedulaProfSolicitante'),
+(188, 'Cartilla Militar', 'CartillaMilitarSolicitante'),
+(189, 'Adjunto Cartilla', 'Adjunta_LicenciaConducirSolicitante'),
+(190, 'Otra identificacion', 'OtraIdentSolicitante'),
+(191, 'Adjunto de identificacion', 'Adjunta_OtraIdentSolicitante'),
+(192, 'Especificacion de la identificacion', 'EspIdentSolicitante'),
+(193, 'Cotejo vs Original', 'CotejoVsOriginal'),
+(194, 'Adjunto de Curp', 'Adjunta_CURP_RFC_FEA'),
+(195, 'Adjunto de CURP', 'Adjunta_ComprobanteDom'),
+(196, 'Domicilio coincide con ID', 'DomicilioCoincideId'),
+(197, 'Domicilio ', 'DomBeneficiario'),
+(198, 'Colonia / Fraccionamiento', 'ColBeneficiario'),
+(199, 'Codigo Postal', 'CPBeneficiario'),
+(200, 'Pais', 'PaisBeneficiario'),
+(201, 'Telefono', 'TelBeneficiario'),
+(202, 'CURP', 'CURPBeneficiario'),
+(203, 'RFC', 'RFCBeneficiario'),
+(204, 'Parentesco', 'ParentescoBeneficiario'),
+(205, 'Porcentaje', 'PorcientoBeneficiario'),
+(206, 'Fecha de nacimiento', 'FeNacBeneficiario'),
+(207, 'Municipio', 'MunBeneficiario'),
+(208, 'Estado', 'EdoBeneficiario'),
+(209, 'Estado civil', 'EdoCivilBeneficiario'),
+(210, 'Sociedad conyugal', 'SoConBeneficiario'),
+(211, 'Ocupacion o Profesion', 'OcuProfBeneficiario'),
+(212, 'PEP''S', 'PEPSBeneficiario'),
+(213, 'Origen de los recursos', 'OrigenRecBeneficiario'),
+(214, 'Ingreso Comprobable(1)', 'PerTrans1'),
+(215, 'Fuente', 'FuentePerTrans1'),
+(216, 'Ingreso Comprobable(2)', 'PerTrans2'),
+(217, 'Fuente', 'FuentePerTrans2'),
+(218, 'Ingreso Comprobable(3)', 'PerTrans3'),
+(219, 'Fuente', 'FuentePerTrans3'),
+(220, 'Ingreso Comprobable(4)', 'PerTrans4'),
+(221, 'Fuente', 'FuentePerTrans4'),
+(222, 'Ingreso Comprobable(5)', 'PerTrans5'),
+(223, 'Fuente', 'FuentePerTrans5'),
+(224, 'Ingreso Comprobable(6)', 'PerTrans6'),
+(225, 'Fuente', 'FuentePerTrans6'),
+(226, 'Ingreso Comprobable(7)', 'PerTrans7'),
+(227, 'Fuente', 'FuentePerTrans7'),
+(228, 'Ingreso Comprobable(8)', 'PerTrans8'),
+(229, 'Fuente', 'FuentePerTrans8'),
+(230, 'Ingreso Comprobable(9)', 'PerTrans9'),
+(231, 'Fuente', 'FuentePerTrans9'),
+(232, 'Ingreso Comprobable(10)', 'PerTrans10'),
+(233, 'Fuente', 'FuentePerTrans10'),
+(234, 'Total de ingreso', 'TotalIngreso'),
+(235, 'Valor del automovil', 'ValorAuto'),
+(236, 'Enganche del automovil', 'EngAutomovil'),
+(237, 'Porcentaje de enganche', 'PorEnganche'),
+(238, 'Porcentaje de financiamiento', 'PorFinanciamiento'),
+(239, 'Monto financiado', 'MontoFinanciado'),
+(240, 'Plazo', 'Plazo'),
+(241, 'Pago mensual esperado', 'PagoMensEsp'),
+(242, 'PEP''S', 'PEPS'),
+(243, 'Nombre', 'NombrePEPS'),
+(244, 'Parentesco', 'ParentescoPEPS'),
+(245, 'Puesto', 'PuestoPEPS'),
+(246, 'Antiguedad objeto social', 'Antiguedad_ObjetoSocial'),
+(247, 'Antiguedad cliente', 'Antiguedad_Cliente'),
+(248, 'Naturaleza operaciones', 'Naturaleza_Operaciones'),
+(249, 'Numero de beneficiarios', 'Numero_Beneficiarios'),
+(250, 'Numero terceros relacionados', 'Numero_TercerosRelacionados'),
+(251, 'PEP''S relacionados', 'PEPs_Relacionados'),
+(252, 'Alerta reputacional', 'Alerta_Reputacional'),
+(253, 'Volumen esperado', 'Volumen_Esperado'),
+(254, 'Frecuencia esperada', 'Frecuencia_Esperada'),
+(255, 'Instrumento monetario', 'Instrumento_Monetario'),
+(256, 'Medios utilizados', 'Canales_MediosUtilizados'),
+(257, 'Pais estado oficial', 'Pais_EstadoOficial'),
+(258, 'Pais estado residencia', 'Pais_EstadoResidencia'),
+(259, 'Pais estado operacion', 'Pais_EstadoOperacion'),
+(260, 'Origen recursos', 'Origen_Recursos'),
+(261, 'Destino', 'Destino_Recursos'),
+(262, 'Pais estado residencia terceros', 'Pais_EstadoResidenciaTerceros'),
+(179, 'B', 'Id'),
+(263, 'Grado de riesgo', 'GradoRiesgo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log`
+--
+
 CREATE TABLE `log` (
   `Fecha_modificacion` datetime NOT NULL,
   `Responsable` varchar(50) NOT NULL,
@@ -578,16 +763,14 @@ CREATE TABLE `log` (
   `Folio_Cliente` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of log
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `pfa`
--- ----------------------------
-DROP TABLE IF EXISTS `pfa`;
+--
+-- Estructura de tabla para la tabla `pfa`
+--
+
 CREATE TABLE `pfa` (
-  `Id` int(10) NOT NULL AUTO_INCREMENT,
+  `Id` int(10) NOT NULL,
   `Folio_Cliente` varchar(50) NOT NULL,
   `NomSolicitante` varchar(50) NOT NULL,
   `SegNomSolicitante` varchar(50) NOT NULL,
@@ -634,30 +817,41 @@ CREATE TABLE `pfa` (
   `NumSerieFIEL` varchar(20) NOT NULL,
   `SueldoSolicitante` varchar(20) NOT NULL,
   `ActEcoAdicional` varchar(20) NOT NULL,
-  `IngAdMensualAprox` varchar(20) NOT NULL,
-  PRIMARY KEY (`Id`,`Folio_Cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+  `IngAdMensualAprox` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of pfa
--- ----------------------------
-INSERT INTO `pfa` VALUES ('14', 'PFA-001', 'SDF', 'KJH', 'KJH', 'KJH', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', 'xxxxxxx', '2000', 'No', '0.00');
-INSERT INTO `pfa` VALUES ('15', 'PFA-015', 'SDF', 'KJH', 'KJH', 'KJH', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', '', '', '', '');
-INSERT INTO `pfa` VALUES ('16', 'PFA-016', 'Adrian', 'Eduardo', 'Mata', 'Martinez', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', 'xxxxxxx', '2000', 'No', '0.00');
-INSERT INTO `pfa` VALUES ('17', 'PFA-017', 'SDF', 'KJH', 'KJH', 'KJH', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', '', '', '', '');
-INSERT INTO `pfa` VALUES ('18', 'PFA-018', 'SDF', 'KJH', 'KJH', 'KJH', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', '', '', '', '');
-INSERT INTO `pfa` VALUES ('19', 'PFA-019', 'SDF', 'KJH', 'KJH', 'KJH', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', '', '', '', '');
-INSERT INTO `pfa` VALUES ('20', 'PFA-020', 'SDF', 'KJH', 'KJH', 'KJH', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', '', '', '', '');
-INSERT INTO `pfa` VALUES ('21', 'PFA-021', 'SDF', 'KJH', 'KJH', 'KJH', '3132131321313', '1312132131', '2121321321', 'ASD', '321321', '321', '321', '321321', '321', 'SDFSF', '321', '321', 'ASD@G.CPM', 'Masculino', '1989-09-07', '24', 'ASD', '321', '321', 'Casa Propia', '', 'Si', '321', '321', 'SD', 'ASD', 'ASD', 'Casado Bienes Mancomunados', 'Si', '321', '', '32132', '1321', '321', '321', '3132132132', '1321', '321321', '', '', '', '');
-INSERT INTO `pfa` VALUES ('22', 'PFA-022', 'Adrian', 'Eduardo', 'Mata', 'Martinez', 'JNKJNKJNKJNKJ', '2132131313', '1313131313', 'nmn', '321', 'kjhkjhk', 'jhkjh', 'kjhkj', 'hkjhkj', 'asdasd', '3213', 'JHGJHG', 'kb@g.com', 'Masculino', '1989-09-07', '27', 'sd', '3121', 'dasd', 'Casa Propia', '', 'Si', '321', '321', 'Jhkjh', 'Jkjhkjh', 'Kjhk', 'Casado Bienes Mancomunados', 'Si', 'kjhkjhk', '', 'kjhkjhk', 'jhkjh', '0', 'hkjh', '3455465464', '6546', 'sdasdasdasdkjhkjhkjh', 'asdasasd', '50000', 'kjhkjhkjh', '0000');
-INSERT INTO `pfa` VALUES ('23', 'PFA-023', 'Adrian', 'Eduardo', 'Mata', 'Martinez', 'MAMA890907CV4', '2132131313', '1313131313', 'nmn', '321', 'kjhkjhk', 'jhkjh', 'kjhkj', 'hkjhkj', 'asdasd', '3213', 'JHGJHG', 'kb@g.com', 'Masculino', '1989-09-07', '27', 'sd', '3121', 'dasd', 'Casa Propia', '', 'Si', '321', '321', 'Jhkjh', 'Jkjhkjh', 'Kjhk', 'Casado Bienes Mancomunados', 'Si', 'kjhkjhk', '', 'kjhkjhk', 'asdas', '12321', 'hkjh', '3455465464', '6546', 'sdasdasdasdkjhkjhkjh', 'asdasasd', '50000', 'kjhkjhkjh', '0000');
+--
+-- Volcado de datos para la tabla `pfa`
+--
 
--- ----------------------------
--- Table structure for `pfna`
--- ----------------------------
-DROP TABLE IF EXISTS `pfna`;
+INSERT INTO `pfa` (`Id`, `Folio_Cliente`, `NomSolicitante`, `SegNomSolicitante`, `ApPatSolicitante`, `ApMatSolicitante`, `RFCSolicitante`, `TelSolicitante`, `MovSolicitante`, `DirSolicitante`, `NumDirSol`, `ColSolicitante`, `CdSolicitante`, `LugNacSolicitante`, `EdoSolicitante`, `MunicipioSolicitante`, `CPSolicitante`, `CURPSolicitante`, `EmailSolicitante`, `SexoDatGen`, `FeNacDatGen`, `EdDatGen`, `NaDatGen`, `NoDepDatGen`, `AcDomDatGen`, `VivDatGen`, `OtrDatGen`, `PropInmuDatGen`, `ArDomDatGen`, `AnResDatGen`, `NomBenDatGen`, `ApPatBenDatGen`, `ApMatBenDatGen`, `EstCivDatGen`, `AuPropDatGen`, `MarDatGen`, `Ocupacion_Profesion`, `PuestDatEmp`, `DepDatEmp`, `DesAnDatEmp`, `CompDatEmp`, `TelDatEmp`, `ExtDatEmp`, `DomicilioLaboral`, `NumSerieFIEL`, `SueldoSolicitante`, `ActEcoAdicional`, `IngAdMensualAprox`) VALUES
+(1, 'PFA-001', 'Adrian', 'Eduardo', 'Mata', 'Martinez', '', '', '', 'sdfkjhk', '', 'kjhkjh', 'kjhkjh', 'kjhk', 'jhkj', 'sfsdfjh', 354654, 'KJHKJH', 'kjhkjhkjh@dfg.com', '', '0000-00-00', 27, 'lkjlkjl', 3, 'lkjlkjl', '', '', '', 2010, 20, 'Maria Guadalupe', 'Alradado ', 'Higareda', '', '', '', '', 'kkjh', 'kjhkj', 0, 'hkjh', '', 3213, 'kjhkh', 'N/A', '231321', 'kj', '0'),
+(2, 'PFA-002', 'Adrian', 'Eduardo', 'Mata', 'Martinez', '3131313131313', '1313131313', '1313131313', 'sdfkjhk', 'sdfkjhk', 'kjhkjh', 'kjhkjh', 'kjhk', 'jhkj', 'sfsdfjh', 354654, 'KJHKJH', 'kjhkjhkjh@dfg.com', 'M', '1989-09-07', 27, 'lkjlkjl', 3, 'lkjlkjl', '1', '', '2', 2010, 20, 'Maria Guadalupe', 'Alradado ', 'Higareda', '2', '1', 'Atoz', 'kkjh', 'kkjh', 'kjhkj', 0, 'hkjh', '3331313131', 3213, 'kjhkh', 'N/A', '231321', 'kj', '0'),
+(3, 'PFA-003', 'Adrian', 'Eduardo', 'Mata', 'Martinez', '3131313131313', '1313131313', '1313131313', 'sdfkjhk', 'sdfkjhk', 'kjhkjh', 'kjhkjh', 'kjhk', 'jhkj', 'sfsdfjh', 354654, 'KJHKJH', 'kjhkjhkjh@dfg.com', 'M', '1989-09-07', 27, 'lkjlkjl', 3, 'lkjlkjl', '1', '', '2', 2010, 20, 'Maria Guadalupe', 'Alradado ', 'Higareda', '2', '1', 'Atoz', 'kkjh', 'kkjh', 'kjhkj', 0, 'hkjh', '3331313131', 3213, 'kjhkh', 'N/A', '231321', 'kj', '0'),
+(4, 'PFA-004', 'Kjhkjh', 'Kjh', 'Kjh', 'Kjh', 'KJHSKJSKHKHKH', '3131313132', '1321321321', 'dfgmbnb', '321321321', 'jhgjhg', 'jhgjh', 'gjh', 'gjh', 'dfgdfgd', 321321, 'GJH', 'werwer@dfg.com', 'Femenino', '1989-09-07', 27, 'sdfsdf', 3, 'jhjg', '1', '', '1', 321, 321, 'Hgjh', 'Jhgjhg', 'Jhgj', 'Casado Bienes Mancomunados', 'Si', 'jkhkj', 'hkjhkjh', 'hkjhkjh', 'kjhk', 0, 'hkj', '3151315151', 0, 'sdf', 'sdf', '0', 'sdf', '0');
+
+--
+-- Disparadores `pfa`
+--
+DELIMITER $$
+CREATE TRIGGER `pfa_id` BEFORE INSERT ON `pfa` FOR EACH ROW BEGIN
+    if (SELECT COUNT(*) FROM pfa)=0   THEN
+        SET NEW.Folio_Cliente= 'PFA-001';
+    else
+        SET NEW.Folio_Cliente= CONCAT('PFA-', LPAD((select MAX(Id)+1 from pfa), 3, '0'));
+  END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pfna`
+--
+
 CREATE TABLE `pfna` (
-  `Id` int(10) NOT NULL AUTO_INCREMENT,
+  `Id` int(10) NOT NULL,
   `Folio_Cliente` varchar(50) NOT NULL,
   `NomSolicitante` varchar(50) NOT NULL,
   `SegNomSolicitante` varchar(50) NOT NULL,
@@ -706,44 +900,31 @@ CREATE TABLE `pfna` (
   `NumSerieFIEL` varchar(20) NOT NULL,
   `SueldoSolicitante` varchar(20) NOT NULL,
   `ActEcoAdicional` varchar(20) NOT NULL,
-  `IngAdMensualAprox` varchar(20) NOT NULL,
-  PRIMARY KEY (`Id`,`Folio_Cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+  `IngAdMensualAprox` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of pfna
--- ----------------------------
-INSERT INTO `pfna` VALUES ('11', 'PFNA-001', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('12', 'PFNA-012', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('13', 'PFNA-013', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('14', 'PFNA-014', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('15', 'PFNA-015', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('16', 'PFNA-016', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('17', 'PFNA-017', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('18', 'PFNA-018', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('19', 'PFNA-019', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('20', 'PFNA-020', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('21', 'PFNA-021', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('22', 'PFNA-022', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('23', 'PFNA-023', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('24', 'PFNA-024', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('25', 'PFNA-025', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('26', 'PFNA-026', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '654654', '0', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('27', 'PFNA-027', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('28', 'PFNA-028', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('29', 'PFNA-029', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('30', 'PFNA-030', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('31', 'PFNA-031', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('32', 'PFNA-032', 'Lkmlkmlkm', 'Lkml', 'Kmlkml', 'Kmlkm', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('33', 'PFNA-033', 'Adrian', 'Eduardo', 'Mata', 'Martinez', 'LKLMLKMLMLMLM', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancom', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
-INSERT INTO `pfna` VALUES ('34', 'PFNA-034', 'Adrian', 'Eduardo', 'Mata', 'Martinez', 'MAMA890907CV4', '6464646564', '6464646464', '46546546546546', '546', '5465', '465', '465', '465', '654654', '46', '546', 'sdf@fgg.com', '6464646464', 'Masculino', '1989-09-07', '654', '654', '654', '654', 'Casa Propia', '65465', 'Si', '452', '452', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Casado Bienes Mancomunados', 'Si', 'oijoij', 'ing telematico', 'desarrollo', '1989-09-07', 'jklnkjnkj', '5064654654', '0', '65465', 'kjhj', 'kljlk', '64654', '456', '654', '654');
+--
+-- Disparadores `pfna`
+--
+DELIMITER $$
+CREATE TRIGGER `pfna_id` BEFORE INSERT ON `pfna` FOR EACH ROW BEGIN
+    if (SELECT COUNT(*) FROM pfna)=0   THEN
+        SET NEW.Folio_Cliente= 'PFNA-001';
+    else
+        SET NEW.Folio_Cliente= CONCAT('PFNA-', LPAD((select MAX(Id)+1 from pfna), 3, '0'));
+  END IF;
+END
+$$
+DELIMITER ;
 
--- ----------------------------
--- Table structure for `pm`
--- ----------------------------
-DROP TABLE IF EXISTS `pm`;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pm`
+--
+
 CREATE TABLE `pm` (
-  `Id` int(10) NOT NULL AUTO_INCREMENT,
+  `Id` int(10) NOT NULL,
   `Folio_Cliente` varchar(20) NOT NULL,
   `NomSolicitante` varchar(60) NOT NULL,
   `RFCSolicitante` varchar(30) NOT NULL,
@@ -762,6 +943,11 @@ CREATE TABLE `pm` (
   `SegNomDatContEmp` varchar(20) NOT NULL,
   `ApPatDatContEmp` varchar(20) NOT NULL,
   `ApMatDatContEmp` varchar(20) NOT NULL,
+  `DirConEmp` varchar(50) NOT NULL,
+  `ColConEmp` varchar(30) NOT NULL,
+  `CPConEmp` varchar(10) NOT NULL,
+  `CdConEmp` varchar(30) NOT NULL,
+  `EdoConEmp` varchar(30) NOT NULL,
   `SexoContEmp` varchar(20) NOT NULL,
   `LugNacContEmp` varchar(50) NOT NULL,
   `FechNacContEmp` date NOT NULL,
@@ -801,370 +987,190 @@ CREATE TABLE `pm` (
   `PorAccPM1` int(3) NOT NULL,
   `NomAccPM2` varchar(60) NOT NULL,
   `RFCAccPM2` varchar(20) NOT NULL,
-  `PorAccPM2` int(3) NOT NULL,
-  PRIMARY KEY (`Id`,`Folio_Cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `PorAccPM2` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of pm
--- ----------------------------
-INSERT INTO `pm` VALUES ('4', 'PM-001', 'Servicios Financieros Del Guadiana', '4552452452452452452', '321654645654654', '351231312313513', '321321', 'Colinia sol', 'cd sol', 'edo sol', 'Durango', '321321', 'sol@hotmaol.com', '', 'Mexico sol', 'nomrbe', 'segundo', 'paterno', 'materno', 'Masculino', 'Mexico', '1989-09-07', 'Casado Bienes Mancomunados', '312654654654', 'conemp@hotmail.com', 'mama890907cv4', '3216546465465465456', '9876543210', 'Mexicana', 'Empleado', '5000', '', '321', 'Ninguna', '1989.6', '321', '1989-09-07', '312', '1989-09-07', '312', '321', 'dfgdfgdfg', 'sdf32sdf321', '25', 'sdfsdfsf', 's3df21s3df21', '25', 'adasdasd', 'ada3sd21a231sd', '25', 'asdasdasd', 'asd3asd123asd123', '25', 'asdasdasd', 'asd231asd123ad', '50', 'asdasdasd', 'sd13ad123asd', '50');
+--
+-- Volcado de datos para la tabla `pm`
+--
 
--- ----------------------------
--- Table structure for `registro`
--- ----------------------------
-DROP TABLE IF EXISTS `registro`;
+INSERT INTO `pm` (`Id`, `Folio_Cliente`, `NomSolicitante`, `RFCSolicitante`, `TelSolicitante`, `DirSolicitante`, `NumDirSol`, `ColSolicitante`, `CdSolicitante`, `EdoSolicitante`, `MunicipioSolicitante`, `CPSolicitante`, `EmailSolicitante`, `FaxSolicitante`, `PaisSolicitante`, `NomDatContEmp`, `SegNomDatContEmp`, `ApPatDatContEmp`, `ApMatDatContEmp`, `DirConEmp`, `ColConEmp`, `CPConEmp`, `CdConEmp`, `EdoConEmp`, `SexoContEmp`, `LugNacContEmp`, `FechNacContEmp`, `EstCivContEmp`, `TelDatConEmp`, `EmailDatConEmp`, `CURPDatConEmp`, `RFCDatConEmp`, `NumSerieFIELContEmp`, `NacionalidadContEmp`, `OcupacionContEmp`, `SueldoContEmp`, `FaxDatConEmp`, `PuestDatConEmp`, `ActEcoAdicionalContEmp`, `IngAdMensualAproxContEmp`, `ActPrinDatGenPM`, `IniOpDatGenPM`, `CantPerDatGenPM`, `FechaConsEmp`, `AntConsEmp`, `ApoConsEmp`, `NomAcc1`, `RFCAcc1`, `PorAcc1`, `NomAcc2`, `RFCAcc2`, `PorAcc2`, `NomAcc3`, `RFCAcc3`, `PorAcc3`, `NomAcc4`, `RFCAcc4`, `PorAcc4`, `NomAccPM1`, `RFCAccPM1`, `PorAccPM1`, `NomAccPM2`, `RFCAccPM2`, `PorAccPM2`) VALUES
+(1, 'PM-001', 'sdfsdfsf', 'hsfskfhsdhsfk', 'khfsfjshkf', 'ksjdfhkjh', 'kjhkj', 'kjh', 'jhk', 'sdfsdf', 'jhkjh', 0, 'dsdsdhkfkf', 'sdfsdfsdf3', 'jhgsdfjhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'gjh', 'gjh', 'gjh', 'M', 'dgdggdfg', '1989-09-07', '1', 'gjgfjgsfjh', 'hfjsfgjh', 'dfgdfgdfg', 'gjfbddjdgdjgd', 'dfgdfgdfg', 'dfg', 'dfgdf', 0, 'sfhsfjhgsg', 'gjhg', 'dfg', 0, 'jghj', '1989-09-07', 0, '1989-09-07', 'jhgjhg', 'jhg', 'ajsdfgjhgjhg', 'jhgjhgjh', 0, 'jhgj', 'hg', 0, 'jhg', 'jhg', 0, 'jhg', 'jh', 0, 'gj', 'hg', 0, 'jh', 'gjh', 0),
+(2, 'PM-002', 'sdfsdfsf', 'hsfskfhsdhsfk', 'khfsfjshkf', 'ksjdfhkjh', 'kjhkj', 'kjh', 'jhk', 'sdfsdf', 'jhkjh', 0, 'dsdsdhkfkf', 'sdfsdfsdf', 'jhgsdfjhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'gjh', 'gjh', 'gjh', 'M', 'dgdggdfg', '1989-09-07', '1', 'gjgfjgsfjh', 'hfjsfgjh', 'dfgdfgdfg', 'gjfbddjdgdjgd', 'dfgdfgdfg', 'dfg', 'dfgdf', 0, 'sfhsfjhgsg', 'gjhg', 'dfg', 0, 'jghj', '1989-09-07', 0, '1989-09-07', 'jhgjhg', 'jhg', 'ajsdfgjhgjhg', 'jhgjhgjh', 0, 'jhgj', 'hg', 0, 'jhg', 'jhg', 0, 'jhg', 'jh', 0, 'gj', 'hg', 0, 'jh', 'gjh', 0);
+
+--
+-- Disparadores `pm`
+--
+DELIMITER $$
+CREATE TRIGGER `pm_id` BEFORE INSERT ON `pm` FOR EACH ROW BEGIN
+    if (SELECT COUNT(*) FROM pm)=0   THEN
+        SET NEW.Folio_Cliente= 'PM-001';
+    else
+        SET NEW.Folio_Cliente= CONCAT('PM-', LPAD((select MAX(Id)+1 from pm), 3, '0'));
+  END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registro`
+--
+
 CREATE TABLE `registro` (
-  `Id` int(10) NOT NULL AUTO_INCREMENT,
+  `Id` int(10) NOT NULL,
   `Folio_Cliente` varchar(50) NOT NULL,
   `Fecha_apertura` date NOT NULL,
   `Fecha_Modificacion` date NOT NULL,
-  `Responsable` varchar(50) NOT NULL,
-  PRIMARY KEY (`Id`,`Folio_Cliente`),
-  UNIQUE KEY `folio` (`Folio_Cliente`),
-  KEY `Id` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of registro
--- ----------------------------
-INSERT INTO `registro` VALUES ('50', 'PFA-001', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('51', 'PFA-015', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('52', 'PFA-016', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('53', 'PFA-017', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('54', 'PFA-018', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('55', 'PFA-019', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('56', 'PFA-020', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('57', 'PFA-021', '2017-02-16', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('58', 'PFA-022', '2017-02-17', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('59', 'PFA-023', '2017-02-17', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('62', 'PFNA-001', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('63', 'PFNA-012', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('64', 'PFNA-013', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('65', 'PFNA-014', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('66', 'PFNA-015', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('67', 'PFNA-016', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('68', 'PFNA-017', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('69', 'PFNA-018', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('70', 'PFNA-019', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('71', 'PFNA-020', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('72', 'PFNA-021', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('73', 'PFNA-022', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('74', 'PFNA-023', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('75', 'PFNA-024', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('76', 'PFNA-025', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('77', 'PFNA-026', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('78', 'PFNA-027', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('79', 'PFNA-028', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('80', 'PFNA-029', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('81', 'PFNA-030', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('82', 'PFNA-031', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('83', 'PFNA-032', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('84', 'PFNA-033', '2017-02-22', '0000-00-00', '0');
-INSERT INTO `registro` VALUES ('85', 'PFNA-034', '2017-02-22', '0000-00-00', '0');
-
--- ----------------------------
--- Table structure for `solicitudes`
--- ----------------------------
-DROP TABLE IF EXISTS `solicitudes`;
-CREATE TABLE `solicitudes` (
-  `Id` int(11) NOT NULL,
-  `Cliente` varchar(255) NOT NULL,
-  `TipoCredito` varchar(255) NOT NULL,
-  `NomSolicitante` varchar(255) NOT NULL,
-  `SegNomSolicitante` varchar(255) NOT NULL,
-  `ApPatSolicitante` varchar(255) NOT NULL,
-  `ApMatSolicitante` varchar(255) NOT NULL,
-  `RFCSolicitante` varchar(255) NOT NULL,
-  `TelSolicitante` varchar(255) NOT NULL,
-  `MovSolicitante` varchar(255) NOT NULL,
-  `DirSolicitante` varchar(255) NOT NULL,
-  `ColSolicitante` varchar(255) NOT NULL,
-  `CdSolicitante` varchar(255) NOT NULL,
-  `LugNacSolicitante` varchar(255) NOT NULL,
-  `EdoSolicitante` varchar(255) NOT NULL,
-  `CPSolicitante` varchar(255) NOT NULL,
-  `CURPSolicitante` varchar(255) NOT NULL,
-  `EmailSolicitante` varchar(255) NOT NULL,
-  `FaxSolicitante` varchar(255) NOT NULL,
-  `NomDatConEmp` varchar(255) NOT NULL,
-  `TelDatConEmp` varchar(255) NOT NULL,
-  `EmailDatConEmp` varchar(255) NOT NULL,
-  `RFCDatConEmp` varchar(255) NOT NULL,
-  `FaxDatConEmp` varchar(255) NOT NULL,
-  `PuestDatConEmp` varchar(255) NOT NULL,
-  `SexoDatGen` varchar(255) NOT NULL,
-  `FeNacDatGen` date NOT NULL,
-  `EdDatGen` varchar(255) NOT NULL,
-  `NaDatGen` varchar(255) NOT NULL,
-  `NoDepDatGen` varchar(255) NOT NULL,
-  `AcDomDatGen` varchar(255) NOT NULL,
-  `VivDatGen` varchar(255) NOT NULL,
-  `OtrvivDatGen` varchar(255) NOT NULL,
-  `ImpMenDatGen` varchar(255) NOT NULL,
-  `PropInmuDatGen` varchar(255) NOT NULL,
-  `ArDomDatGen` varchar(255) NOT NULL,
-  `AnResDatGen` varchar(255) NOT NULL,
-  `NomBenDatGen` varchar(255) NOT NULL,
-  `ApPatBenDatGen` varchar(255) NOT NULL,
-  `ApMatBenDatGen` varchar(255) NOT NULL,
-  `EstCivDatGen` varchar(255) NOT NULL,
-  `AuPropDatGen` varchar(255) NOT NULL,
-  `MarDatGen` varchar(255) NOT NULL,
-  `ActPrinDatGenPM` varchar(255) NOT NULL,
-  `IniOpDatGenPM` date NOT NULL,
-  `CantPerDatGenPM` varchar(255) NOT NULL,
-  `AntConsEmp` varchar(255) NOT NULL,
-  `ApoConsEmp` varchar(255) NOT NULL,
-  `OcupDatEmp` varchar(255) NOT NULL,
-  `PuestDatEmp` varchar(255) NOT NULL,
-  `DepDatEmp` varchar(255) NOT NULL,
-  `DesAnDatEmp` varchar(255) NOT NULL,
-  `CompDatEmp` varchar(255) NOT NULL,
-  `TelDatEmp` varchar(255) NOT NULL,
-  `NoEmDatEmp` varchar(255) NOT NULL,
-  `ExtDatEmp` varchar(255) NOT NULL,
-  `GiroDatEmp` varchar(255) NOT NULL,
-  `DomDatEmp` varchar(255) NOT NULL,
-  `NomRefPer` varchar(255) NOT NULL,
-  `ParenRefPer` varchar(255) NOT NULL,
-  `TelRefPer` varchar(255) NOT NULL,
-  `NomRefPer2` varchar(255) NOT NULL,
-  `ParenRefPer2` varchar(255) NOT NULL,
-  `TelRefPer2` varchar(255) NOT NULL,
-  `BancRefBan` varchar(255) NOT NULL,
-  `NoTarRefBan` varchar(255) NOT NULL,
-  `BancRefBan2` varchar(255) NOT NULL,
-  `NoTarRefBan2` varchar(255) NOT NULL,
-  `SucRefBan` varchar(255) NOT NULL,
-  `SucRefBan2` varchar(255) NOT NULL,
-  `FecApRefBan` date NOT NULL,
-  `FecApRefBan2` date NOT NULL,
-  `EmpRefCom` varchar(255) NOT NULL,
-  `AntRefCom` varchar(255) NOT NULL,
-  `TelRefCom` varchar(255) NOT NULL,
-  `EmpRefCom2` varchar(255) NOT NULL,
-  `AntRefCom2` varchar(255) NOT NULL,
-  `TelRefCom2` varchar(255) NOT NULL,
-  `BancCarDir` varchar(255) NOT NULL,
-  `NoTarCarDir` varchar(255) NOT NULL,
-  `NomDatCon` varchar(255) NOT NULL,
-  `ApPatDatCon` varchar(255) NOT NULL,
-  `ApMatDatCon` varchar(255) NOT NULL,
-  `CompDatCon` varchar(255) NOT NULL,
-  `PuestDatCon` varchar(255) NOT NULL,
-  `NomObPerMor` varchar(255) NOT NULL,
-  `DirObPerMor` varchar(255) NOT NULL,
-  `ColObPerMor` varchar(255) NOT NULL,
-  `CdObPerMor` varchar(255) NOT NULL,
-  `LugNacObPerMor` varchar(255) NOT NULL,
-  `EdoObPerMor` varchar(255) NOT NULL,
-  `CPObPerMor` varchar(255) NOT NULL,
-  `RFCObPerMor` varchar(255) NOT NULL,
-  `TelObPerMor` varchar(255) NOT NULL,
-  `FaxObPerMor` varchar(255) NOT NULL,
-  `AntConsEmpPM` varchar(255) NOT NULL,
-  `ApoConsEmpPM` varchar(255) NOT NULL,
-  `ActPrinDatGen` varchar(255) NOT NULL,
-  `IniOpDatGen` date NOT NULL,
-  `CantPerDatGen` varchar(255) NOT NULL,
-  `NomAccionista1` varchar(255) NOT NULL,
-  `RFCAccionista1` varchar(255) NOT NULL,
-  `PorcentAccionista1` varchar(255) NOT NULL,
-  `NomAccionista2` varchar(255) NOT NULL,
-  `RFCAccionista2` varchar(255) NOT NULL,
-  `PorcentAccionista2` varchar(255) NOT NULL,
-  `NomAccionista3` varchar(255) NOT NULL,
-  `RFCAccionista3` varchar(255) NOT NULL,
-  `PorcentAccionista3` varchar(255) NOT NULL,
-  `NomAccionista4` varchar(255) NOT NULL,
-  `RFCAccionista4` varchar(255) NOT NULL,
-  `PorcentAccionista4` varchar(255) NOT NULL,
-  `NomAccionistaPM1` varchar(255) NOT NULL,
-  `RFCAccionistaPM1` varchar(255) NOT NULL,
-  `PorcentAccionistaPM1` varchar(255) NOT NULL,
-  `NomAccionistaPM2` varchar(255) NOT NULL,
-  `RFCAccionistaPM2` varchar(255) NOT NULL,
-  `PorcentAccionistaPM2` varchar(255) NOT NULL,
-  `NomObSol` varchar(255) NOT NULL,
-  `ApPatObSol` varchar(255) NOT NULL,
-  `ApMatObSol` varchar(255) NOT NULL,
-  `RFCObSol` varchar(255) NOT NULL,
-  `TelObSol` varchar(255) NOT NULL,
-  `MovObSol` varchar(255) NOT NULL,
-  `DirObSol` varchar(255) NOT NULL,
-  `ColObSol` varchar(255) NOT NULL,
-  `CdObSol` varchar(255) NOT NULL,
-  `LugNacObSol` varchar(255) NOT NULL,
-  `PropObSol` varchar(255) NOT NULL,
-  `EdoObSol` varchar(255) NOT NULL,
-  `CPObSol` varchar(255) NOT NULL,
-  `EmailObSol` varchar(255) NOT NULL,
-  `SexoObSol` varchar(255) NOT NULL,
-  `FeNacObSol` date NOT NULL,
-  `EdObSol` varchar(255) NOT NULL,
-  `CURPObSol` varchar(255) NOT NULL,
-  `NomObSolPF` varchar(255) NOT NULL,
-  `SexoObSolPF` varchar(255) NOT NULL,
-  `FeNacObSolPF` date NOT NULL,
-  `RFCObSolPF` varchar(255) NOT NULL,
-  `CURPObSolPF` varchar(255) NOT NULL,
-  `EdObSolPF` varchar(255) NOT NULL,
-  `NomObSol2` varchar(255) NOT NULL,
-  `ApPatObSol2` varchar(50) NOT NULL,
-  `ApMatObSol2` varchar(50) NOT NULL,
-  `RFCObSol2` varchar(255) NOT NULL,
-  `TelObSol2` varchar(255) NOT NULL,
-  `MovObSol2` varchar(255) NOT NULL,
-  `DirObSol2` varchar(255) NOT NULL,
-  `ColObSol2` varchar(255) NOT NULL,
-  `CdObSol2` varchar(255) NOT NULL,
-  `LugNacObSol2` varchar(255) NOT NULL,
-  `PropObSol2` varchar(255) NOT NULL,
-  `EdoObSol2` varchar(255) NOT NULL,
-  `CPObSol2` varchar(255) NOT NULL,
-  `EmailObSol2` varchar(255) NOT NULL,
-  `SexoObSol2` varchar(255) NOT NULL,
-  `FeNacObSol2` date NOT NULL,
-  `EdObSol2` varchar(255) NOT NULL,
-  `CURPObSol2` varchar(255) NOT NULL,
-  `NomObSolPF2` varchar(255) NOT NULL,
-  `SexoObSolPF2` varchar(255) NOT NULL,
-  `FeNacObSolPF2` date NOT NULL,
-  `RFCObSolPF2` varchar(255) NOT NULL,
-  `CURPObSolPF2` varchar(255) NOT NULL,
-  `EdObSolPF2` varchar(255) NOT NULL,
-  `NomRepLegInvHist` varchar(255) NOT NULL,
-  `RFCRepLegInvHist` varchar(255) NOT NULL,
-  `DirRepLegInvHist` varchar(255) NOT NULL,
-  `ColRepLegInvHist` varchar(255) NOT NULL,
-  `CdRepLegInvHist` varchar(255) NOT NULL,
-  `EdoRepLegInvHist` varchar(255) NOT NULL,
-  `CPRepLegInvHist` varchar(255) NOT NULL,
-  `TelRepLegInHist` varchar(255) NOT NULL,
-  `NomObSolPFInvHist` varchar(255) NOT NULL,
-  `RFCObSolPFInvHist` varchar(255) NOT NULL,
-  `DirObSolPFInvHist` varchar(255) NOT NULL,
-  `ColObSolPFInvHist` varchar(255) NOT NULL,
-  `CdObSolPFInvHist` varchar(255) NOT NULL,
-  `EdoObSolPFInvHist` varchar(255) NOT NULL,
-  `CPObSolPFInvHist` varchar(255) NOT NULL,
-  `TelObSolPFInHist` varchar(255) NOT NULL,
-  `Fecha` datetime NOT NULL,
-  `ClavConcesionario` varchar(255) NOT NULL,
-  `NomConcesionario` varchar(255) NOT NULL,
-  `NomVendedor` varchar(255) NOT NULL,
-  `NomGerenteGral` varchar(255) NOT NULL,
-  `StatusSolicitud` varchar(255) NOT NULL,
-  `TipoSolicitud` varchar(255) NOT NULL,
-  `NumDirSol` varchar(255) NOT NULL,
-  `MunicipioSolicitante` varchar(255) NOT NULL,
-  `NumSerieFIEL` varchar(255) NOT NULL,
-  `DomicilioLaboral` varchar(255) NOT NULL,
-  `SueldoSolicitante` varchar(255) NOT NULL,
-  `ActEcoAdicional` varchar(255) NOT NULL,
-  `IngAdMensualAprox` varchar(255) NOT NULL,
-  `INESolicitante` varchar(255) NOT NULL,
-  `Adjunta_INESolicitante` varchar(255) NOT NULL,
-  `Pasaporte_o_CedulaProfSolicitante` varchar(255) NOT NULL,
-  `Adjunta_Pasaporte_o_CedulaProfSolicitante` varchar(255) NOT NULL,
-  `CartillaMilitarSolicitante` varchar(255) NOT NULL,
-  `Adjunta_CartillaMilitarSolicitante` varchar(255) NOT NULL,
-  `LicenciaConducirSolicitante` varchar(255) NOT NULL,
-  `Adjunta_LicenciaConducirSolicitante` varchar(255) NOT NULL,
-  `OtraIdentSolicitante` varchar(255) NOT NULL,
-  `Adjunta_OtraIdentSolicitante` varchar(255) NOT NULL,
-  `EspIdentSolicitante` varchar(255) NOT NULL,
-  `CotejoVsOriginal` varchar(255) NOT NULL,
-  `Adjunta_CURP_RFC_FEA` varchar(255) NOT NULL,
-  `Adjunta_ComprobanteDom` varchar(255) NOT NULL,
-  `DomicilioCoincideId` varchar(255) NOT NULL,
-  `DomBeneficiario` varchar(255) NOT NULL,
-  `ColBeneficiario` varchar(255) NOT NULL,
-  `CPBeneficiario` varchar(255) NOT NULL,
-  `PaisBeneficiario` varchar(255) NOT NULL,
-  `TelBeneficiario` varchar(255) NOT NULL,
-  `CURPBeneficiario` varchar(255) NOT NULL,
-  `RFCBeneficiario` varchar(255) NOT NULL,
-  `ParentescoBeneficiario` varchar(255) NOT NULL,
-  `PorcientoBeneficiario` varchar(255) NOT NULL,
-  `FeNacBeneficiario` varchar(255) NOT NULL,
-  `MunBeneficiario` varchar(255) NOT NULL,
-  `EdoBeneficiario` varchar(255) NOT NULL,
-  `EdoCivilBeneficiario` varchar(255) NOT NULL,
-  `SoConBeneficiario` varchar(255) NOT NULL,
-  `OcuProfBeneficiario` varchar(255) NOT NULL,
-  `PEPSBeneficiario` varchar(255) NOT NULL,
-  `OrigenRecBeneficiario` varchar(255) NOT NULL,
-  `PerTrans1` double(11,2) NOT NULL,
-  `FuentePerTrans1` varchar(255) NOT NULL,
-  `PerTrans2` double(11,2) NOT NULL,
-  `FuentePerTrans2` varchar(255) NOT NULL,
-  `PerTrans3` double(11,2) NOT NULL,
-  `FuentePerTrans3` varchar(255) NOT NULL,
-  `PerTrans4` double(11,2) NOT NULL,
-  `FuentePerTrans4` varchar(255) NOT NULL,
-  `PerTrans5` double(11,2) NOT NULL,
-  `FuentePerTrans5` varchar(255) NOT NULL,
-  `PerTrans6` double(11,2) NOT NULL,
-  `FuentePerTrans6` varchar(255) NOT NULL,
-  `PerTrans7` double(11,2) NOT NULL,
-  `FuentePerTrans7` varchar(255) NOT NULL,
-  `PerTrans8` double(11,2) NOT NULL,
-  `FuentePerTrans8` varchar(255) NOT NULL,
-  `PerTrans9` double(11,2) NOT NULL,
-  `FuentePerTrans9` varchar(255) NOT NULL,
-  `PerTrans10` double(11,2) NOT NULL,
-  `FuentePerTrans10` varchar(255) NOT NULL,
-  `ValorAuto` varchar(255) NOT NULL,
-  `EngAutomovil` varchar(255) NOT NULL,
-  `PorEnganche` varchar(255) NOT NULL,
-  `PorFinanciamiento` varchar(255) NOT NULL,
-  `MontoFinanciado` varchar(255) NOT NULL,
-  `Plazo` varchar(255) NOT NULL,
-  `PagoMensEsp` varchar(255) NOT NULL,
-  `PEPS` varchar(255) NOT NULL,
-  `NombrePEPS` varchar(255) NOT NULL,
-  `ParentescoPEPS` varchar(255) NOT NULL,
-  `PuestoPEPS` varchar(255) NOT NULL,
-  `Antiguedad_ObjetoSocial` varchar(255) NOT NULL,
-  `Antiguedad_Cliente` varchar(255) NOT NULL,
-  `Naturaleza_Operaciones` varchar(255) NOT NULL,
-  `Numero_Beneficiarios` varchar(255) NOT NULL,
-  `Numero_TercerosRelacionados` varchar(255) NOT NULL,
-  `PEPs_Relacionados` varchar(255) NOT NULL,
-  `Alerta_Reputacional` varchar(255) NOT NULL,
-  `Volumen_Esperado` varchar(255) NOT NULL,
-  `Frecuencia_Esperada` varchar(255) NOT NULL,
-  `Instrumento_Monetario` varchar(255) NOT NULL,
-  `Canales_MediosUtilizados` varchar(255) NOT NULL,
-  `Pais_EstadoOficial` varchar(255) NOT NULL,
-  `Pais_EstadoResidencia` varchar(255) NOT NULL,
-  `Pais_EstadoOperacion` varchar(255) NOT NULL,
-  `Origen_Recursos` varchar(255) NOT NULL,
-  `Destino_Recursos` varchar(255) NOT NULL,
-  `Pais_EstadoResidenciaTerceros` varchar(255) NOT NULL,
-  `TotalIngreso` double(11,2) NOT NULL,
-  `GradoRiesgo` varchar(255) NOT NULL,
-  `Comentarios` varchar(255) NOT NULL,
-  PRIMARY KEY (`Cliente`)
+  `Responsable` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of solicitudes
--- ----------------------------
-INSERT INTO `solicitudes` VALUES ('469', '5', 'Credit', 'Adrian', 'Eduardo', 'Mata', 'Martinez', 'MAMA890907CV4', '6181949311', '6183030413', 'Operadores', 'Fidel Velazquez 1', 'Durango', 'México', 'Durango', '34229', 'MAMA890907HDGTR07', 'zoomwas@hotmail.com', '', '', '', '', '', '', '', 'Masculino', '1989-09-07', '27', 'Mexicana', '3', 'Recibo', 'Casa propiedad de sus familiares', '', '', 'Si', '2010', '25', 'Maria Guadalupe ', 'Alvarado', 'Higareda', 'Casado Bienes Separados', 'Si', 'Atoz 2003', '', '0000-00-00', '', '', '', '', 'Desarrollo', 'Administración', '2016', 'Volkswagen', '6189999999', '', '144', '', '', 'Alejandro Ariel Garcia', 'Conocido', '6188888888', 'Edgar Ortega Fuentes', 'Conocido', '6187777777', 'Banamex', '987654321', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', 'Banamex', '123456789', 'Maria Guadalupe', 'Alvarado', 'Higareda', 'Atel', 'Jefa', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Alejandro', 'Garcia', 'Alvarado', 'CANLESRFCRFC9', '6186666666', '6185555555', 'direccion #234', 'FSTG', 'Durango', 'Mexico', 'Si', 'Durango', '34228', 'canles@hotmail.com', 'Masculino', '1990-02-01', '22', 'CANLESCURP', '', '', '0000-00-00', '', '', '', 'Edgar', 'Ortega', 'Fuentes', 'EDGARRFCRFCRF', '6184444444', '6183333333', 'direccon 2 #234', 'San Marcos', 'Durango', 'Mexico', 'Si', 'Durango', '34227', 'edgar@hotmail.com', 'Masculino', '1990-05-04', '22', 'EDGARCURP', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-01-11 00:00:00', '0903', 'Volkswagen', 'Augusto', 'Silvia Mancinas', 'Rechazada', 'PFA', '222', 'Durango', 'XXXXXXXXXX', 'Voulevard Francisco Villa s/n', '5000', 'Ninguna', '0', '654654654', 'Si', '321', 'Si', '2', 'Si', '2', 'Si', '2', 'Si', '21321', 'Si', 'Si', 'Si', 'Si', 'Julian Vera #210', 'Juan Lira', '34226', 'México', '6182971422', 'lupixCURP', 'lupixRFC', 'Esposa', '100', '22 de febrero del 88', 'Mazatlan', 'Sinaloa', 'Casada', 'Bienes Separados', 'Empleada', 'Ninguno', 'Empleo', '5000.00', 'Empleo', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '150000', '50000', '33.33 %', '66.67 %', '100000.00', '48', '2000', 'No', '', '', '', 'Vulnerable', '1-3 años', 'Prestamo', '1 a 2', '1 a 2', '1% - 49%', '1% - 49%', '$18000 - $20000', '1 a 3', 'Transferencia', 'Agencia', 'México', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'Guerrero-Michoacan-Tamaulipas-Morelos', 'México', 'México', 'Otros', '0.00', '', 'no cumplio');
-INSERT INTO `solicitudes` VALUES ('457', 'PFA-001SA1', 'Credit', 'Adrian Eduardo Mata Martinez', '', '', '', 'MAMA890907CV4', '6181949311', '6183030413', 'Operadores', 'Fidel Velazquez 1', 'Durango', 'México', 'Durango', '34229', 'MAMA890907HDGTR07', 'zoomwas@hotmail.com', '', '', '', '', '', '', '', 'Masculino', '1989-09-07', '27', 'Mexicana', '3', 'Recibo', 'Casa propiedad de sus familiares', '', '', 'Si', '2010', '25', 'Maria Guadalupe Alvarado Higareda', '', '', 'Casado Bienes Separados', 'Si', 'Atoz 2003', '', '0000-00-00', '', '', '', '', 'Desarrollo', 'Administración', '2016', 'Volkswagen', '6189999999', '', '144', '', '', 'Alejandro Ariel Garcia', 'Conocido', '6188888888', 'Edgar ortega Fuentes', 'Conocido', '6187777777', 'Banamex', '987654321', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '', '', '', '', 'Banamex', '123456789', 'Maria Guadalupe Alvarado Higareda', '', '', 'Atel', 'Jefa', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Alejandro Garcia Alvarado', '', '', 'CANLESRFCRFC9', '6186666666', '6185555555', 'direccion #234', 'FSTG', 'Durango', 'Mexico', 'Si', 'Durango', '34228', 'canles@hotmail.com', 'Masculino', '1990-02-01', '22', 'CANLESCURP', '', '', '0000-00-00', '', '', '', 'Edgar Ortega Fuentes', '', '', 'EDGARRFCRFCRF', '6184444444', '6183333333', 'direccon 2 #234', 'San Marcos', 'Durango', 'Mexico', 'Si', 'Durango', '34227', 'edgar@hotmail.com', 'Masculino', '1990-05-04', '22', 'EDGARCURP', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-01-11 00:00:00', '0903', 'Volkswagen', 'Augusto', 'Silvia Mancinas', 'Pendiente', 'PFNA', '222', 'Durango', 'XXXXXXXXXX', 'Voulevard Francisco Villa s/n', '5000', 'Ninguna', '0', '654654654', 'Si', '', '', '', '', '', '', '', '', '', 'Si', 'Si', 'Si', 'Si', 'Julian Vera #210', 'Juan Lira', '34226', 'México', '6182971422', 'lupixCURP', 'lupixRFC', 'Esposa', '100', '22 de febrero del 88', 'Mazatlan', 'Sinaloa', 'Casada', 'Bienes Separados', 'Empleada', 'Ninguno', 'Empleo', '5000.00', 'Empleo', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '150000', '50000', '33.33 %', '66.67 %', '100000.00', '48', '2000', 'No', '', '', '', 'Vulnerable', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0.00', '', '');
+--
+-- Volcado de datos para la tabla `registro`
+--
 
--- ----------------------------
--- Table structure for `solicitudpfa`
--- ----------------------------
-DROP TABLE IF EXISTS `solicitudpfa`;
+INSERT INTO `registro` (`Id`, `Folio_Cliente`, `Fecha_apertura`, `Fecha_Modificacion`, `Responsable`) VALUES
+(1, 'PFA-001', '2017-06-16', '0000-00-00', ''),
+(2, 'PFA-002', '2017-06-16', '0000-00-00', ''),
+(3, 'PFA-003', '2017-06-16', '0000-00-00', ''),
+(4, 'PFA-004', '2017-06-20', '0000-00-00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registroxml`
+--
+
+CREATE TABLE `registroxml` (
+  `id` int(11) NOT NULL,
+  `Folio_Sol` varchar(20) NOT NULL,
+  `PersonaRazonsoc` varchar(60) NOT NULL,
+  `DirXML` varchar(100) NOT NULL,
+  `Nombre` varchar(60) NOT NULL,
+  `Clasificacion` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `registroxml`
+--
+
+INSERT INTO `registroxml` (`id`, `Folio_Sol`, `PersonaRazonsoc`, `DirXML`, `Nombre`, `Clasificacion`) VALUES
+(198, '53', 'Adrian Eduardo Mata Martinez -Accionista2 ', 'xml/Adrian Eduardo Mata Martinez 2017-09-12.xml', 'Adrian Eduardo Mata Martinez', 'Accionista2'),
+(199, '53', 'Maria Guadalupe Alvarado Higareda -Beneficiario ', 'xml/Maria Guadalupe Alvarado Higareda 2017-09-12.xml', 'Maria Guadalupe Alvarado Higareda', 'Beneficiario'),
+(200, '51', 'Alejandro garcia alvarado -RefPer1 ', 'xml/Alejandro garcia alvarado 2017-09-12.xml', 'Alejandro garcia alvarado', 'RefPer1'),
+(206, '53', 'Adrian  Eduardo Mata Martinez - MAMA890907CV5', 'xml/Adrian  Eduardo Mata Martinez 2017-09-12.xml', 'Adrian  Eduardo Mata Martinez', 'contempresa'),
+(207, '53', 'Alejandro Ariel Garcia Alvarado -Accionista1 ', 'xml/Alejandro Ariel Garcia Alvarado 2017-09-12.xml', 'Alejandro Ariel Garcia Alvarado', 'Accionista1'),
+(209, '53', 'Kevin Arturo Elisea Mazatan -Accionista3 ', 'xml/Kevin Arturo Elisea Mazatan 2017-09-12.xml', 'Kevin Arturo Elisea Mazatan', 'Accionista3');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitudes`
+--
+
+CREATE TABLE `solicitudes` (
+  `Id` int(6) NOT NULL,
+  `FolioCliente` int(6) NOT NULL,
+  `NomObSol` varchar(40) NOT NULL,
+  `ApPatObSol` varchar(20) NOT NULL,
+  `ApMatObSol` varchar(20) NOT NULL,
+  `RFCObSol` varchar(13) NOT NULL,
+  `TelObSol` varchar(11) NOT NULL,
+  `MovObSol` varchar(11) NOT NULL,
+  `DirObSol` varchar(50) NOT NULL,
+  `CURPObSol` varchar(20) NOT NULL,
+  `ColObSol` varchar(50) NOT NULL,
+  `CdObSol` varchar(20) NOT NULL,
+  `LugNacObSol` varchar(40) NOT NULL,
+  `PropObSol` varchar(2) NOT NULL,
+  `EdoObSol` varchar(30) NOT NULL,
+  `CPObSol` varchar(7) NOT NULL,
+  `EmailObSol` varchar(50) NOT NULL,
+  `SexoObSol` varchar(10) NOT NULL,
+  `FechNacObSol` date NOT NULL,
+  `EdadObSol` varchar(2) NOT NULL,
+  `NomObSol2` varchar(40) NOT NULL,
+  `ApPatObSol2` varchar(20) NOT NULL,
+  `ApMatObSol2` varchar(20) NOT NULL,
+  `RFCObSol2` varchar(13) NOT NULL,
+  `TelObSol2` varchar(11) NOT NULL,
+  `MovObSol2` varchar(11) NOT NULL,
+  `DirObSol2` varchar(50) NOT NULL,
+  `CURPObSol2` varchar(20) NOT NULL,
+  `ColObSol2` varchar(50) NOT NULL,
+  `CdObSol2` varchar(20) NOT NULL,
+  `LugNacObSol2` varchar(40) NOT NULL,
+  `PropObSol2` varchar(2) NOT NULL,
+  `EdoObSol2` varchar(30) NOT NULL,
+  `CPObSol2` varchar(7) NOT NULL,
+  `EmailObSol2` varchar(50) NOT NULL,
+  `SexoObSol2` varchar(10) NOT NULL,
+  `FechNacObSol2` date NOT NULL,
+  `EdadObSol2` varchar(2) NOT NULL,
+  `TipoCredito` varchar(50) NOT NULL,
+  `MontoSolicitado` double NOT NULL,
+  `Enganche` double NOT NULL,
+  `PorEnganche` double NOT NULL,
+  `PorFinanciamiento` double NOT NULL,
+  `MontoFinanciado` double NOT NULL,
+  `InteresAnual` double NOT NULL,
+  `ComisionApertura` double NOT NULL,
+  `PorComApertura` double NOT NULL,
+  `SeguroAuto` double NOT NULL,
+  `SeguroVida` double NOT NULL,
+  `SeguroDesempleo` double NOT NULL,
+  `Plazo` int(6) NOT NULL,
+  `PagoMenEsp` double NOT NULL,
+  `NomObSolPM` varchar(50) NOT NULL,
+  `RFCObSolPM` varchar(13) NOT NULL,
+  `TelObSolPM` varchar(11) NOT NULL,
+  `Tel2ObSolPM` varchar(11) NOT NULL,
+  `CPObSolPM` varchar(5) NOT NULL,
+  `DirObSolPM` varchar(40) NOT NULL,
+  `ColObSolPM` varchar(40) NOT NULL,
+  `CdObSolPM` varchar(40) NOT NULL,
+  `EstObSolPM` varchar(40) NOT NULL,
+  `MunObSolPM` varchar(40) NOT NULL,
+  `EmailObSolPM` varchar(60) NOT NULL,
+  `AntObSolPM` varchar(3) NOT NULL,
+  `ApoObSolPM` varchar(50) NOT NULL,
+  `ActPrinObSolPM` varchar(40) NOT NULL,
+  `FeIniOpObSolPM` date NOT NULL,
+  `CantPerObSolPM` varchar(6) NOT NULL,
+  `ClaveCon` varchar(6) NOT NULL,
+  `NomCon` varchar(50) NOT NULL,
+  `NomVend` varchar(50) NOT NULL,
+  `GerenteGral` varchar(50) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Status` varchar(20) NOT NULL,
+  `StatusValidacion` varchar(10) NOT NULL,
+  `GradoRiesgo` int(5) DEFAULT NULL,
+  `Documentacion` int(5) DEFAULT NULL,
+  `FechaModificacion` date NOT NULL,
+  `ModPor` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`Id`, `FolioCliente`, `NomObSol`, `ApPatObSol`, `ApMatObSol`, `RFCObSol`, `TelObSol`, `MovObSol`, `DirObSol`, `CURPObSol`, `ColObSol`, `CdObSol`, `LugNacObSol`, `PropObSol`, `EdoObSol`, `CPObSol`, `EmailObSol`, `SexoObSol`, `FechNacObSol`, `EdadObSol`, `NomObSol2`, `ApPatObSol2`, `ApMatObSol2`, `RFCObSol2`, `TelObSol2`, `MovObSol2`, `DirObSol2`, `CURPObSol2`, `ColObSol2`, `CdObSol2`, `LugNacObSol2`, `PropObSol2`, `EdoObSol2`, `CPObSol2`, `EmailObSol2`, `SexoObSol2`, `FechNacObSol2`, `EdadObSol2`, `TipoCredito`, `MontoSolicitado`, `Enganche`, `PorEnganche`, `PorFinanciamiento`, `MontoFinanciado`, `InteresAnual`, `ComisionApertura`, `PorComApertura`, `SeguroAuto`, `SeguroVida`, `SeguroDesempleo`, `Plazo`, `PagoMenEsp`, `NomObSolPM`, `RFCObSolPM`, `TelObSolPM`, `Tel2ObSolPM`, `CPObSolPM`, `DirObSolPM`, `ColObSolPM`, `CdObSolPM`, `EstObSolPM`, `MunObSolPM`, `EmailObSolPM`, `AntObSolPM`, `ApoObSolPM`, `ActPrinObSolPM`, `FeIniOpObSolPM`, `CantPerObSolPM`, `ClaveCon`, `NomCon`, `NomVend`, `GerenteGral`, `Fecha`, `Status`, `StatusValidacion`, `GradoRiesgo`, `Documentacion`, `FechaModificacion`, `ModPor`) VALUES
+(182, 134, 'qwer', 'Uhyu', 'poiuyt', 'MAMA890907CV4', '618-6516546', '616-5165166', 'sdfsdf', 'MAMA890907HDGTRD07', 'Rinconada Sol', 'Victoria de Durango', 'sdf', 'Si', 'Durango', '34228', 'sfsdf@sd.com', 'Femenino', '1989-09-07', '27', 'fghfgh', 'sdfsf', 'jhg', 'MAMA890907CV4', '618-3513546', '618-3543465', 'sdfsdf', 'MAMA890907HDGTRD07', 'Fidel Velázquez II', 'Victoria de Durango', 'sdfsf', 'Si', 'Durango', '34229', 'sdf@sdf.com', 'Femenino', '1989-09-07', '27', 'Crédito Simple de Nomina', 150000, 50000, 33.33, 66.67, 100, 91.7, 3, 3, 2000, 2000, 2000, 60, 4000, 'dgdgdfgd', 'MAMA890907CV4', '618-6516546', '618-6546461', '34220', 'ljlj lj 6454 ', 'Girasoles', 'Victoria de Durango', 'Durango', 'Durango', 'asd@sdf.com', '50', 'asd asd asd ad', 'asdad asd  asd ', '1989-09-07', '75', '0903', 'CONSENCIO', 'sdfsdf', 'sdfsdf', '2017-08-16', 'Finalizado', 'Pendiente', NULL, NULL, '2017-09-11', 'admin'),
+(184, 203, 'Jose Guadalupe', 'alvarado', 'algo', 'MAMA890907CV4', '618-2222222', '618-3333333', 'julian vera  210', 'MAMA890907HDGTRD07', 'Juan Lira Bracho', 'Victoria de Durango', 'Mexico', 'Si', 'Durango', '34188', 'na@na.com', 'Masculino', '1966-11-11', '50', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Crédito Simple de Nomina', 151000, 0, 0, 0, 0, 91.7, 3, 3, 0, 2500, 2500, 60, 5000, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '0903', 'VW', 'Eduardo Martinez', 'Silvia Mancinas', '2017-09-11', 'Finalizado', 'Pendiente', 51, 121, '2017-09-11', 'admin'),
+(186, 207, 'Maria Guadalupe', 'alvarado', 'higareda', 'MAMA890907CV1', '618-9654654', '618-6546565', 'julian vera 210', 'MAMA890907HDGTRD01', 'Juan Lira Bracho', 'Victoria de Durango', 'Mexico', 'No', 'Durango', '34188', 'asdasd@sdf.com', 'Femenino', '1988-02-22', '29', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', 'Auto Nuevo', 200000, 80000, 40, 60, 120, 12.2, 2, 2, 2500, 2500, 0, 60, 5000, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '0903', 'VW', 'Eduardo Martinez', 'SilMan', '2017-09-12', 'Incompleto', 'Pendiente', 53, 125, '2017-09-15', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitudpfa`
+--
+
 CREATE TABLE `solicitudpfa` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Id` int(11) NOT NULL,
   `Folio_Sol` varchar(20) NOT NULL,
   `Folio_Cliente` varchar(20) NOT NULL,
-  `TipoCredito` varchar(20) NOT NULL,
+  `TipoCredito` varchar(35) NOT NULL,
   `NomRefPer` varchar(20) NOT NULL,
   `ParenRefPer` varchar(20) NOT NULL,
   `TelRefPer` varchar(20) NOT NULL,
@@ -1222,50 +1228,47 @@ CREATE TABLE `solicitudpfa` (
   `NomVendedor` varchar(20) NOT NULL,
   `NomGerenteGral` varchar(20) NOT NULL,
   `Comentarios` varchar(20) NOT NULL,
-  `Status` varchar(20) NOT NULL,
-  PRIMARY KEY (`Id`,`Folio_Sol`)
-) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=latin1;
+  `Status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of solicitudpfa
--- ----------------------------
-INSERT INTO `solicitudpfa` VALUES ('9', 'SA-001', 'PFA-001', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('10', 'SA-010', 'PFA-015', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('11', 'SA-011', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('12', 'SA-012', 'PFA-017', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('13', 'SA-013', 'PFA-018', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('14', 'SA-014', 'PFA-019', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('15', 'SA-015', 'PFA-020', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('16', 'SA-016', 'PFA-021', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-16', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('17', 'SA-017', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-17', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('18', 'SA-018', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-17', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('19', 'SA-019', 'PFA-022', 'Premium Credit', 'Kjhk', 'jhkjhkjh', '8898797979', 'Hkjhkj', 'hkjhk', '8978797979', '7yguyuttutyuy', 'tuyt', 'uytuy', 'tuytuyt', 'Uytuyt', 'Uytuyt', 'Uytuy', 'tuytu', 'ytuy', 'Tuytutyuyt', 'Uytuy', 'Tuyt', 'HGJGJGJGJGJGJ', '4646546546', '5465454654', 'uyt', 'uyt', 'uyt', 'uyt', 'Si', 'uytuytuytu', '32132', 'uyt@dsad.com', 'Masculino', '1988-07-09', '656', 'JHGJHGJ', 'Asdasd', 'Hgfhgf', 'Hgfhgfhg', 'GJHGJGJJJGJGJ', '6645465465', '4654654654', 'fhgf', 'hgf', 'hgf', 'hgf', 'Si', 'hgfhg', '3543213', 'hgf@f.com', 'Masculino', '1987-05-04', '57', 'JGJHGJH', '2017-02-17', '65465', '654', '654', '654654', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('20', 'SA-020', 'PFA-023', 'Premium Credit', 'Kjhk', 'jhkjhkjh', '8898797979', 'Hkjhkj', 'hkjhk', '8978797979', '7yguyuttutyuy', 'tuyt', 'uytuy', 'tuytuyt', 'Uytuyt', 'Uytuyt', 'Uytuy', 'tuytu', 'ytuy', 'Tuytutyuyt', 'Uytuy', 'Tuyt', 'HGJGJGJGJGJGJ', '4646546546', '5465454654', 'uyt', 'uyt', 'uyt', 'uyt', 'Si', 'uytuytuytu', '32132', 'uyt@dsad.com', 'Masculino', '1988-07-09', '656', 'JHGJHGJ', 'Asdasd', 'Hgfhgf', 'Hgfhgfhg', 'GJHGJGJJJGJGJ', '6645465465', '4654654654', 'fhgf', 'hgf', 'hgf', 'hgf', 'Si', 'hgfhg', '3543213', 'hgf@f.com', 'Masculino', '1987-05-04', '57', 'JGJHGJH', '2017-02-17', '65465', '654', '654', '654654', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('21', 'SA-021', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-25', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('22', 'SA-022', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('23', 'SA-023', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('24', 'SA-024', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('25', 'SA-025', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('26', 'SA-026', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('27', 'SA-027', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('28', 'SA-028', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('29', 'SA-029', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('30', 'SA-030', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('31', 'SA-031', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('32', 'SA-032', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('33', 'SA-033', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('34', 'SA-034', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('35', 'SA-035', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('999', 'SA-037', 'PFA-016', 'Credit', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '0', '', '0000-00-00', '', '', '', '', '', '');
-INSERT INTO `solicitudpfa` VALUES ('999', 'SA-999', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-02-27', '132132132', '132', '132', '132', '', 'Pendiente');
-INSERT INTO `solicitudpfa` VALUES ('1000', 'SA-100', 'PFA-016', 'Credit', 'ASD', 'ASD', '3132131313', 'SDFS', 'FSD', '3121321321', '321', '321', '321', '321', 'SDF', 'SDF', 'SDF', '321321', '321321', 'SDF', 'SDF', 'SDF', '1313132131321', '3131313131', '3131331313', '3213', '21321', '32132', '13213', 'Si', '321', '321321', '321SDF@G.COM', 'Masculino', '1989-09-07', '321', '32132', 'SDFS', 'SDF', 'SDF', '3313213213213', '2132131313', '1313131313', '321321', '32132', '1321', '321SDF', 'Si', '321', '3213', '21321@G.COM', 'Masculino', '1989-09-07', '321', '321', '2017-03-02', '132132132', '132', '132', '132', '', 'Pendiente');
+--
+-- Volcado de datos para la tabla `solicitudpfa`
+--
 
--- ----------------------------
--- Table structure for `solicitudpfna`
--- ----------------------------
-DROP TABLE IF EXISTS `solicitudpfna`;
+INSERT INTO `solicitudpfa` (`Id`, `Folio_Sol`, `Folio_Cliente`, `TipoCredito`, `NomRefPer`, `ParenRefPer`, `TelRefPer`, `NomRefPer2`, `ParenRefPer2`, `TelRefPer2`, `BancRefBan`, `NoTarRefBan`, `BancCarDir`, `NoTarCarDir`, `NomDatCon`, `ApPatDatCon`, `ApMatDatCon`, `CompDatCon`, `PuestDatCon`, `NomObSol`, `ApPatObSol`, `ApMatObSol`, `RFCObSol`, `TelObSol`, `MovObSol`, `DirObSol`, `ColObSol`, `CdObSol`, `LugNacObSol`, `PropObSol`, `EdoObSol`, `CPObSol`, `EmailObSol`, `SexoObSol`, `FeNacObSol`, `EdObSol`, `CURPObSol`, `NomObSol2`, `ApPatObSol2`, `ApMatObSol2`, `RFCObSol2`, `TelObSol2`, `MovObSol2`, `DirObSol2`, `ColObSol2`, `CdObSol2`, `LugNacObSol2`, `PropObSol2`, `EdoObSol2`, `CPObSol2`, `EmailObSol2`, `SexoObSol2`, `FeNacObSol2`, `EdObSol2`, `CURPObSol2`, `Fecha`, `ClavConcesionario`, `NomConcesionario`, `NomVendedor`, `NomGerenteGral`, `Comentarios`, `Status`) VALUES
+(7, 'SA-007', 'PFA-004', 'Crédito Simple de Nomina', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(8, 'SA-008', 'PFA-004', 'Crédito Simple de Nomina', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(9, 'SA-009', 'PFA-004', 'Crédito Simple de Nomina', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(10, 'SA-010', 'PFA-004', 'Crédito Simple de Nomina', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(11, 'SA-011', 'PFA-004', 'Auto Nuevo', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(12, 'SA-012', 'PFA-004', 'Auto Nuevo', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(13, 'SA-013', 'PFA-004', 'Auto Nuevo', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(14, 'SA-014', 'PFA-004', 'Auto Nuevo', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-03', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(15, 'SA-015', 'PFA-004', 'Crédito Simple de Nomina', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-04', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente'),
+(16, 'SA-016', 'PFA-004', 'Crédito Simple de Nomina', 'Mnsdbfmnb', 'mnb', '3135135151', '', '', '', '', '', '', '', '', '', '', '', '', 'Kjhjhkjh', 'Kjhkj', 'Hkj', 'KHKHKHKHKHKHK', '3151616151', '6616121513', 'hkj', 'hkj', 'hkjh', 'kjh', '', 'kjhkjh', '32135', 'jhjhg@dfg.com', '', '1989-09-07', 321, 'JKJH', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 0, '', '2017-07-04', 'sdfsdfkjh', 'kh', 'kjh', 'khkh', '', 'Pendiente');
+
+--
+-- Disparadores `solicitudpfa`
+--
+DELIMITER $$
+CREATE TRIGGER `solicitudpfa_id` BEFORE INSERT ON `solicitudpfa` FOR EACH ROW BEGIN
+    if (SELECT COUNT(*) FROM solicitudpfa)=0   THEN
+        SET NEW.Folio_Sol= 'SA-001';
+    else
+        SET NEW.Folio_Sol= CONCAT('SA-', LPAD((select MAX(Id)+1 from solicitudpfa), 3, '0'));
+  END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitudpfna`
+--
+
 CREATE TABLE `solicitudpfna` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Id` int(11) NOT NULL,
   `Folio_Sol` varchar(20) NOT NULL,
   `Folio_Cliente` varchar(20) NOT NULL,
   `TipoCredito` varchar(20) NOT NULL,
@@ -1352,59 +1355,34 @@ CREATE TABLE `solicitudpfna` (
   `NomConcesionario` varchar(20) NOT NULL,
   `NomVendedor` varchar(20) NOT NULL,
   `NomGerenteGral` varchar(20) NOT NULL,
-  `Status` varchar(20) NOT NULL,
-  PRIMARY KEY (`Id`,`Folio_Sol`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+  `Status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of solicitudpfna
--- ----------------------------
-INSERT INTO `solicitudpfna` VALUES ('3', 'SN-003', '$Folio_Cliente', '$tipocredito', '$nomref1', '$parenref1', '$TelRefPer', '$nomref2', '$parenref2', '$TelRefPer2', '$refbanc', '$numcuebanc', '$sucbanc1', '0000-00-00', '$refbanc2', '$tarjrefbanc', '$sucbanc2', '0000-00-00', '$refcomemp1', '0', '$TelRefCom', '$refcomemp2', '0', '$TelRefCom2', '$cargdir', '$nocuentcd', '$conyunom', '$conyuape1', '$conyuape2', '$compaconyu', '$puestconyu', '$nomrazsoc', '$dirpermor', '$colpermor', '$cdpermor', '$lugnacpermor', '$edopermor', '0', '$RFCObPerMor', '$TelObPerMor', '$FaxObPerMor', '$antemp', '$apodsusc', '$actprinc', '0000-00-00', '0', '$datobnom1', '$datobappat1', '$datobapmat1', '$RFCObSol', '$TelObSol', '$MovObSol', '$datobdir1', '$datobcol1', '$datobcd1', '$datoblugnac1', '$PropObSol', '$datobedo1', '$datobcp1', '$datobmail1', '$SexoObSol', '0000-00-00', '0', '$datobcurp1', '$datobnom2', '$datobappat2', '$datobapmat2', '$RFCObSol2', '$TelObSol2', '$MovObSol2', '$datobdir2', '$datobcol2', '$datobcd2', '$datoblugnac2', '$PropObSol2', '$datobedo2', '$datobcp2', '$datobmail2', '$SexoObSol2', '0000-00-00', '0', '$datobcurp2', '0000-00-00', '$clavcon', '$nomcons', '$nomvend', '$gerentegral', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('4', 'SN-004', 'PFNA-013', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('5', 'SN-005', 'PFNA-014', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('6', 'SN-006', 'PFNA-015', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('7', 'SN-007', 'PFNA-016', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('8', 'SN-008', 'PFNA-017', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('9', 'SN-009', 'PFNA-018', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('10', 'SN-010', 'PFNA-019', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('11', 'SN-011', 'PFNA-020', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('12', 'SN-012', 'PFNA-021', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('13', 'SN-013', 'PFNA-022', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('14', 'SN-014', 'PFNA-023', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('15', 'SN-015', 'PFNA-024', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('16', 'SN-016', 'PFNA-025', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('17', 'SN-017', 'PFNA-026', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('18', 'SN-018', 'PFNA-027', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('19', 'SN-019', 'PFNA-028', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('20', 'SN-020', 'PFNA-029', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('21', 'SN-021', 'PFNA-030', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('22', 'SN-022', 'PFNA-031', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('23', 'SN-023', 'PFNA-032', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('24', 'SN-024', 'PFNA-033', '1', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('25', 'SN-025', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '4654', '4654', '6546645465', '5654', '6546', 'Sdfs', 'Sdfsd', 'Sdf', '654', '654', '654654', '654654', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-21', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('26', 'SN-026', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '', '4654', '54665465', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', '', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('27', 'SN-027', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '', '4654', '54665465', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', '', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('28', 'SN-028', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '', '4654', '54665465', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', '', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('29', 'SN-029', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '', '4654', '54665465', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'dfgdfgdfg', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('30', 'SN-030', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '46656555', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', '45245', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('31', 'SN-031', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '466565525', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'sdfsdf', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('32', 'SN-032', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '4665655255', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'dfdfgdfg', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('33', 'SN-033', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '4665655255', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'dfdfgdfg', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('34', 'SN-034', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '4665655255', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'dfdfgdfg', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('35', 'SN-035', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '4665655255', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'dfdfgdfg', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('36', 'SN-036', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '4665655255', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'dfdfgdfg', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('37', 'SN-037', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '4665655255', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'direccion persona mo', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
-INSERT INTO `solicitudpfna` VALUES ('38', 'SN-038', 'PFNA-034', 'Credit', 'Asda', 'sdf', '6464645464', 'Sdf', 'sdf', '6464654546', '464654', '654', '654', '1989-05-06', '23132', '132', '1321', '1989-09-07', '64645', '6465', '6464646645', '64645', '4654', '4665655255', '5654', '6546', 'Maria Guadalupe', 'Alvarado', 'Higareda', '654', '654', '654654', 'direccion persona mo', '4654654', '65465', '4654', '654', '65465', '6546464646454', '6546464654', '6546546545', '465465', '46546', '54654654', '1989-05-06', '654654', 'Sdf', 'Sdf', 'Asf', '6546546546546', '5465454654', '5464646546', '654654', '65465', '4654', '65456', 'Si', '6654', '65465', '4654654', 'Masculino', '1989-09-07', '6546546', '54654', 'Sdf', 'Sdf', 'Sdf', '4656465465465', '4546546546', '5654654654', 'sdf', 'sdf', 'sdf', '65465', 'Si', '65465', '4654', '6546', 'Masculino', '1989-09-07', '65465', '465465', '2017-02-23', '6546546', '5465', 'sdf', '654654', 'Pendiente');
+--
+-- Disparadores `solicitudpfna`
+--
+DELIMITER $$
+CREATE TRIGGER `solicitudpfna_id` BEFORE INSERT ON `solicitudpfna` FOR EACH ROW BEGIN
+    if (SELECT COUNT(*) FROM solicitudpfna)=0   THEN
+        SET NEW.Folio_Sol= 'SN-001';
+    else
+        SET NEW.Folio_Sol= CONCAT('SN-', LPAD((select MAX(Id)+1 from solicitudpfna), 3, '0'));
+  END IF;
+END
+$$
+DELIMITER ;
 
--- ----------------------------
--- Table structure for `solicitudpm`
--- ----------------------------
-DROP TABLE IF EXISTS `solicitudpm`;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitudpm`
+--
+
 CREATE TABLE `solicitudpm` (
-  `Id` int(10) NOT NULL AUTO_INCREMENT,
+  `Id` int(10) NOT NULL,
   `Folio_Sol` varchar(20) NOT NULL,
   `Folio_Cliente` varchar(20) NOT NULL,
-  `TipoCredito` varchar(20) NOT NULL,
+  `TipoCredito` varchar(50) NOT NULL,
   `BancRefBan` varchar(20) NOT NULL,
   `NoTarRefBan` varchar(20) NOT NULL,
   `SucRefBan` varchar(20) NOT NULL,
@@ -1507,93 +1485,298 @@ CREATE TABLE `solicitudpm` (
   `NomConcesionario` varchar(20) NOT NULL,
   `NomVendedor` varchar(20) NOT NULL,
   `NomGerenteGral` varchar(20) NOT NULL,
-  PRIMARY KEY (`Id`),
-  KEY `Id` (`Id`),
-  KEY `Folio_Sol` (`Folio_Sol`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `Status` varchar(10) NOT NULL,
+  `Comentarios` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of solicitudpm
--- ----------------------------
-INSERT INTO `solicitudpm` VALUES ('1', 'SM-001', 'PM-001', 'Credit', '321', '321', '32', '1989-09-07', '132', '132', '1321', '1989-09-07', '321', '32', '132132132132131', '32', '1321', '3216456546546', '32', '132', '132', '132', '132', '132', '132', '132', '132', '1326546465463213', '13654654621321', '21331321321321', '2132', '132', '132', '0000-00-00', '132', '13', '213', '213', '21', '321', '321', '321', '321', '32', '132', '132', '1321', '32', '132', '13213', '213', '213', '21', '321', '321', '321', '32', '132', '132', '13', '213', '21', '321', '321', '32', '132', '132', '132', '0000-00-00', '213', '213', '21', '321', '0000-00-00', '32', '1321', '32', '132', '132', '132', '132', '1321', '32', '1321', '321', '321', '231', '231', '231', '231', '321', '123', '0000-00-00', '321', '231', '321', '321', '0000-00-00', '321', '231', '231', '0000-00-00', '231', '321', '321', '23');
+--
+-- Volcado de datos para la tabla `solicitudpm`
+--
 
--- ----------------------------
--- Table structure for `tiposcreditos`
--- ----------------------------
-DROP TABLE IF EXISTS `tiposcreditos`;
-CREATE TABLE `tiposcreditos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(255) NOT NULL,
-  `tasa` float(11,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+INSERT INTO `solicitudpm` (`Id`, `Folio_Sol`, `Folio_Cliente`, `TipoCredito`, `BancRefBan`, `NoTarRefBan`, `SucRefBan`, `FecApRefBan`, `BancRefBan2`, `NoTarRefBan2`, `SucRefBan2`, `FecApRefBan2`, `EmpRefCom`, `AntRefCom`, `TelRefCom`, `EmpRefCom2`, `AntRefCom2`, `TelRefCom2`, `BancCarDir`, `NoTarCarDir`, `NomObPerMor`, `DirObPerMor`, `ColObPerMor`, `CdObPerMor`, `LugNacObPerMor`, `EdoObPerMor`, `CPObPerMor`, `RFCObPerMor`, `TelObPerMor`, `FaxObPerMor`, `AntConsEmpPM`, `ApoConsEmpPM`, `ActPrinDatGen`, `IniOpDatGen`, `CantPerDatGen`, `NomAccionista1`, `RFCAccionista1`, `PorcentAccionista1`, `NomAccionista2`, `RFCAccionista2`, `PorcentAccionista2`, `NomAccionista3`, `RFCAccionista3`, `PorcentAccionista3`, `NomAccionista4`, `RFCAccionista4`, `PorcentAccionista4`, `NomAccionistaPM1`, `RFCAccionistaPM1`, `PorcentAccionistaPM1`, `NomAccionistaPM2`, `RFCAccionistaPM2`, `PorcentAccionistaPM2`, `NomObSol`, `ApPatObSol`, `ApMatObSol`, `RFCObSol`, `TelObSol`, `MovObSol`, `DirObSol`, `ColObSol`, `CdObSol`, `LugNacObSol`, `PropObSol`, `EdoObSol`, `CPObSol`, `EmailObSol`, `SexoObSol`, `FeNacObSol`, `EdObSol`, `CURPObSol`, `NomObSolPF`, `SexoObSolPF`, `FeNacObSolPF`, `RFCObSolPF`, `CURPObSolPF`, `EdObSolPF`, `NomObSol2`, `ApPatObSol2`, `ApMatObSol2`, `RFCObSol2`, `TelObSol2`, `MovObSol2`, `DirObSol2`, `ColObSol2`, `CdObSol2`, `LugNacObSol2`, `PropObSol2`, `EdoObSol2`, `CPObSol2`, `EmailObSol2`, `SexoObSol2`, `FeNacObSol2`, `EdObSol2`, `CURPObSol2`, `NomObSolPF2`, `SexoObSolPF2`, `FeNacObSolPF2`, `RFCObSolPF2`, `CURPObSolPF2`, `EdObSolPF2`, `Fecha`, `ClavConcesionario`, `NomConcesionario`, `NomVendedor`, `NomGerenteGral`, `Status`, `Comentarios`) VALUES
+(1, 'SM-001', 'PM-001', 'Crédito Simple de Nomina', 'jhgjhg', 'jhgjh', 'gjhg', '1989-09-07', 'jhkjhk', 'jhkj', 'hkjh', '1989-09-07', 'kjh', 0, 'kjhkhkhkfk', 'kjhkjh', 0, 'khkhkhfkfk', 'kjsdhfkjh', 'kjh', 'kjhskdjfhk', 'jhsdfkjh', 'ksjdfhksjh', 'kjhk', 'jhgjh', 'jhkj', 0, 'k', 'khskhsdhkf', 'khdjhsfhsf', 'hksjh', 'kjhkjhkjh', 'kjhkjhkjh', '1989-09-07', 0, 'ajsdfgjhgjhg', 'jhgjhgjh', 0, 'jhgj', 'hg', 0, 'jhg', 'jhg', 0, 'jhg', 'jh', 0, 'gj', 'hg', 0, 'jh', 'gjh', 0, 'gjh', 'gjhgjhgjh', 'gjhgjh', 'k', 'fkshkfskfs', 'fkfsdkhfks', 'gjhgj', 'hgjhg', 'jhg', 'jhgjh', '1', 'jkjhg', 'jhgj', 'gjhgj', 'M', '1989-09-07', 0, 'jhg', 'dhfksjfhksfhk', 'F', '1989-09-07', 'jdjgmnb', 'mnbmdnbm', 0, 'nbmbmvbn', 'mnbmn', 'bmnb', 'jkjhfjdfshkh', 'hfjskjhkdf', 'sdksdkshks', 'mnbmn', 'bmnbm', 'nbm', 'nbmnb', 'Si', 'mjkjhg', 'jhgjgjhgj', 'hgjhgj', 'M', '1989-09-07', 0, 'jkkjhk', 'hdfkjshfkjshfkjsh', 'M', '1989-09-07', 'nbdfvnb', 'vnv', 0, '2017-06-19', 'nbv', 'nbvnb', 'vnbv', 'nbv', '', ''),
+(2, 'SM-002', 'PM-002', 'Crédito Simple de Nomina', 'jhgjhg', 'jhgjh', 'gjhg', '1989-09-07', 'jhkjhk', 'jhkj', 'hkjh', '1989-09-07', 'kjh', 0, 'kjhkhkhkfk', 'kjhkjh', 0, 'khkhkhfkfk', 'kjsdhfkjh', 'kjh', 'kjhskdjfhk', 'jhsdfkjh', 'ksjdfhksjh', 'kjhk', 'jhgjh', 'jhkj', 0, 'k', 'khskhsdhkf', 'khdjhsfhsf', 'hksjh', 'kjhkjhkjh', 'kjhkjhkjh', '1989-09-07', 0, 'ajsdfgjhgjhg', 'jhgjhgjh', 0, 'jhgj', 'hg', 0, 'jhg', 'jhg', 0, 'jhg', 'jh', 0, 'gj', 'hg', 0, 'jh', 'gjh', 0, 'gjh', 'gjhgjhgjh', 'gjhgjh', 'k', 'fkshkfskfs', 'fkfsdkhfks', 'gjhgj', 'hgjhg', 'jhg', 'jhgjh', '1', 'jkjhg', 'jhgj', 'gjhgj', 'M', '1989-09-07', 0, 'jhg', 'dhfksjfhksfhk', 'F', '1989-09-07', 'jdjgmnb', 'mnbmdnbm', 0, 'nbmbmvbn', 'mnbmn', 'bmnb', 'jkjhfjdfshkh', 'hfjskjhkdf', 'sdksdkshks', 'mnbmn', 'bmnbm', 'nbm', 'nbmnb', 'Si', 'mjkjhg', 'jhgjgjhgj', 'hgjhgj', 'M', '1989-09-07', 0, 'jkkjhk', 'hdfkjshfkjshfkjsh', 'M', '1989-09-07', 'nbdfvnb', 'vnv', 0, '2017-06-19', 'nbv', 'nbvnb', 'vnbv', 'nbv', '', ''),
+(3, 'SM-003', 'PM-001', 'Crédito Simple de Nomina', 'jhgjhg', 'jhgjh', 'gjhg', '1989-09-07', 'jhkjhk', 'jhkj', 'hkjh', '1989-09-07', 'kjh', 0, 'kjhkhkhkfk', 'kjhkjh', 0, 'khkhkhfkfk', 'kjsdhfkjh', 'kjh', 'kjhskdjfhk', 'jhsdfkjh', 'ksjdfhksjh', 'kjhk', 'jhgjh', 'jhkj', 0, 'k', 'khskhsdhkf', 'khdjhsfhsf', 'kjhkjhkjh', 'kjhkjhkjh', 'kjhkjhkjh', '1989-09-07', 0, 'ajsdfgjhgjhg', 'jhgjhgjh', 0, 'jhgj', 'jhgjhgjh', 0, 'jhg', 'jhgjhgjh', 0, 'jhg', 'jhgjhgjh', 0, 'gj', 'hg', 0, 'jh', 'gjh', 0, 'gjh', 'gjhgjhgjh', 'gjhgjh', 'k', 'fkshkfskfs', 'fkfsdkhfks', 'gjhgj', 'hgjhg', 'jhg', 'jhgjh', '1', 'jkjhg', 'jhgj', 'gjhgj', 'M', '1989-09-07', 0, 'jhg', 'dhfksjfhksfhk', 'M', '1989-09-07', 'jdjgmnb', 'mnbmdnbm', 0, 'nbmbmvbn', 'mnbmn', 'bmnb', 'jkjhfjdfshkh', 'hfjskjhkdf', 'sdksdkshks', 'mnbmn', 'bmnbm', 'nbm', 'nbmnb', 'Si', 'mjkjhg', 'jhgjgjhgj', 'hgjhgj', 'M', '1989-09-07', 0, 'jkkjhk', 'hdfkjshfkjshfkjsh', 'M', '1989-09-07', 'nbdfvnb', 'vnv', 0, '2017-06-19', 'nbv', 'nbvnb', 'vnbv', 'nbv', '', ''),
+(4, 'SM-004', 'PM-001', 'Crédito Simple de Nomina', 'jhgjhg', 'jhgjh', 'gjhg', '1989-09-07', 'jhkjhk', 'jhkj', 'hkjh', '1989-09-07', 'kjh', 0, 'kjhkhkhkfk', 'kjhkjh', 0, 'khkhkhfkfk', 'kjsdhfkjh', 'kjh', 'kjhskdjfhk', 'jhsdfkjh', 'ksjdfhksjh', 'kjhk', 'jhgjh', 'jhkj', 0, 'k321321654321', 'khskhsdhkf', 'khdjhsfhsf', 'kjhkjhkjh', 'kjhkjhkjh', 'kjhkjhkjh', '1989-09-07', 0, 'ajsdfgjhgjhg', 'jhgjhgjh', 0, 'jhgj', 'jhgjhgjh', 0, 'jhg', 'jhgjhgjh', 0, 'jhg', 'jhgjhgjh', 0, 'gj', 'hg', 0, 'jh', 'gjh', 0, 'gjh', 'gjhgjhgjh', 'gjhgjh', 'k', 'fkshkfskfs', 'fkfsdkhfks', 'gjhgj', 'hgjhg', 'jhg', 'jhgjh', 'Si', 'jkjhg', 'jhgj', 'gjhgj', 'Masculino', '1989-09-07', 0, 'jhg', 'dhfksjfhksfhk', 'Masculino', '1989-09-07', 'jdjgmnb', 'mnbmdnbm', 0, 'nbmbmvbn', 'mnbmn', 'bmnb', 'jkjhfjdfshkh', 'hfjskjhkdf', 'sdksdkshks', 'mnbmn', 'bmnbm', 'nbm', 'nbmnb', 'Si', 'mjkjhg', 'jhgjgjhgj', 'hgjhgj', 'Masculino', '1989-09-07', 0, 'jkkjhk', 'hdfkjshfkjshfkjsh', 'Masculino', '1989-09-07', 'nbdfvnb', 'vnv', 0, '2017-06-19', 'nbv', 'nbvnb', 'vnbv', 'nbv', '', '');
 
--- ----------------------------
--- Records of tiposcreditos
--- ----------------------------
-INSERT INTO `tiposcreditos` VALUES ('1', 'Auto Nuevo', '15.00');
-INSERT INTO `tiposcreditos` VALUES ('2', 'Auto Usado', '18.00');
-INSERT INTO `tiposcreditos` VALUES ('3', 'Crédito Simple', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('4', 'Crédito c/Garantia Hipotecaria', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('5', 'Crédito Cuenta Corriente', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('6', 'Fideicomiso', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('7', 'Crédito Hipotecario', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('8', 'Crédito Simple de Nomina', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('9', 'Crédito Refaccionario', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('10', 'Arrendamiento Financiero', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('11', 'Factoraje', '0.00');
-INSERT INTO `tiposcreditos` VALUES ('12', 'Prestamo Quirografario', '0.00');
-DELIMITER ;;
-CREATE TRIGGER `pfa_id` BEFORE INSERT ON `pfa` FOR EACH ROW BEGIN
-    if (SELECT COUNT(*) FROM pfa)=0   THEN
-        SET NEW.Folio_Cliente= 'PFA-001';
-    else
-        SET NEW.Folio_Cliente= CONCAT('PFA-', LPAD((select MAX(Id)+1 from pfa), 3, '0'));
-  END IF;
-END;;;
-DELIMITER ;
-DELIMITER ;;
-CREATE TRIGGER `pfna_id` BEFORE INSERT ON `pfna` FOR EACH ROW BEGIN
-    if (SELECT COUNT(*) FROM pfna)=0   THEN
-        SET NEW.Folio_Cliente= 'PFNA-001';
-    else
-        SET NEW.Folio_Cliente= CONCAT('PFNA-', LPAD((select MAX(Id)+1 from pfna), 3, '0'));
-  END IF;
-END;;;
-DELIMITER ;
-DELIMITER ;;
-CREATE TRIGGER `pm_id` BEFORE INSERT ON `pm` FOR EACH ROW BEGIN
-    if (SELECT COUNT(*) FROM pm)=0   THEN
-        SET NEW.Folio_Cliente= 'PM-001';
-    else
-        SET NEW.Folio_Cliente= CONCAT('PM-', LPAD((select MAX(Id)+1 from pm), 3, '0'));
-  END IF;
-END;;;
-DELIMITER ;
-DELIMITER ;;
-CREATE TRIGGER `solicitudpfa_id` BEFORE INSERT ON `solicitudpfa` FOR EACH ROW BEGIN
-    if (SELECT COUNT(*) FROM solicitudpfa)=0   THEN
-        SET NEW.Folio_Sol= 'SA-001';
-    else
-        SET NEW.Folio_Sol= CONCAT('SA-', LPAD((select MAX(Id)+1 from solicitudpfa), 3, '0'));
-  END IF;
-END;;;
-DELIMITER ;
-DELIMITER ;;
-CREATE TRIGGER `solicitudpfna_id` BEFORE INSERT ON `solicitudpfna` FOR EACH ROW BEGIN
-    if (SELECT COUNT(*) FROM solicitudpfna)=0   THEN
-        SET NEW.Folio_Sol= 'SN-001';
-    else
-        SET NEW.Folio_Sol= CONCAT('SN-', LPAD((select MAX(Id)+1 from solicitudpfna), 3, '0'));
-  END IF;
-END;;;
-DELIMITER ;
-DELIMITER ;;
+--
+-- Disparadores `solicitudpm`
+--
+DELIMITER $$
 CREATE TRIGGER `solicitudpm_id` BEFORE INSERT ON `solicitudpm` FOR EACH ROW BEGIN
     if (SELECT COUNT(*) FROM solicitudpm)=0   THEN
         SET NEW.Folio_Sol= 'SM-001';
     else
         SET NEW.Folio_Sol= CONCAT('SM-', LPAD((select MAX(Id)+1 from solicitudpm), 3, '0'));
   END IF;
-END;;;
+END
+$$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tiposcreditos`
+--
+
+CREATE TABLE `tiposcreditos` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `tasa` double NOT NULL,
+  `Comision_Apertura` double NOT NULL,
+  `Enganche` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tiposcreditos`
+--
+
+INSERT INTO `tiposcreditos` (`id`, `descripcion`, `tasa`, `Comision_Apertura`, `Enganche`) VALUES
+(1, 'Auto Nuevo', 12.2, 2, 10),
+(2, 'Auto Seminuevo', 18, 3, 10),
+(3, 'Crédito Simple', 0, 3, 0),
+(4, 'Crédito c/Garantia Hipotecaria', 0, 3, 0),
+(5, 'Crédito Cuenta Corriente', 0, 3, 0),
+(6, 'Fideicomiso', 0, 3, 0),
+(7, 'Crédito Hipotecario', 0, 3, 0),
+(8, 'Crédito Simple de Nomina', 91.7, 3, 0),
+(9, 'Crédito Refaccionario', 0, 3, 0),
+(10, 'Arrendamiento Financiero', 0, 3, 0),
+(11, 'Factoraje', 0, 3, 0),
+(12, 'Prestamo Quirografario', 0, 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `xml`
+--
+
+CREATE TABLE `xml` (
+  `id` int(11) NOT NULL,
+  `Folio_Sol` varchar(100) NOT NULL,
+  `FechaConsulta` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `xml`
+--
+
+INSERT INTO `xml` (`id`, `Folio_Sol`, `FechaConsulta`) VALUES
+(8, '29', '2017-09-04'),
+(91, '36', '2017-09-06'),
+(92, '37', '2017-09-06'),
+(93, '38', '2017-09-06'),
+(94, '39', '2017-09-06'),
+(95, '40', '2017-09-06'),
+(103, '41', '2017-09-11'),
+(104, '44', '2017-09-11'),
+(105, '45', '2017-09-11'),
+(106, '47', '2017-09-12'),
+(108, '48', '2017-09-12'),
+(109, '50', '2017-09-12'),
+(110, '51', '2017-09-12'),
+(111, '53', '2017-09-12');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `acceso`
+--
+ALTER TABLE `acceso`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user` (`user`);
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comisionesyseguros`
+--
+ALTER TABLE `comisionesyseguros`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `datos`
+--
+ALTER TABLE `datos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `docu`
+--
+ALTER TABLE `docu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `gradoriesgo`
+--
+ALTER TABLE `gradoriesgo`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `pfa`
+--
+ALTER TABLE `pfa`
+  ADD PRIMARY KEY (`Id`,`Folio_Cliente`);
+
+--
+-- Indices de la tabla `pfna`
+--
+ALTER TABLE `pfna`
+  ADD PRIMARY KEY (`Id`,`Folio_Cliente`),
+  ADD KEY `Folio_Cliente` (`Folio_Cliente`);
+
+--
+-- Indices de la tabla `pm`
+--
+ALTER TABLE `pm`
+  ADD PRIMARY KEY (`Id`,`Folio_Cliente`);
+
+--
+-- Indices de la tabla `registro`
+--
+ALTER TABLE `registro`
+  ADD PRIMARY KEY (`Id`,`Folio_Cliente`),
+  ADD UNIQUE KEY `folio` (`Folio_Cliente`),
+  ADD KEY `Id` (`Id`);
+
+--
+-- Indices de la tabla `registroxml`
+--
+ALTER TABLE `registroxml`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `DirXML` (`DirXML`);
+
+--
+-- Indices de la tabla `solicitudes`
+--
+ALTER TABLE `solicitudes`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Documentacion` (`Documentacion`),
+  ADD KEY `GradoRiesgo` (`GradoRiesgo`);
+
+--
+-- Indices de la tabla `solicitudpfa`
+--
+ALTER TABLE `solicitudpfa`
+  ADD PRIMARY KEY (`Id`,`Folio_Sol`);
+
+--
+-- Indices de la tabla `solicitudpfna`
+--
+ALTER TABLE `solicitudpfna`
+  ADD PRIMARY KEY (`Id`,`Folio_Sol`);
+
+--
+-- Indices de la tabla `solicitudpm`
+--
+ALTER TABLE `solicitudpm`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id` (`Id`),
+  ADD KEY `Folio_Sol` (`Folio_Sol`);
+
+--
+-- Indices de la tabla `tiposcreditos`
+--
+ALTER TABLE `tiposcreditos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `xml`
+--
+ALTER TABLE `xml`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Folio_Sol` (`Folio_Sol`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `acceso`
+--
+ALTER TABLE `acceso`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+--
+-- AUTO_INCREMENT de la tabla `comisionesyseguros`
+--
+ALTER TABLE `comisionesyseguros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT de la tabla `docu`
+--
+ALTER TABLE `docu`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+--
+-- AUTO_INCREMENT de la tabla `gradoriesgo`
+--
+ALTER TABLE `gradoriesgo`
+  MODIFY `Id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+--
+-- AUTO_INCREMENT de la tabla `pfa`
+--
+ALTER TABLE `pfa`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `pfna`
+--
+ALTER TABLE `pfna`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pm`
+--
+ALTER TABLE `pm`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `registro`
+--
+ALTER TABLE `registro`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `registroxml`
+--
+ALTER TABLE `registroxml`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
+--
+-- AUTO_INCREMENT de la tabla `solicitudes`
+--
+ALTER TABLE `solicitudes`
+  MODIFY `Id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+--
+-- AUTO_INCREMENT de la tabla `solicitudpfa`
+--
+ALTER TABLE `solicitudpfa`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT de la tabla `solicitudpfna`
+--
+ALTER TABLE `solicitudpfna`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `solicitudpm`
+--
+ALTER TABLE `solicitudpm`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `tiposcreditos`
+--
+ALTER TABLE `tiposcreditos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT de la tabla `xml`
+--
+ALTER TABLE `xml`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

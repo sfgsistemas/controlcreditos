@@ -51,10 +51,11 @@
 
 
 					    <span id="spancurpclientebusca" style="display: none;" class="input-group-label">Ingresa el CURP:</span>
-					    <input id="inputcurpclientebusca" style="display: none;" class="input-group-field" type="text" name="">
+					    <input id="inputcurpclientebusca" style="display: none;" class="input-group-field" type="text" name="" pattern="curp">
 
 					    <span id="spanrazsocclientebusca" style="display: none;" class="input-group-label">Ingresa la Razon Social:</span>
 					    <input id="inputrazsocclientebusca" style="display: none;" class="input-group-field" type="text" name="">
+					    <div class="input-group-button" id="botonrazsocclientebusca" style="display: none;" data-open="modalbuscaclienterazsoc"><input type="button" class="button" value="Buscar"></div>
 
 					    <span id="spanrfcclientebusca" style="display: none;" class="input-group-label">Ingresa el RFC:</span>
 					    <input id="inputrfcclientebusca" style="display: none;" class="input-group-field" type="text" name="">
@@ -87,6 +88,25 @@
 			  </button>
 			</div>
 
+			<div class="reveal" id="modalbuscaclienterazsoc" data-reveal>
+        		<h4>Clientes</h4>
+			  <table id="tablabuscaclienterazsoc">
+			  	<thead>
+			  		<tr>
+			  			<td>ID</td>
+			  			<td>Razon Social</td>
+			  			<td>RFC</td>
+			  		</tr>
+			  	</thead>
+			  	<tbody>
+			  		
+			  	</tbody>
+			  </table>
+			  <button class="close-button" data-close aria-label="Close reveal" type="button">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+
 
 
           <ul class="tabs" data-active-collapse="true" data-tabs id="collapsing-tabs">
@@ -98,7 +118,7 @@
             <li class="tabs-title" id="tabpanel6c" style="display: none;"><a href="#panel6c">Datos del Conyuge</a></li>
             <li class="tabs-title" id="tabpanel7c" style="display: none;"><a href="#panel7c">Accionistas</a></li>
             <li class="tabs-title"><a href="#panel8c">Beneficiario</a></li>
-            <li class="tabs-title"><a href="#panel9c">Situacion Financiera</a></li>
+            <li class="tabs-title"><a href="#panel9c">Solicitudes Relacionadas</a></li>
 
           </ul>
           <div class="tabs-content" data-tabs-content="collapsing-tabs">
@@ -620,20 +640,28 @@
                     <input readonly name="refbanc" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['BancRefBan']; } ?>" type="text" id="refbanc" size="54px" placeholder="Banco"></label>
                   </div>
           
-                  <div class="medium-3 columns"><label>Numero de cuenta
-                    <input readonly name="numcuebanc" onkeyup="mascarasimple(this,'-',patron,false)"  type="text" id="numcuebanc" size="40px" placeholder="Número de cuenta" pattern="cuenta" maxlength="29     ">
+                   <div class="medium-2 columns"><label>
+                    Selección
+                    <select name="selectorbanco1" id="selectorbanco1" disabled=""><option value="">-Selecciona una opcion-</option><option value="1">Tarjeta</option><option value="2">Número de Cuenta</option><option value="3">CLABE</option></select>
 
                     </label>
                   </div>
 
-                  <div class="medium-3 columns"><label>Sucursal
+                  <div class="medium-3 columns"><label>
+                    Cuenta/CLABE/Tarjeta
+                    <input name="numcuebanc" onkeyup="mascarasimple(this,'-',false,'selectorbanco1')"  type="text" id="numcuebanc" size="40px" placeholder="Número de cuenta"  maxlength="29" readonly="">
+
+                    </label>
+                  </div>
+
+                  <div class="medium-2 columns"><label>Sucursal
                     <input readonly name="sucbanc1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['SucRefBan']; } ?>" type="text" id="sucbanc1" size="54px" placeholder="Sucursal" pattern="integer" maxlength="8"></label>
                   </div>
                 </p>
       
                 <p align="left">
          
-                  <div class="medium-3 columns"><label>  Fecha de apertura: <input readonly name="aperbanc1d" type="date" id="aperbanc1d" size="1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['FecApRefBan']; } ?>" onfocus="datepick(this)"></label>
+                  <div class="medium-2 columns"><label>  Fecha de apertura: <input readonly name="aperbanc1d" type="date" id="aperbanc1d" size="1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['FecApRefBan']; } ?>" onfocus="datepick(this)"></label>
                   </div>
                 </p>
               </div>
@@ -645,8 +673,15 @@
                     <input readonly name="refbanc2" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['BancRefBan']; } ?>" type="text" id="refbanc2" size="54px" placeholder="Banco"></label>
                   </div>
           
-                  <div class="medium-3 columns"><label>Numero de cuenta
-                    <input readonly name="numcuebanc2" onkeyup="mascarasimple(this,'-',patron,false)" type="text" id="numcuebanc2" size="40px" placeholder="Número de cuenta" maxlength="29" pattern="cuenta"></label>
+                  <div class="medium-2 columns"><label>
+                    Selección
+                    <select name="selectorbanco2" id="selectorbanco2" disabled=""><option value="">-Selecciona una opcion-</option><option value="1">Tarjeta</option><option value="2">Número de Cuenta</option><option value="3">CLABE</option></select>
+
+                    </label>
+                  </div>
+          
+                  <div class="medium-3 columns"><label>Cuenta/CLABE/Tarjeta
+                    <input name="numcuebanc2" onkeyup="mascarasimple(this,'-',false,'selectorbanco2')" type="text" id="numcuebanc2" size="40px" placeholder="Número de cuenta" maxlength="29" readonly=""></label>
                   </div>
 
                   <div class="medium-3 columns"><label>Sucursal
@@ -1054,7 +1089,34 @@
               </div> 
             </div>
 
-            <div class="tabs-panel" id="panel8c">
+            <div class="tabs-panel" id="panel9c">
+            	<div class="row">
+            		<div class="medium-3 columns">
+            			
+            	<h5>Solicitudes Relacionadas</h5>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<p align="center">
+            		<div class="medium-7 columns">
+            			
+            	<table id="solrelacionadascliente">
+            		<thead>
+            			<tr>
+            				
+            			<td>ID</td>
+            			<td>Tipo de Crédito</td>
+            			<td>Status</td>
+            			<td>Validación</td>
+            			</tr>
+            		</thead>
+            		<tbody>
+            			
+            		</tbody>
+            	</table>
+            		</div>
+            	</p>
+            	</div>
             </div>
             <div class="row">
               
@@ -1077,73 +1139,30 @@
 
       <div class="tabs-panel" id="panel2v">
         <form name="form2" id="form2" action=""  method="post" data-abide novalidate>
-          <div id="botonessolicitud">
-            <input class="button" data-open="modalnuevasolicitud" type="button" name="nuevasolicitud" id="nuevasolicitud" value="Generar Solicitud Nueva">
-            <input class="button" data-open="modalmodificarsolicitud" type="button" name="modificarsolicitud" id="modificarsolicitud" value="Modificar Solicitud">
+          <div class="row">
+        	<p align="left">
+        		<div class="medium-6 columns">
+        		  <div class="callout primary">
+	        		<div class="input-group">
+					    
+					    <span id="spanidsolicitudbusca" class="input-group-label" >Ingresa el ID:</span>
+					    <input id="inputidsolicitudbusca"  class="input-group-field" type="text" name="inputidsolicitudbusca" pattern="integer">
+					   
+					  </div>
+					</div>
+        		</div>
+        	</p>
+        </div>
+        <div class="row">
+        	
+        	<p align="center">
+        		<div class="medium-2 columns" id="loadingbuscar2"></div>
+        	</p>
+        </div>
           
-            <div class="reveal" id="modalnuevasolicitud" data-reveal>
-              <h4>Ingresa el Número de Cliente:</h4>
-              
-              <select name="ANYBODY" id="ANYBODY"><option value="0">-seleccione uno-</option><option value="1">ID</option><option value="2">Nombre (Persona Fisca)</option><option  value="3">Razon social(Persona Moral)</option></select>
-              <div id="ident" name="ident" style="display: none;">
-                
-                <label>ID:<input type="text" name="idnuevasolicitud" onkeyup="busqueda()" id="idnuevasolicitud"></label>
-              </div>
+          <div id="contenidorequestsolicitud" >
 
-                <div id="nombres" name="nombres" style="display: none;">
-                  
-                  <label>Nombre<input type="text" onkeyup="busqueda()" id="nombrepf" name="nombrepf"></label>
-                  <label>Apellido Paterno<input type="text" onkeyup="busqueda()" id="ApellidoPa" name="ApellidoPa"></label>
-                  <label>Apellido Materno<input type="text" onkeyup="busqueda()" id="ApellidoMa" name="ApellidoMa"></label>
-                </div>
-              
-                <div id="resultadonuevasolicitud"></div>
-              <!--<button id="requestnuevasolicitud" name="requestnuevasolicitud" class="button" >Buscar</button>-->
-              <button id="cerrarmodalnuevasolicitud" class="close-button" data-close aria-label="Close reveal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-
-
-
-            <!-- This is the first modal -->
-            <div class="reveal" id="modalmodificarsolicitud" data-reveal>
-              <h4>Ingresa el Número de Solicitud:</h4>
-              
-              
-              <label>ID:<input type="text" name="idmodificasolicitud" id="idmodificasolicitud"></label>
-              
-              
-
-              <button id="requestmodificarsolicitud" name="requestmodificarsolicitud" class="button" >Buscar</button>
-              <button id="cerrarmodalmodificasolicitud" class="close-button" data-close aria-label="Close reveal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <!-- This is the nested modal -->
-            <div class="reveal" id="modalcontregsolicitud" data-reveal>
-              <h4>Registros Incompletos...</h4>
-              <table  id="tablajson2">
-                <thead>
-                  <th>Id</th> 
-                  <th>Tipo de Crédito</th>
-                  <th>Cliente</th>
-                </thead>
-                <tbody></tbody>
-              </table>
-              <button id="cerrarmodalcontregsolicitud" class="close-button" data-close aria-label="Close reveal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <input class="button" type="button" data-open="modalcontregsolicitud" name="continuarsolicitud" id="continuarsolicitud" value="Continuar Con Registro">
-          </div>
-          
-          <div id="contenidorequestsolicitud" style="display: none;">
-
-            <ul class="tabs" data-tabs id="deeplinked-tabs">
+            
 
 
             <ul class="tabs"  data-tabs id="deeplinked-tabs">
@@ -1275,8 +1294,8 @@
                         </div>
                       </label>
                     </div>
-                    <div class="medium-5 columns" id="divbotoncambval" style="display: none;">
-                      <input type="button" class="button" data-open="Aut" value="Cambiar Valores">
+                    <div class="medium-5 columns" id="divbotoncambval" style="display: none;" >
+                      <input type="button" class="button" data-open="Aut" value="Cambiar Valores" disabled="">
                     </div>
                                                                 
                   </p>
@@ -1563,9 +1582,7 @@
               </div>
 
 
-              <input class="button" type="button" name="guardarsolicitud" id="guardarsolicitud" value="Guardar" style="display: none;">
-              <input class="button" type="button" name="botonmodsolicitud" id="botonmodsolicitud" value="Guardar" style="display: none;">
-              <input class="button" type="button" name="cancelarsolicitud" id="cancelarsolicitud" value="Cancelar Registro">
+              
               <div class="row">
                 
                 <div class="medium-12 columns">
@@ -1585,69 +1602,21 @@
 
       <div class="tabs-panel" id="panel3v">
         <form id="form3" action="" method="post" data-abide novalidate>
-            <div id="botonesconocimiento">
-            <input class="button" data-open="modalnuevaconocimiento" type="button" name="nuevaconocimiento" id="nuevaconocimiento" value="Generar Grado de Riesgo">
-            <input class="button" data-open="modalmodificarconocimiento" type="button" name="modificarconocimiento" id="modificarconocimiento" value="Modificar Grado de Riesgo">
-          
-            <div class="reveal" id="modalnuevaconocimiento" data-reveal>
-              <h4>Selecciona la solicitud</h4>
-              
-              <table  id="tablajson3">
-                <thead>
-                  <th>Id</th> 
-                  <th>Tipo de Crédito</th>
-                  <th>Cliente</th>
-                </thead>
-                <tbody></tbody>
-              </table>
-              
-
-                
-              
-            <div id="resultadonuevaconocimiento"></div>
-              <!--<button id="requestnuevaconocimiento name="requestnuevaconocimiento class="button" >Buscar</button>-->
-              <button id="cerrarmodalnuevaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        	
+            <div class="row">
+            	<div class="medium-5 columns">
+            		
+            	<div class="callout primary">
+	        		<div class="input-group">
+					    
+					    <span id="spanidgradoriesgobusca" class="input-group-label" >Ingresa el ID:</span>
+					    <input id="inputidgradoriesgobusca"  class="input-group-field" type="text" name="inputidgradoriesgobusca" pattern="integer">
+					   
+					  </div>
+					</div>
+            	</div>
             </div>
-
-
-
-
-            <!-- This is the first modal -->
-            <div class="reveal" id="modalmodificarconocimiento" data-reveal>
-              <h4>Ingresa el Número de Solicitud:</h4>
-              
-              
-              <label>ID:<input type="text" name="idmodificaconocimiento" id="idmodificaconocimiento"></label>
-              
-              
-
-              <button id="requestmodificarconocimiento" name="requestmodificarconocimiento" class="button" >Buscar</button>
-              <button id="cerrarmodalmodificaconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <!-- This is the nested modal -->
-            <div class="reveal" id="modalcontregconocimiento" data-reveal>
-              <h4>Registros Incompletos...</h4>
-              <table  id="tablajson4">
-                <thead>
-                  <th>Id</th> 
-                  <th>Tipo de Crédito</th>
-                  <th>Cliente</th>
-                </thead>
-                <tbody></tbody>
-              </table>
-              <button id="cerrarmodalcontregconocimiento" class="close-button" data-close aria-label="Close reveal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <input class="button" type="button" data-open="modalcontregconocimiento" name="continuarconocimiento" id="continuarconocimiento" value="Continuar Con Registro">
-          </div>
-          <div id="contenidorequestconocimiento" style="display: none;">
+          <div id="contenidorequestconocimiento" >
               
                 <ul class="tabs" data-tabs id="example-tabs">
                   <li class="tabs-title is-active"><a href="#panel2g">Perfil Transaccional</a></li>
@@ -2257,7 +2226,7 @@
                 </div>
 
                 <div class="row">
-                  <input class="button" type="button" name="guardargradriesgo" id="guardargradriesgo" value="Guardar">
+                  
                   <div class="medium-12 columns">
                     <div id="statusgradoriesgo" class="callout" >Status:</div>
                     
@@ -2538,6 +2507,7 @@
 <img src="images/sfg.jpg" width="100%">
   -->
     <script src="js/consultaclientes.js"></script>
+    <script src="js/consultasolicitudes.js"></script>
 
 
     <script src="js/vendor/jquery.js"></script>
@@ -2548,7 +2518,8 @@
     <script src="js/vendor/app.js"></script>
     <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
 
-
+    
+    <script src="js/scriptgeneral.js"></script>
     
     
   

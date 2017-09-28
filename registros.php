@@ -295,8 +295,8 @@
                   <div class="medium-3 columns"><label>Colonia<div id="loading1"></div><select name="colsol" id="colsol"><option value="">-Seleccione una opción-</option></select></label>
                   </div>
 
-                  <div class="medium-3 columns"><label>Lugar de nacimiento
-                  <input name="lugnacsol" type="text" id="lugnacsol" size="20px" value="<?php if (isset($row2['Folio_Cliente'])) { echo $row2['LugNacSolicitante']; } ?>" placeholder="Lugar de nacimiento (País y Estado)" pattern="alpha"></label>
+                  <div class="medium-3 columns"><label>Lugar de nacimiento (País)
+                  <input name="lugnacsol" type="text" id="lugnacsol" size="20px" value="<?php if (isset($row2['Folio_Cliente'])) { echo $row2['LugNacSolicitante']; } ?>" placeholder="Lugar de nacimiento (País)" ></label>
                   </div>
               
                   <div class="medium-3 columns"><label>Estado <select name="edosol" id="edosol"><option value="">-Seleccione una opción</option></select></label>
@@ -613,21 +613,30 @@
                   <div class="medium-3 columns"><label>Banco
                     <input name="refbanc" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['BancRefBan']; } ?>" type="text" id="refbanc" size="54px" placeholder="Banco"></label>
                   </div>
-          
-                  <div class="medium-3 columns"><label>Numero de cuenta
-                    <input name="numcuebanc" onkeyup="mascarasimple(this,'-',patron,false)"  type="text" id="numcuebanc" size="40px" placeholder="Número de cuenta" pattern="cuenta" maxlength="29     ">
+                  
+                  <div class="medium-2 columns"><label>
+                    Selección
+                    <select name="selectorbanco1" id="selectorbanco1"><option value="">-Selecciona una opcion-</option><option value="1">Tarjeta</option><option value="2">Número de Cuenta</option><option value="3">CLABE</option></select>
 
                     </label>
                   </div>
 
-                  <div class="medium-3 columns"><label>Sucursal
+
+                  <div class="medium-3 columns"><label>
+                    Cuenta/CLABE/Tarjeta
+                    <input name="numcuebanc" onkeyup="mascarasimple(this,'-',false,'selectorbanco1')"  type="text" id="numcuebanc" size="40px" placeholder="Número de cuenta"  maxlength="29     ">
+
+                    </label>
+                  </div>
+
+                  <div class="medium-2 columns"><label>Sucursal
                     <input name="sucbanc1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['SucRefBan']; } ?>" type="text" id="sucbanc1" size="54px" placeholder="Sucursal" pattern="integer" maxlength="8"></label>
                   </div>
                 </p>
       
                 <p align="left">
          
-                  <div class="medium-3 columns"><label>  Fecha de apertura: <input name="aperbanc1d" type="date" id="aperbanc1d" size="1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['FecApRefBan']; } ?>" onfocus="datepick(this)"></label>
+                  <div class="medium-2 columns"><label>  Fecha de apertura: <input name="aperbanc1d" type="date" id="aperbanc1d" size="1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['FecApRefBan']; } ?>" onfocus="datepick(this)"></label>
                   </div>
                 </p>
               </div>
@@ -638,19 +647,26 @@
                   <div class="medium-3 columns"><label>Banco
                     <input name="refbanc2" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['BancRefBan']; } ?>" type="text" id="refbanc2" size="54px" placeholder="Banco"></label>
                   </div>
+
+                  <div class="medium-2 columns"><label>
+                    Selección
+                    <select name="selectorbanco2" id="selectorbanco2"><option value="">-Selecciona una opcion-</option><option value="1">Tarjeta</option><option value="2">Número de Cuenta</option><option value="3">CLABE</option></select>
+
+                    </label>
+                  </div>
           
-                  <div class="medium-3 columns"><label>Numero de cuenta
-                    <input name="numcuebanc2" onkeyup="mascarasimple(this,'-',patron,false)" type="text" id="numcuebanc2" size="40px" placeholder="Número de cuenta" maxlength="29" pattern="cuenta"></label>
+                  <div class="medium-3 columns"><label>Cuenta/CLABE/Tarjeta
+                    <input name="numcuebanc2" onkeyup="mascarasimple(this,'-',false,'selectorbanco2')" type="text" id="numcuebanc2" size="40px" placeholder="Número de cuenta" maxlength="29" ></label>
                   </div>
 
-                  <div class="medium-3 columns"><label>Sucursal
+                  <div class="medium-2 columns"><label>Sucursal
                     <input name="sucbanc2" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['SucRefBan']; } ?>" type="text" id="sucbanc2" size="54px" placeholder="Sucursal" pattern="integer" maxlength="8"></label>
                   </div>
                 </p>
       
                 <p align="left">
          
-                  <div class="medium-3 columns"><label>  Fecha de apertura: <input name="aperbanc2d" type="date" id="aperbanc2d" size="1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['FecApRefBan']; } ?>" onfocus="datepick(this)"></label>
+                  <div class="medium-2 columns"><label>  Fecha de apertura: <input name="aperbanc2d" type="date" id="aperbanc2d" size="1" value="<?php if(isset($row['Folio_Cliente'])) {  echo $row['FecApRefBan']; } ?>" onfocus="datepick(this)"></label>
                   </div>
                 </p>
               </div>
@@ -1092,7 +1108,7 @@
 
                 <div id="nombres" name="nombres" style="display: none;">
                   
-                  <label>Nombre<input type="text" onkeyup="busqueda()" id="nombrepf" name="nombrepf"></label>
+                  <label>Primer Nombre<input type="text" onkeyup="busqueda()" id="nombrepf" name="nombrepf"></label>
                   <label>Apellido Paterno<input type="text" onkeyup="busqueda()" id="ApellidoPa" name="ApellidoPa"></label>
                   <label>Apellido Materno<input type="text" onkeyup="busqueda()" id="ApellidoMa" name="ApellidoMa"></label>
                 </div>

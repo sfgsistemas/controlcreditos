@@ -1,4 +1,175 @@
 
+$("#inputrfcclientebusca").keyup(function() {
+	$("#"+this.id).val($("#"+this.id).val().toUpperCase());
+	if ($("#"+this.id).val().match(/^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/)) {
+
+		$('#spanrfcclientebusca').removeClass('is-invalid-input');
+  		obtenclienteporrfc();
+}else{
+	 borrar();
+	 $('#spanrfcclientebusca').addClass('is-invalid-input');
+}
+});
+
+function obtenclienteporrfc(){
+	var rfc=$("#inputrfcclientebusca").val();
+	$.ajax({
+                    type: "POST",
+                    url: "consultaclientes.php",
+                    data: "function=obtenclienteporrfc&rfc="+rfc,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#loadingbuscar1").html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("error petición ajax");
+                    },
+                    success: function(data){    
+
+                          $("#loadingbuscar1").empty();
+						        if(data.indexOf("Error") !== -1){
+						          alert(data);
+						          borrar();
+						          return false;
+						        }
+						        if(data === "null"){
+						          borrar();
+						          return false;
+						        }
+						        borrar();
+						        objetoidpocurp=JSON.parse(data);
+
+						        
+						        obtenclienteporid(objetoidpocurp.id);
+						       
+                                                             
+                    }
+              });
+
+}
+
+
+
+
+
+$("#botonrazsocclientebusca").click(function() {
+	
+		
+  		obtenclienteporrazsoc();
+
+});
+
+function obtenclienteporrazsoc(){
+	var razsoc=$("#inputrazsocclientebusca").val();
+	$.ajax({
+                    type: "POST",
+                    url: "consultaclientes.php",
+                    data: "function=obtenclienteporrazsoc&razsoc="+razsoc,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#loadingbuscar1").html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("error petición ajax");
+                    },
+                    success: function(data){                                                    
+                          $("#loadingbuscar1").empty();
+						        if(data.indexOf("Error") !== -1){
+						          alert(data);
+						          borrar();
+						          return false;
+						        }
+						        if(data === "null"){
+						          borrar();
+						          return false;
+						        }
+						        borrar();
+						       $("#tablabuscaclienterazsoc tbody tr").remove();
+						        //alert(data);
+						        objetobusponom = JSON.parse(data);
+						        
+						        $.each(objetobusponom, function(i,solicitud){
+						            var newRow =
+						            "<tr>"
+						            +"<td> <input onclick='obtenclienteporid(this.id)' data-close aria-label='Close reveal' class='button' type='button' name='"+solicitud.id+"' id='"+solicitud.id+"' value='"+solicitud.id+"'></td>";
+
+
+						            newRow+="<td>"+solicitud.RazonSocial+"</td>";
+
+						            newRow+="<td>"+solicitud.RFCPM+"</td>";
+
+
+
+						            newRow+="</tr>";
+
+						            
+						           
+						            $(newRow).appendTo("#tablabuscaclienterazsoc tbody");
+						        });
+
+                                                             
+                    }
+              });
+}
+
+
+
+$("#inputcurpclientebusca").keyup(function() {
+	$("#"+this.id).val($("#"+this.id).val().toUpperCase());
+	if ($("#"+this.id).val().match(/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/)) {
+
+		$('#spancurpclientebusca').removeClass('is-invalid-input');
+  		obtenclienteporcurp();
+}else{
+	 borrar();
+	 $('#spancurpclientebusca').addClass('is-invalid-input');
+}
+});
+
+function obtenclienteporcurp(){
+	
+	var curp=$("#inputcurpclientebusca").val();
+	$.ajax({
+                    type: "POST",
+                    url: "consultaclientes.php",
+                    data: "function=obtenclienteporcurp&curp="+curp,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#loadingbuscar1").html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("error petición ajax");
+                    },
+                    success: function(data){    
+
+                          $("#loadingbuscar1").empty();
+						        if(data.indexOf("Error") !== -1){
+						          alert(data);
+						          borrar();
+						          return false;
+						        }
+						        if(data === "null"){
+						          borrar();
+						          return false;
+						        }
+						        borrar();
+						        objetoidpocurp=JSON.parse(data);
+
+						        
+						        obtenclienteporid(objetoidpocurp.id);
+						       
+                                                             
+                    }
+              });
+
+}
+
+
+
+
 $("#botonap2clientebusca").click(function() {
 	if($( "#inputnomclientebusca").hasClass( "is-invalid-input" )){
         console.log(this.id);
@@ -15,6 +186,7 @@ $("#botonap2clientebusca").click(function() {
         $("#tablabuscacliente tbody tr").remove();
        return true;
     }
+  $("#tablabuscacliente tbody tr").remove();
   obtenclientepornombre();
 });
 
@@ -81,9 +253,11 @@ function obtenclientepornombre(){
 $("#inputidclientebusca").keyup(function() {
 	if ($("#"+this.id).val().match(/^[0-9]+$/)) {
 
+$('#spanidclientebusca').removeClass('is-invalid-input');
   	obtenclienteporid(this.value);
 }else{
 	 borrar();
+	 $('#spanidclientebusca').addClass('is-invalid-input');
 }
 });
 
@@ -104,6 +278,7 @@ function obtenclienteporid(id){
                           $("#loadingbuscar1").empty();
 						        if(data.indexOf("Error") !== -1){
 						          alert(data);
+						          borrar();
 						          return false;
 						        }
 						        if(data === "null"){
@@ -358,6 +533,10 @@ function borrar(){
         document.getElementById("accpermor2c").value='';
         document.getElementById("rfcaccpermor2").value='';
         document.getElementById("permoracc2").value='';
+        document.getElementById("statuscliente").innerHTML='Status: ';
+        $('#statuscliente').removeClass('success');
+        $('#statuscliente').removeClass('warning');
+        $("#solrelacionadascliente tbody tr").remove();
         
 }
 
@@ -553,6 +732,8 @@ function obtenerpegarobj(objeto){
         document.getElementById("refpercd2").value=objeto.RefPerCdPF2;
 
         document.getElementById("refbanc").value=objeto.Banco1;
+        document.getElementById("selectorbanco1").value=objeto.TipoCuenta1;
+
         document.getElementById("numcuebanc").value=objeto.CuentaBanc1;
         document.getElementById("sucbanc1").value=objeto.SucursalBanc1;
         
@@ -562,6 +743,7 @@ function obtenerpegarobj(objeto){
             document.getElementById("aperbanc1d").value=objeto.FechaApertura1;
         }
         document.getElementById("refbanc2").value=objeto.Banco2;
+        document.getElementById("selectorbanco2").value=objeto.TipoCuenta2;
         document.getElementById("numcuebanc2").value=objeto.CuentaBanc2;
         document.getElementById("sucbanc2").value=objeto.SucursalBanc2;
 
@@ -793,11 +975,75 @@ function obtenerpegarobj(objeto){
         document.getElementById("accpermor2c").value=objeto.Acc6ApMat;
         document.getElementById("rfcaccpermor2").value=objeto.Acc6RFC;
         document.getElementById("permoracc2").value=objeto.Acc6Porcentaje;
+        document.getElementById("statuscliente").innerHTML='Status: '+objeto.Status;
+        if(objeto.Status=="Incompleto"){
+        $('#statuscliente').removeClass('callout success');
+        $('#statuscliente').addClass('callout warning');
 
+        }else if(objeto.Status=="Finalizado"){
+
+        $('#statuscliente').removeClass('callout warning');
+        $('#statuscliente').addClass('callout success');
+        }
+        solicitudesdelcliente(objeto.id);
 }
 
+function solicitudesdelcliente(cliente){
+	$.ajax({
+                    type: "POST",
+                    url: "consultaclientes.php",
+                    data: "function=solicitudesdelcliente&cliente="+cliente,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#loadingbuscar1").html("<p align='center'><img src='images/cargando.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("error petición ajax");
+                    },
+                    success: function(data){                                                    
+                          $("#loadingbuscar1").empty();
+						        if(data.indexOf("Error") !== -1){
+						          alert(data);
+						          return false;
+						        }
+						        if(data === "null"){
+						          borrar();
+						          return false;
+						        }
+						         $("#solrelacionadascliente tbody tr").remove();
+						        //alert(data);
+						        objetobusponom = JSON.parse(data);
+						        
+						        $.each(objetobusponom, function(i,solicitud){
+						            var newRow =
+						            "<tr>"
+						            +"<td> <input onclick='obtensolicitudporiddsdcliente(this.id)' data-close aria-label='Close reveal' class='button' type='button' name='"+solicitud.Id+"' id='"+solicitud.Id+"' value='"+solicitud.Id+"'></td>";
 
 
+						            newRow+="<td>"+solicitud.TipoCredito+"</td>";
+
+						            newRow+="<td>"+solicitud.Status+"</td>";
+
+						            newRow+="<td>"+solicitud.StatusValidacion+"</td>";
+
+
+
+						            newRow+="</tr>";
+
+						            
+						           
+						            $(newRow).appendTo("#solrelacionadascliente tbody");
+						        });
+                                                             
+                    }
+              });
+}
+
+function obtensolicitudporiddsdcliente(id){
+	obtensolicitudporid(id);
+	$("#panel2vitem").click();
+}
 
 $("#selectconsultaclientes").change(function(event) {
 	if(this.value==""){
@@ -818,6 +1064,8 @@ $("#selectconsultaclientes").change(function(event) {
 
 			$("#spanrazsocclientebusca").hide();
 			$("#inputrazsocclientebusca").hide();
+			$("#botonrazsocclientebusca").hide();
+
 
 			$("#spanrfcclientebusca").hide();
 			$("#inputrfcclientebusca").hide();
@@ -841,6 +1089,7 @@ $("#selectconsultaclientes").change(function(event) {
 
 			$("#spanrazsocclientebusca").hide();
 			$("#inputrazsocclientebusca").hide();
+			$("#botonrazsocclientebusca").hide();
 
 			$("#spanrfcclientebusca").hide();
 			$("#inputrfcclientebusca").hide();
@@ -862,6 +1111,7 @@ $("#selectconsultaclientes").change(function(event) {
 
 			$("#spanrazsocclientebusca").hide();
 			$("#inputrazsocclientebusca").hide();
+			$("#botonrazsocclientebusca").hide();
 
 			$("#spanrfcclientebusca").hide();
 			$("#inputrfcclientebusca").hide();
@@ -884,6 +1134,7 @@ $("#selectconsultaclientes").change(function(event) {
 
 			$("#spanrazsocclientebusca").hide();
 			$("#inputrazsocclientebusca").hide();
+			$("#botonrazsocclientebusca").hide();
 
 			$("#spanrfcclientebusca").hide();
 			$("#inputrfcclientebusca").hide();
@@ -894,6 +1145,7 @@ $("#selectconsultaclientes").change(function(event) {
 		if(this.value==4){
 			$("#spanrazsocclientebusca").show();
 			$("#inputrazsocclientebusca").show();
+			$("#botonrazsocclientebusca").show();
 
 			$("#spanidclientebusca").hide();
 			$("#inputidclientebusca").hide();
@@ -933,6 +1185,7 @@ $("#selectconsultaclientes").change(function(event) {
 
 			$("#spanrazsocclientebusca").hide();
 			$("#inputrazsocclientebusca").hide();
+			$("#botonrazsocclientebusca").hide();
 
 		}
 		

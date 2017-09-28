@@ -292,6 +292,8 @@ xmlhttp.onreadystatechange=function()
         document.getElementById("refpercd2").value=obj.RefPerCdPF2;
 
         document.getElementById("refbanc").value=obj.Banco1;
+        document.getElementById("selectorbanco1").value=obj.TipoCuenta1;
+
         document.getElementById("numcuebanc").value=obj.CuentaBanc1;
         document.getElementById("sucbanc1").value=obj.SucursalBanc1;
         
@@ -301,6 +303,7 @@ xmlhttp.onreadystatechange=function()
             document.getElementById("aperbanc1d").value=obj.FechaApertura1;
         }
         document.getElementById("refbanc2").value=obj.Banco2;
+        document.getElementById("selectorbanco2").value=obj.TipoCuenta2;
         document.getElementById("numcuebanc2").value=obj.CuentaBanc2;
         document.getElementById("sucbanc2").value=obj.SucursalBanc2;
 
@@ -714,6 +717,21 @@ $("#botonmodcliente").click(function(event) {
           //  document.getElementById("refcomcd2").required=false;
         }
 
+    if(document.getElementById('selectorbanco1').value!="" || document.getElementById('numcuebanc').value!=""){
+        document.getElementById("selectorbanco1").required=true;
+        document.getElementById("numcuebanc").required=true;
+    }else{
+        document.getElementById("selectorbanco1").required=false;
+        document.getElementById("numcuebanc").required=false;
+    }
+
+    if(document.getElementById('selectorbanco2').value!="" || document.getElementById('numcuebanc2').value!=""){
+        document.getElementById("selectorbanco2").required=true;
+        document.getElementById("numcuebanc2").required=true;
+    }else{
+        document.getElementById("selectorbanco1").required=false;
+        document.getElementById("numcuebanc2").required=false;
+    }
 
 
 
@@ -1180,6 +1198,7 @@ xmlhttp.onreadystatechange=function()
         document.getElementById("refpercd2").value=obj.RefPerCdPF2;
 
         document.getElementById("refbanc").value=obj.Banco1;
+        document.getElementById("selectorbanco1").value=obj.TipoCuenta1;
         document.getElementById("numcuebanc").value=obj.CuentaBanc1;
         document.getElementById("sucbanc1").value=obj.SucursalBanc1;
         if(obj.FechaApertura1=="0000-00-00"){
@@ -1189,6 +1208,7 @@ xmlhttp.onreadystatechange=function()
         }
         
         document.getElementById("refbanc2").value=obj.Banco2;
+        document.getElementById("selectorbanco2").value=obj.TipoCuenta2;
         document.getElementById("numcuebanc2").value=obj.CuentaBanc2;
         document.getElementById("sucbanc2").value=obj.SucursalBanc2;
         if(obj.FechaApertura2=="0000-00-00"){
@@ -1655,6 +1675,21 @@ $("#guardarcliente").click(function(event) {
           //  document.getElementById("refcomcd2").required=false;
         }
 
+    if(document.getElementById('selectorbanco1').value!="" || document.getElementById('numcuebanc').value!=""){
+        document.getElementById("selectorbanco1").required=true;
+        document.getElementById("numcuebanc").required=true;
+    }else{
+        document.getElementById("selectorbanco1").required=false;
+        document.getElementById("numcuebanc").required=false;
+    }
+
+    if(document.getElementById('selectorbanco2').value!="" || document.getElementById('numcuebanc2').value!=""){
+        document.getElementById("selectorbanco2").required=true;
+        document.getElementById("numcuebanc2").required=true;
+    }else{
+        document.getElementById("selectorbanco1").required=false;
+        document.getElementById("numcuebanc2").required=false;
+    }
 
 
     $('#form1').foundation('validateForm');
@@ -2232,43 +2267,102 @@ function mascaratel(input){
 
 
 
-var patron = new Array(4,4,4,4,4,4);
+var patron = new Array(4,4,4,4);
+var CLABE = new Array(18);
+var cuenta= new Array(11);
 
-function mascarasimple(d,sep,pat,nums){
-if(d.valant != d.value){
-    val = d.value
-    largo = val.length
-    val = val.split(sep)
-    val2 = ''
-    for(r=0;r<val.length;r++){
-        val2 += val[r]  
-    }
-    if(nums){
-        for(z=0;z<val2.length;z++){
-            if(isNaN(val2.charAt(z))){
-                letra = new RegExp(val2.charAt(z),"g")
-                val2 = val2.replace(letra,"")
+function mascarasimple(d,sep,nums,selecter){
+
+if(document.getElementById(selecter).value!=""){
+    if(document.getElementById(selecter).value==1){
+        //alert("Tarjeta");
+        pat= new Array(4,4,4,4);
+        if(d.value==""){
+            $("#"+d.id).mask("9999-9999-9999-9999");
+        }
+
+        /*if(d.valant != d.value){
+            val = d.value
+            largo = val.length
+            val = val.split(sep)
+            val2 = ''
+            for(r=0;r<val.length;r++){
+                val2 += val[r]  
             }
-        }
-    }
-    val = ''
-    val3 = new Array()
-    for(s=0; s<pat.length; s++){
-        val3[s] = val2.substring(0,pat[s])
-        val2 = val2.substr(pat[s])
-    }
-    for(q=0;q<val3.length; q++){
-        if(q ==0){
-            val = val3[q]
-        }
-        else{
-            if(val3[q] != ""){
-                val += sep + val3[q]
+            if(nums){
+                for(z=0;z<val2.length;z++){
+                    if(isNaN(val2.charAt(z))){
+                        letra = new RegExp(val2.charAt(z),"g")
+                        val2 = val2.replace(letra,"")
+                    }
                 }
+            }
+            val = ''
+            val3 = new Array()
+            for(s=0; s<pat.length; s++){
+                val3[s] = val2.substring(0,pat[s])
+                val2 = val2.substr(pat[s])
+            }
+            for(q=0;q<val3.length; q++){
+                if(q ==0){
+                    val = val3[q]
+                }
+                else{
+                    if(val3[q] != ""){
+                        val += sep + val3[q]
+                        }
+                }
+            }
+            d.value = val.toUpperCase().trim().replace(" ","");
+            d.valant = val
+            }*/
+
+
+    }
+    if(document.getElementById(selecter).value==2){
+        pat=cuenta= new Array(11);
+        if(d.value==""){
+            $("#"+d.id).mask("99999999999");
         }
+        
+        //alert("Cuenta");
     }
-    d.value = val.toUpperCase().trim().replace(" ","");
-    d.valant = val
+    if(document.getElementById(selecter).value==3){
+        pat= new Array(18);
+        if(d.value==""){
+            $("#"+d.id).mask("999999999999999999");
+        }
+        //alert("CLABE");
     }
+
+
+}else{
+    d.value="";
+}
 }
 
+
+$( "#selectorbanco1" ).change(function() {
+    bancoidecuenta(this.id,'numcuebanc');
+    
+});
+
+$( "#selectorbanco2" ).change(function() {
+    bancoidecuenta(this.id,'numcuebanc2');
+    
+});
+
+function bancoidecuenta(selecto,inputo){
+    $("#"+inputo).val("");
+    if($("#"+selecto).val()!=""){
+        if($("#"+selecto).val()==1){
+            $("#"+inputo).mask("9999-9999-9999-9999");
+        }
+        if($("#"+selecto).val()==2){
+            $("#"+inputo).mask("99999999999");
+        }
+        if($("#"+selecto).val()==3){
+            $("#"+inputo).mask("999999999999999999");
+        }
+    }
+}
